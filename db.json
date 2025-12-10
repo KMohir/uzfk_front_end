@@ -1,0 +1,320 @@
+{
+	"news": [
+		{
+			"id": 1,
+			"title": "Тўқсонбости экинларини экиб, қўшимча даромадга эга бўлинг",
+			"subtitle": "а МУРОЖААТИ Қадрли юртдошлар! Ҳурматли деҳқон ва фермерлар ҳамда томорқа ер эгалари! Кейинги йилларда ер юзида рўй бераётган иқлим ўзгаришлари, табиий о",
+			"post": "sasa",
+			"author_post": "akmal",
+			"added_at": "2023-09-28",
+			"slug": "news1",
+			"image": "/new1.jpeg"
+		},
+		{
+			"id": 2,
+			"title": "ҒАЛЛА УРУҒИНИ ТЕЗРОҚ ЕРГА ҚАДАБ, 2025 ЙИЛДА ҒАЛЛАДАН ЯНАДА МЎЛ ҲОСИЛ ОЛАЙЛИК",
+			"subtitle": "а МУРОЖААТИ Қадрли юртдошлар! Ҳурматли деҳқон ва фермерлар ҳамда томорқа ер эгалари! Кейинги йилларда ер юзида рўй бераётган иқлим ўзгаришлари, табиий о",
+			"post": "sasa",
+			"author_post": "akmal",
+			"added_at": "2023-09-28",
+			"slug": "news2",
+			"image": "/new2.jpeg"
+		},
+		{
+			"id": 3,
+			"title": "Ўзбекистон фермер, деҳқон хўжаликлари ва томорқа ер эгалари кенгаши Раёсати аъзоларининг ғаллачилик фермерлари ва кластерларига ",
+			"subtitle": "а МУРОЖААТИ Қадрли юртдошлар! Ҳурматли деҳқон ва фермерлар ҳамда томорқа ер эгалари! Кейинги йилларда ер юзида рўй бераётган иқлим ўзгаришлари, табиий о",
+			"post": "sasa",
+			"author_post": "akmal",
+			"added_at": "2023-09-28",
+			"slug": "news3",
+			"image": "/new3.jpeg"
+		},
+		{
+			"id": 4,
+			"title": "ПАХТА ҲОСИЛИГА ҲОСИЛ ҚЎШИБ, ЙИҒИМ – ТЕРИМ МАВСУМИНИ УЮШҚОҚЛИК БИЛАН ЎТКАЗАЙЛИК.",
+			"subtitle": "а МУРОЖААТИ Қадрли юртдошлар! Ҳурматли деҳқон ва фермерлар ҳамда томорқа ер эгалари! Кейинги йилларда ер юзида рўй бераётган иқлим ўзгаришлари, табиий о",
+			"post": "sasa",
+			"author_post": "akmal",
+			"added_at": "2023-09-28",
+			"slug": "news4",
+			"image": "/new4.jpeg"
+		},
+		{
+			"id": 5,
+			"title": "ПАХТА ҲОСИЛИГА ҲОСИЛ ҚЎШИБ, ЙИҒИМ – ТЕРИМ МАВСУМИНИ УЮШҚОҚЛИК БИЛАН ЎТКАЗАЙЛИК.",
+			"subtitle": "а МУРОЖААТИ Қадрли юртдошлар! Ҳурматли деҳқон ва фермерлар ҳамда томорқа ер эгалари! Кейинги йилларда ер юзида рўй бераётган иқлим ўзгаришлари, табиий о",
+			"post": "sasa",
+			"author_post": "akmal",
+			"added_at": "2023-09-28",
+			"slug": "news5",
+			"image": "/new4.jpeg"
+		}
+	],
+	"announcements": [
+		{
+			"id": 1,
+			"title": "Dehqonchilik bo'yicha maxsus seminar",
+			"description": "Zamonaviy dehqonchilik usullari va yangi texnologiyalar haqida seminar",
+			"image": "https://picsum.photos/800/600?random=10",
+			"date": "2024-02-15",
+			"location": "Toshkent, O'zbekiston",
+			"slug": "dehqonchilik-boyicha-maxsus-seminar",
+			"content": "Hurmatli fermerlar va dehqonlar! Sizlarni zamonaviy dehqonchilik usullari va yangi texnologiyalar bo'yicha o'tkaziladigan seminarimizga taklif etamiz. Seminar davomida quyidagi mavzular ko'rib chiqiladi:\n\n- Tuproq unumdorligini oshirish usullari\n- Zamonaviy sug'orish tizimlari\n- Organik dehqonchilik asoslari\n- Zararkunandalarga qarshi kurashning ekologik usullari\n\nSeminar bepul, lekin joylar soni cheklangan. Ishtirok etish uchun ro'yxatdan o'tish talab qilinadi.",
+			"added_at": "2024-01-15T10:00:00Z"
+		},
+		{
+			"id": 2,
+			"title": "Qishloq xo'jaligi texnikasi ko'rgazmasi",
+			"description": "Yangi qishloq xo'jaligi texnikasi va uskunalari taqdimoti",
+			"image": "https://picsum.photos/800/600?random=11",
+			"date": "2024-03-01",
+			"location": "Samarqand, O'zbekiston",
+			"slug": "qishloq-xojaligi-texnikasi-korgazmasi",
+			"content": "Samarqand shahrida o'tkaziladigan qishloq xo'jaligi texnikasi ko'rgazmasiga xush kelibsiz! Ko'rgazmada quyidagi imkoniyatlar mavjud:\n\n- Yangi traktorlar va kombaynlar taqdimoti\n- Zamonaviy sug'orish tizimlari namoyishi\n- Maxsus texnikalarni sinab ko'rish imkoniyati\n- Mutaxassislar bilan maslahatlashish\n- Maxsus narxlar va lizinglar\n\nKo'rgazma 3 kun davom etadi. Kirish bepul.",
+			"added_at": "2024-01-20T14:30:00Z"
+		},
+		{
+			"id": 3,
+			"title": "Organik dehqonchilik kursi",
+			"description": "Organik mahsulotlar yetishtirish bo'yicha amaliy kurs",
+			"image": "https://picsum.photos/800/600?random=12",
+			"date": "2024-02-20",
+			"location": "Buxoro, O'zbekiston",
+			"slug": "organik-dehqonchilik-kursi",
+			"content": "Organik dehqonchilik kursimiz orqali quyidagi bilim va ko'nikmalarga ega bo'lasiz:\n\n- Organik dehqonchilik asoslari\n- Kompost tayyorlash usullari\n- Tabiiy o'g'itlar va ulardan foydalanish\n- Biologik zararkunandalarga qarshi kurash\n- Organik mahsulotlarni sertifikatlash\n\nKurs davomiyligi: 5 kun\nNarxi: 500,000 so'm\nJoylar soni cheklangan.",
+			"added_at": "2024-01-25T09:15:00Z"
+		},
+		{
+			"id": 4,
+			"title": "Fermerlar uchun grant dasturi",
+			"description": "Innovatsion loyihalar uchun moliyaviy yordam dasturi",
+			"image": "https://picsum.photos/800/600?random=13",
+			"date": "2024-03-15",
+			"location": "Toshkent, O'zbekiston",
+			"slug": "fermerlar-uchun-grant-dasturi",
+			"content": "Fermerlar uchun yangi grant dasturi e'lon qilinmoqda. Grant dasturi quyidagi yo'nalishlarda amalga oshiriladi:\n\n- Innovatsion texnologiyalarni joriy etish\n- Issiqxona xo'jaliklarini rivojlantirish\n- Organik dehqonchilikni yo'lga qo'yish\n- Suv tejovchi texnologiyalarni joriy etish\n\nGrant miqdori: 50 million so'mgacha\nAriza topshirish muddati: 2024-yil 1-martgacha",
+			"added_at": "2024-01-30T11:45:00Z"
+		}
+	],
+	"management": [
+		{
+			"id": 1,
+			"title": "Кенгаш раиси",
+			"name": "Хаитов Актам Ахмадович",
+			"position": "Кенгаш раиси",
+			"number": "71-233-06-18"
+		},
+		{
+			"id": 2,
+			"title": "Кенгаш раисининг ўринбосари",
+			"name": "Сабиров Камилжан Эркинович",
+			"position": "Агротехнологиялар ва кўп тармоқли фермер хўжаликларини ривожлантириш масалалари бўйича Кенгаш раиснинг биринчи ўринбосари",
+			"number": "71-233-06-19"
+		},
+		{
+			"id": 3,
+			"title": "Кенгаш раисининг ўринбосари",
+			"name": "Мустафақулов Зафар Холматович",
+			"position": "Ҳуқуқий масалалар бўйича Кенгаш раиснинг ўринбосари",
+			"number": "71-233-06-37"
+		},
+		{
+			"id": 4,
+			"title": "Кенгаш раисининг ўринбосари",
+			"name": "Саттаров Тўлқин Абдихалилович",
+			"position": "Деҳқон хўжаликлари ва томорқа экин майдонларидан самарали фойдаланиш масалалари бўйича Кенгаш раиснинг ўринбосари",
+			"number": "71-233-06-18"
+		}
+	],
+	"center-units": [
+		{
+			"id": 1,
+			"title": "Бўлим бошлиғи",
+			"name": "Алламурадов Зокир Бойқобилович",
+			"position": "Кўп тармоқли фермер хўжаликларини ривожлантириш бўлими бошлиғи",
+			"number": "71-233-06-78"
+		},
+		{
+			"id": 2,
+			"title": "Бўлим бошлиғи",
+			"name": "Мирабдуллаев Нажмиддин Тожимирзаевич",
+			"position": "Фермер ва деҳқон хўжаликларига таъминот ва хизмат кўрсатишни ташкил этиш бўлими бошлиғи",
+			"number": "71-233-06-71"
+		},
+		{
+			"id": 3,
+			"title": "Бўлим бошлиғи",
+			"name": "Исламова Хурсаной Низомовна",
+			"position": "Инновацияларни жорий этиш, экспортга кўмаклашиш бўлими бошлиғи",
+			"number": "71-233-06-39"
+		},
+		{
+			"id": 4,
+			"title": "Бўлим бошлиғи",
+			"name": "Барно опа",
+			"position": "Томорқа хизмати МЧЖларни мувофиқлаштириш бўлими бошлиғи",
+			"number": "71-233-06-80"
+		},
+		{
+			"id": 5,
+			"title": "Бўлим бошлиғи",
+			"name": "Суюнов Фахриддин Набиевич",
+			"position": "Томорқа хўжаликларини ривожлантириш бўлими",
+			"number": "71-233-06-43"
+		},
+		{
+			"id": 6,
+			"title": "Бўлим бошлиғи",
+			"name": "Мухаммадиев Мехриддин Мамадиёрович",
+			"position": "Саримсоқпиёз, тўқсонбости усулида сабзавот маҳсулотларини етиштириш ва сотишга кўмаклашиш бўлими бошлиғи",
+			"number": "71-233-06-84"
+		},
+		{
+			"id": 7,
+			"title": "Бўлим бошлиғи",
+			"name": "Хатамов Сохибжон Рўзиматович",
+			"position": "Ҳуқуқий масалалар ҳамда фермер, деҳқон хўжаликлари ва томорқа ер эгаларининг ҳуқуқларини ҳимоя қилиш бўлими бошлиғи",
+			"number": "71-233-06-79"
+		},
+		{
+			"id": 8,
+			"title": "Бўлим бошлиғи",
+			"name": "Ташмурадов Ҳайдар Зикрияевич",
+			"position": "Офис менежер ва ходимлар билан ишлаш бўлими бошлиғи",
+			"number": "71-233-06-62"
+		}
+	],
+	"structure": [
+		{
+			"id": 1,
+			"title": "Ижрочи директор",
+			"name": "Саттаров Тўлқин Абдухалилович",
+			"position": "Ижрочи директор",
+			"number": "71-233-49-19"
+		},
+		{
+			"id": 2,
+			"title": "Ижрочи директор ўринбосари",
+			"name": "Бозоров Элмурод Абдунаби ўғли",
+			"position": "Ижрочи директор ўринбосар, бўлим бошлиғи",
+			"number": "71-233-06-78"
+		},
+		{
+			"id": 3,
+			"title": "Бўлим бошлиғи",
+			"name": "Хамроев Бекзод Рўзиевич",
+			"position": "Бош бухгалтер",
+			"number": "71-233-49-18"
+		},
+		{
+			"id": 4,
+			"title": "Бўлим бошлиғи",
+			"name": "Исроилов Хуршидбек Тўлқинович",
+			"position": "Бўлим бошлиғи",
+			"number": "71-233-49-18"
+		},
+		{
+			"id": 5,
+			"title": "Директор",
+			"name": "Йўлдашев Мирзохид Қулдошивич",
+			"position": "Директор",
+			"number": ""
+		},
+		{
+			"id": 6,
+			"title": "Директор ўринбосари",
+			"name": "Мухаммадиев Ойбек",
+			"position": "Директор ўринбосари",
+			"number": ""
+		},
+		{
+			"id": 7,
+			"title": "Директор",
+			"name": "Фазлиев Фахриддин",
+			"position": "Директор",
+			"number": ""
+		}
+	],
+	"goals": [
+		{
+			"id": 1,
+			"title": "Қорақалпоғистон фермерлари Кенгаши раиси",
+			"name": "ЮНУСОВ ИЛЬХАМБАЙ КУЧКАРОВИЧ",
+			"position": "Кенгаш раиси",
+			"number": "222-99-51"
+		},
+		{
+			"id": 2,
+			"title": "Андижон вилоят фермерлари Кенгаши раиси",
+			"name": "Набижонов Фарход Исроилович",
+			"position": "Кенгаш раиси",
+			"number": ""
+		},
+		{
+			"id": 3,
+			"title": "Бухоро вилоят фермерлари Кенгаши раиси",
+			"name": "Болтаев Хуршид Хомитович",
+			"position": "Кенгаш раиси",
+			"number": "225-23-53"
+		},
+		{
+			"id": 4,
+			"title": "Жиззах вилоят фермерлари Кенгаши раиси",
+			"name": "Эшматов Анарбой Аббосович",
+			"position": "Кенгаш раиси",
+			"number": "0-375-221-65-61, 221-65-65"
+		},
+		{
+			"id": 5,
+			"title": "Сурхондарё вилояти фермер, деҳқон хўжаликлари ва томорқа ер эгалари Кенгаши раиси",
+			"name": "Муродов Мухиддин Назарович",
+			"position": "Кенгаш раиси",
+			"number": "0-376-223-32-23"
+		},
+		{
+			"id": 6,
+			"title": "Сирдарё вилояти фермер, деҳқон хўжаликлари ва томорқа ер эгалари Кенгаши раиси",
+			"name": "Примқулов Рўзиқул Умматқулович",
+			"position": "Кенгаш раиси",
+			"number": "0-367-235-04-20, 235-03-37"
+		},
+		{
+			"id": 7,
+			"title": "Фарғона вилояти фермер, деҳқон хўжаликлари ва томорқа ер эгалари Кенгаши раиси",
+			"name": "Абдурахмонов Боходир Рахимжонович",
+			"position": "Кенгаш раиси",
+			"number": "0-373-229-01-07"
+		}
+	],
+	"videos": [
+		{
+			"id": 1,
+			"title": "Fermerlar uchun yangi imkoniyatlar",
+			"description": "Yangi qonun va imtiyozlar haqida batafsil ma'lumot",
+			"url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+			"added_at": "2024-01-20"
+		},
+		{
+			"id": 2,
+			"title": "Zamonaviy qishloq xo'jaligi texnologiyalari",
+			"description": "Yangi texnologiyalarni joriy etish bo'yicha ko'rsatmalar",
+			"url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+			"added_at": "2024-01-19"
+		},
+		{
+			"id": 3,
+			"title": "Issiqxona xo'jaligi: tajriba va tavsiyalar",
+			"description": "Tajribali fermerlar bilan suhbat",
+			"url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+			"added_at": "2024-01-18"
+		},
+		{
+			"id": 4,
+			"title": "Issiqxona xo'jaligi: tajriba va tavsiyalar",
+			"description": "Tajribali fermerlar bilan suhbat",
+			"url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+			"added_at": "2024-01-18"
+		}
+	]
+}

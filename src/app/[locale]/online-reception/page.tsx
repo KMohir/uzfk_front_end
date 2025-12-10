@@ -1,0 +1,171 @@
+'use client'
+
+import { useState } from 'react'
+
+function Page() {
+	const [name, setName] = useState('')
+	const [address, setAddress] = useState('')
+	const [number, setNumber] = useState('')
+	const [message, setMessage] = useState('')
+	const [error, setError] = useState<string>('')
+
+	// ⚠️ SECURITY: Credentials moved to environment variables
+	const TELEGRAM_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN
+	const TELEGRAM_CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID
+
+	const uzbekPhoneRegex = /^\+?998[0-9]{9}$/
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value
+		setNumber(value)
+		if (value === '') {
+			setError('')
+		} else if (!uzbekPhoneRegex.test(value)) {
+			setError('To‘g‘ri raqam kiriting. Masalan: +998901234567')
+		} else {
+			setError('')
+		}
+	}
+
+	const handleSubmit = async () => {
+		if (!name || !address || !number || !message) {
+			alert('Iltimos, barcha maydonlarni to‘ldiring!')
+			return
+		}
+
+		const telegramMessage = `👤 Ism Fanilya: ${name}\n👤 Manzil: ${address}\n📞 Telefon raqam: ${number}\n✉️ Murojaat: ${message}`
+
+		try {
+			await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					chat_id: TELEGRAM_CHAT_ID,
+					text: telegramMessage,
+				}),
+			})
+			alert('Murojaat muvaffaqiyatli yuborildi!')
+			setName('')
+			setAddress('')
+			setNumber('')
+			setMessage('')
+		} catch (error) {
+			console.error('Xatolik:', error)
+			alert("Murojaat yuborishda xatolik yuz berdi. Keyinroq urinib ko'ring.")
+		}
+	}
+
+	return (
+		<div>
+			<section className='text-gray-600 body-font relative'>
+				<div className='absolute inset-0 bg-gray-300'>
+					<iframe
+						width='100%'
+						height='100%'
+						frameBorder='0'
+						title='map'
+						scrolling='no'
+						src='https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5994.115985172911!2d69.27529000000001!3d41.307602!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDE4JzI3LjQiTiA2OcKwMTYnMzEuMCJF!5e0!3m2!1suz!2s!4v1738065508433!5m2!1suz!2'
+					></iframe>
+				</div>
+				<div className='container px-5 py-24 mx-auto flex'>
+					<div className='lg:w-1/3 md:w-1/2 bg-white dark:bg-gray-600 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md max-md:hidden'>
+						<h2 className='text-gray-900 dark:text-white text-lg mb-1 font-medium title-font'>
+							Online qabulxona
+						</h2>
+						<p className='leading-relaxed mb-5 text-gray-600 dark:text-white'>
+							Iltimos, ma’lumotlaringizni kiriting:
+						</p>
+
+						{/* Ism */}
+						<div className='relative mb-4'>
+							<label
+								htmlFor='name'
+								className='leading-7 text-sm text-gray-600 dark:text-white'
+							>
+								Ism Familya
+							</label>
+							<input
+								type='text'
+								id='name'
+								name='name'
+								value={name}
+								onChange={e => setName(e.target.value)}
+								className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+							/>
+						</div>
+
+						{/* Familiya */}
+						<div className='relative mb-4'>
+							<label
+								htmlFor='surname'
+								className='leading-7 text-sm text-gray-600 dark:text-white'
+							>
+								Manzil
+							</label>
+							<input
+								type='text'
+								id='address'
+								name='address'
+								value={address}
+								onChange={e => setAddress(e.target.value)}
+								className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+							/>
+						</div>
+
+						{/* Telefon raqam */}
+						<div className='relative mb-4'>
+							<label
+								htmlFor='number'
+								className='leading-7 text-sm text-gray-600 dark:text-white'
+							>
+								Telefon raqam
+							</label>
+							<input
+								type='tel'
+								id='number'
+								name='number'
+								value={number}
+								onChange={handleChange}
+								placeholder='+9989x xxx xx xx '
+								className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+							/>
+							{error && <p className='text-red-500 text-sm mt-1'>{error}</p>}
+						</div>
+
+						{/* Murojaat */}
+						<div className='relative mb-4'>
+							<label
+								htmlFor='message'
+								className='leading-7 text-sm text-gray-600 dark:text-white'
+							>
+								Murojaat
+							</label>
+							<textarea
+								id='message'
+								name='message'
+								value={message}
+								onChange={e => setMessage(e.target.value)}
+								className='w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out'
+							></textarea>
+						</div>
+
+						<button
+							onClick={handleSubmit}
+							className='text-white bg-indigo-500 dark:text-white border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg'
+						>
+							Yuborish
+						</button>
+						<p className='text-xs text-gray-500 mt-3 dark:text-white'>
+							Murojaatingizni yuboring, biz siz bilan 24 soat ichida bog‘lanamiz
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	)
+}
+
+export default Page
