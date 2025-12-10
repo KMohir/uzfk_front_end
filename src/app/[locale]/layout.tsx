@@ -1,5 +1,5 @@
-import Footer from '@/app/[locale]/components/footer'
-import Navbar from '@/app/[locale]/components/navbar'
+import Header from '@/app/[locale]/components/layout/Header'
+import Footer from '@/app/[locale]/components/layout/Footer'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
@@ -22,9 +22,8 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-	title: 'UzFK',
-	description:
-		"O'zbekiston fermer, dehqon xo'jaliklari va tomorqa yer egalari kengashi",
+	title: 'UzFK - O\'zbekiston Fermerlar Kengashi',
+	description: 'O\'zbekiston fermer, dehqon xo\'jaliklari va tomorqa yer egalari kengashi rasmiy portali',
 	icons: {
 		icon: './logo.png',
 	},
@@ -40,27 +39,28 @@ export default async function RootLayout({ children, params }: Props) {
 	const messages = await getMessages()
 
 	return (
-		<html lang={locale} suppressHydrationWarning>
+		<html lang={locale} suppressHydrationWarning className='scroll-smooth'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#f8fcff] dark:bg-gray-900 text-black dark:text-white`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground grain-overlay`}
 			>
 				<NextIntlClientProvider messages={messages}>
-					<ThemeProvider attribute='class'>
-						{/* Loader-ni birinchi joylashtiramiz */}
+					<ThemeProvider attribute='class' defaultTheme='light' enableSystem={false}>
 						<Loader />
-						<div className='max-w-[1400px] mx-auto'>
-							<MyMarquee />
-							<div className='px-0 bg-white dark:bg-gray-600 md:px-10'>
-								{/* Ads komponenti */}
-								<div className='block md:hidden bg-gray-100 dark:bg-gray-700 py-2'>
-									<Ads />
-								</div>
-								<div className='hidden md:block'>
-									<Ads />
+						<div className='min-h-screen flex flex-col font-sans'>
+							{/* Top Bar with Marquee & Ads */}
+							<div className='z-40 relative bg-white'>
+								<MyMarquee />
+								{/* Ads - keeping existing component but wrapping safely */}
+								<div className='container mx-auto px-4 hidden md:block'>
+									<div className='py-2 overflow-hidden'>
+										<Ads />
+									</div>
 								</div>
 							</div>
-							<Navbar />
-							<main className='bg-white dark:bg-gray-600 text-black dark:text-white'>
+
+							<Header />
+
+							<main className='flex-grow'>
 								{children}
 							</main>
 							<Footer />
