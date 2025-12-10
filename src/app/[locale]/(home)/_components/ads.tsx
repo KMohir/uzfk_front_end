@@ -65,18 +65,18 @@ export default function Ads() {
 
 	return (
 		<div
-			className='w-full h-96 max-md:h-[150px] relative rounded-sm overflow-hidden shadow-md mt-2 cursor-pointer group'
+			className='w-full h-[600px] max-md:h-[150px] relative rounded-2xl overflow-hidden shadow-md mt-2 cursor-pointer group'
 			onClick={() => window.open(banner.link, '_blank')}
 		>
 			{/* Background Image */}
 			<img
 				src={banner.image}
 				alt={title}
-				className='object-cover transition-transform group-hover:scale-105 duration-300'
+				className='w-full h-full object-cover transition-transform group-hover:scale-105 duration-300'
 			/>
 
 			{/* Gradient Overlay */}
-			<div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent' />
+			<div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
 
 			{/* Title and Description */}
 			<div className='absolute bottom-4 left-4 right-4 text-white'>

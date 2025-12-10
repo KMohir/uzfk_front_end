@@ -26,7 +26,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
     if (!mainNews) return null
 
     return (
-        <section className='relative min-h-[85vh] flex items-center pt-24 pb-12 overflow-hidden'>
+        <section className='relative min-h-[85vh] flex items-center pt-24 md:pt-6 pb-12 overflow-hidden'>
             {/* Background Pattern */}
             <div className='absolute inset-0 wheat-pattern z-0' />
             <div className='absolute inset-0 bg-gradient-to-b from-transparent to-white/90 z-0' />
@@ -50,7 +50,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                     <span className='inline-block px-4 py-1.5 bg-primary text-white text-sm font-bold rounded-full mb-4 animate-pulse-slow'>
                                         {t('news')}
                                     </span>
-                                    <h1 className='text-3xl md:text-5xl font-bold text-white leading-tight mb-4 group-hover:text-secondary transition-colors line-clamp-3'>
+                                    <h1 className='text-2xl md:text-4xl font-bold text-white leading-tight mb-4 group-hover:text-secondary transition-colors line-clamp-3'>
                                         {mainNews.title}
                                     </h1>
                                     <div className='flex items-center text-gray-300 gap-4'>
