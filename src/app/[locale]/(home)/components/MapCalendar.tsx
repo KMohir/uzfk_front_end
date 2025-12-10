@@ -39,7 +39,6 @@ export default function MapCalendar() {
                     <div className='lg:col-span-5 flex'>
                         <div className='w-full bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden flex flex-col transition-all duration-500 hover:shadow-2xl'>
                             <ScrollReveal delay={400} className='h-full flex flex-col'>
-                                <div className='absolute top-0 left-0 w-2 h-full bg-secondary' />
                                 <h3 className='text-2xl font-bold mb-6 text-gray-800 flex items-center gap-3'>
                                     <span className='w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl'>
                                         📅

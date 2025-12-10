@@ -47,7 +47,7 @@ export function CalendarDemo() {
 	}
 
 	return (
-		<div className='space-y-4 md:ml-48'>
+		<div className='space-y-4'>
 			<Calendar
 				mode='single'
 				selected={date}
