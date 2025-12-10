@@ -4,7 +4,11 @@ import { ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 
-function Language(): JSX.Element {
+interface LanguageProps {
+	scrolled?: boolean
+}
+
+function Language({ scrolled = false }: LanguageProps): JSX.Element {
 	const router = useRouter()
 	const [selectedLang, setSelectedLang] = useState<string>('oz') // Default til
 
@@ -33,13 +37,16 @@ function Language(): JSX.Element {
 				<select
 					value={selectedLang}
 					onChange={handleLanguageChange}
-					className='appearance-none py-0.5 pr-5 pl-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white'
+					className={`appearance-none cursor-pointer py-1 pr-8 pl-3 border rounded-lg font-medium focus:outline-none focus:ring-2 backdrop-blur-sm transition-all [&>option]:bg-white [&>option]:text-gray-900 ${scrolled
+							? 'border-gray-300 bg-gray-100/50 text-gray-700 hover:bg-gray-200/50 focus:ring-gray-400'
+							: 'border-white/30 bg-white/10 text-white hover:bg-white/20 focus:ring-white/50'
+						}`}
 				>
 					<option value='ru'>RU</option>
 					<option value='uz'>UZ</option>
 					<option value='oz'>Ўз</option>
 				</select>
-				<div className='absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none'>
+				<div className={`absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none ${scrolled ? 'text-gray-600' : 'text-white'}`}>
 					<ChevronDown className='size-4' />
 				</div>
 			</div>

@@ -31,13 +31,13 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
             <div className='absolute inset-0 wheat-pattern z-0' />
             <div className='absolute inset-0 bg-gradient-to-b from-transparent to-white/90 z-0' />
 
-            <div className='container mx-auto px-4 relative z-10'>
+            <div className='container mx-auto px-4 md:px-8 relative z-10'>
                 <div className='grid lg:grid-cols-12 gap-8 items-start'>
 
                     {/* Main Featured News */}
-                    <div className='lg:col-span-8'>
+                    <div className='lg:col-span-7'>
                         <ScrollReveal>
-                            <Link href={`/news/${mainNews.slug}`} className='group block relative h-[500px] rounded-3xl overflow-hidden shadow-2xl'>
+                            <Link href={`/news/${mainNews.slug}`} className='group block relative h-[600px] rounded-3xl overflow-hidden shadow-2xl'>
                                 <Image
                                     src={mainNews.image}
                                     alt={mainNews.title}
@@ -46,11 +46,11 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                 />
                                 <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent' />
 
-                                <div className='absolute bottom-0 left-0 p-8 md:p-12 w-full'>
-                                    <span className='inline-block px-4 py-1.5 bg-secondary text-white text-sm font-bold rounded-full mb-4 animate-pulse-slow'>
+                                <div className='absolute bottom-0 left-0 p-8 md:p-12 w-full max-w-[85%]'>
+                                    <span className='inline-block px-4 py-1.5 bg-primary text-white text-sm font-bold rounded-full mb-4 animate-pulse-slow'>
                                         {t('news')}
                                     </span>
-                                    <h1 className='text-3xl md:text-5xl font-bold text-white leading-tight mb-4 group-hover:text-secondary transition-colors'>
+                                    <h1 className='text-3xl md:text-5xl font-bold text-white leading-tight mb-4 group-hover:text-secondary transition-colors line-clamp-3'>
                                         {mainNews.title}
                                     </h1>
                                     <div className='flex items-center text-gray-300 gap-4'>
@@ -68,7 +68,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                     </div>
 
                     {/* Side News List */}
-                    <div className='lg:col-span-4 flex flex-col gap-6 h-full justify-between'>
+                    <div className='lg:col-span-5 flex flex-col gap-4 h-[600px]'>
                         {otherNews.map((news, index) => (
                             <ScrollReveal key={news.id} delay={index * 150} className='flex-1'>
                                 <Link href={`/news/${news.slug}`} className='group flex gap-4 bg-white/50 backdrop-blur-sm p-4 rounded-2xl hover:bg-white hover:shadow-lg transition-all border border-transparent hover:border-secondary/20'>

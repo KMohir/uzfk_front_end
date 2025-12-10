@@ -29,7 +29,7 @@ export default function NewsPage() {
 	const [error, setError] = useState<string | null>(null)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState(0)
-	const newsPerPage = 11
+	const newsPerPage = 12
 
 	const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/ru/api/news/list/`
 
@@ -83,8 +83,8 @@ export default function NewsPage() {
 
 	return (
 		<div className='min-h-screen bg-[#ffffff] dark:bg-gray-600'>
-			<div className='px-5 py-24 mx-auto'>
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+			<div className='container mx-auto px-4 md:px-8 py-24'>
+				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 					{news.map(item => (
 						<Link key={item.id} href={`/news/${item.slug}`} className='group'>
 							<div className='bg-white dark:bg-gray-500 rounded-lg shadow-lg overflow-hidden group-hover:shadow-xl transition-shadow duration-300 group'>
@@ -98,7 +98,7 @@ export default function NewsPage() {
 								</div>
 								<div className='p-6 h-[140px] border-t'>
 									<p className='text-xl dark:text-white font-semibold mb-2 text-blue-600 transition-colors duration-300 max-2xl:text-base group-hover:text-green-600'>
-										{item.title.slice(0, 20)+'...'}
+										{item.title.slice(0, 20) + '...'}
 									</p>
 									<p className='text-gray-600 mb-4'>{item.description}</p>
 									<div className='flex items-center justify-between text-sm dark:text-white text-gray-500'>
@@ -135,11 +135,10 @@ export default function NewsPage() {
 						<button
 							key={page}
 							onClick={() => handlePageChange(page)}
-							className={`px-4 py-2 border rounded-md transition-colors duration-300 ${
-								currentPage === page
+							className={`px-4 py-2 border rounded-md transition-colors duration-300 ${currentPage === page
 									? 'bg-blue-600 text-white'
 									: 'bg-white text-blue-600 hover:bg-blue-100'
-							}`}
+								}`}
 						>
 							{String(page).padStart(2, '0')}
 						</button>

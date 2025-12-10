@@ -37,6 +37,7 @@ export default function Ads() {
 				const data = await response.json()
 				setBanners(Array.isArray(data) ? data : data.results || [])
 			} catch (error) {
+				// eslint-disable-next-line no-console
 				console.error('Error fetching banners:', error)
 				setBanners([])
 			} finally {

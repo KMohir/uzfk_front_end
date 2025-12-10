@@ -39,8 +39,13 @@ export default function Page() {
 		return <div className="h-screen flex items-center justify-center bg-accent/20">Loading...</div>
 	}
 
-	const mainNews = news[0] || null
-	const otherNews = news.slice(1, 4)
+	// Filter out duplicates based on ID
+	const uniqueNews = news.filter((item, index, self) =>
+		index === self.findIndex((t) => t.id === item.id)
+	)
+
+	const mainNews = uniqueNews[0] || null
+	const otherNews = uniqueNews.slice(1, 5)
 
 	return (
 		<div className="flex flex-col">

@@ -11,17 +11,17 @@ export default function VideoGallery() {
     const t = useTranslations()
 
     return (
-        <section className='py-24 bg-primary text-white relative overflow-hidden'>
-            <div className='absolute inset-0 wheat-pattern opacity-5 mix-blend-overlay' />
+        <section className='py-24 bg-white relative overflow-hidden'>
+            <div className='absolute inset-0 wheat-pattern opacity-[0.03]' />
 
-            <div className='container mx-auto px-4 relative z-10'>
+            <div className='container mx-auto px-4 md:px-8 relative z-10'>
                 <div className='flex justify-between items-end mb-12'>
                     <ScrollReveal>
                         <div>
-                            <span className='text-secondary font-bold tracking-widest uppercase text-sm mb-2 block'>
+                            <span className='text-gray-500 font-bold tracking-widest uppercase text-sm mb-2 block'>
                                 Media
                             </span>
-                            <h2 className='text-3xl md:text-5xl font-bold'>
+                            <h2 className='text-3xl md:text-5xl font-bold text-gray-900'>
                                 {t('videos')}
                             </h2>
                         </div>
@@ -31,7 +31,7 @@ export default function VideoGallery() {
                         <Link
                             href='https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos'
                             target='_blank'
-                            className='flex items-center gap-2 text-secondary font-bold hover:text-white transition-colors'
+                            className='flex items-center gap-2 text-primary font-bold hover:text-green-700 transition-colors'
                         >
                             {t('allVideo')} <ArrowRight size={20} />
                         </Link>
@@ -39,7 +39,7 @@ export default function VideoGallery() {
                 </div>
 
                 <ScrollReveal delay={300}>
-                    <div className='bg-white/5 backdrop-blur-sm p-6 rounded-3xl border border-white/10'>
+                    <div className='bg-gray-50 p-6 rounded-3xl border border-gray-100 shadow-lg'>
                         <Videos />
                     </div>
                 </ScrollReveal>
@@ -47,7 +47,7 @@ export default function VideoGallery() {
                 <div className='mt-8 md:hidden text-center'>
                     <Link
                         href='https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos'
-                        className='inline-flex items-center gap-2 text-secondary font-bold'
+                        className='inline-flex items-center gap-2 text-primary font-bold'
                     >
                         {t('allVideo')} <ArrowRight size={20} />
                     </Link>

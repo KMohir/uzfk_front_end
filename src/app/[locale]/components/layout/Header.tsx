@@ -43,7 +43,7 @@ export default function Header() {
         <header
             className={cn(
                 'fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans',
-                scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4 text-white'
+                scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-primary py-4 text-white'
             )}
         >
             <div className='container mx-auto px-4 md:px-8 flex items-center justify-between'>
@@ -108,7 +108,9 @@ export default function Header() {
                 {/* Right Actions */}
                 <div className='flex items-center gap-4'>
                     {/* Language Switcher Mock */}
-                    <LanguageSwitcher />
+                    <div className='hidden lg:block'>
+                        <LanguageSwitcher scrolled={scrolled} />
+                    </div>
 
                     {/* Mobile Menu Button */}
                     <button
