@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 interface Worker {
 	id: number
 	f_name_uz: string
@@ -37,15 +38,15 @@ export default function Page() {
 	const [workers, setWorkers] = useState<Worker[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage] = useState(1)
 	const pageSize = 100
 	const t = useTranslations()
 	const pathname = usePathname()
 	const language = pathname.startsWith('/ru')
 		? 'ru'
 		: pathname.startsWith('/oz')
-		? 'oz'
-		: 'uz'
+			? 'oz'
+			: 'uz'
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -90,23 +91,14 @@ export default function Page() {
 		)
 	}
 
-	const handlePageChange = (page: number) => {
-		setCurrentPage(page)
-	}
+
 
 	const paginatedWorkers: Worker[] = workers.slice(
 		(currentPage - 1) * pageSize,
 		currentPage * pageSize
 	)
 	// Tilga qarab title va description tanlash
-	const fname =
-		language === 'ru'
-			? paginatedWorkers.map(item => item.f_name_ru)
-			: paginatedWorkers.map(item => item.f_name_uz)
-	const section =
-		language === 'ru'
-			? paginatedWorkers.map(item => item.section.name_ru)
-			: paginatedWorkers.map(item => item.section.name_uz)
+	// Tilga qarab title va description tanlash
 
 	if (isLoading) {
 		return (
@@ -144,21 +136,16 @@ export default function Page() {
 							language === 'ru'
 								? worker.f_name_ru
 								: language === 'oz'
-								? worker.f_name_en
-								: worker.f_name_uz
+									? worker.f_name_en
+									: worker.f_name_uz
 						const section =
 							language === 'ru'
 								? worker.section.name_ru
 								: language === 'oz'
-								? worker.section.name_en
-								: worker.section.name_uz
+									? worker.section.name_en
+									: worker.section.name_uz
 
-						const position =
-							language === 'ru'
-								? worker.position.name_ru
-								: language === 'oz'
-								? worker.position.name_en
-								: worker.position.name_uz
+
 
 						return (
 							<div
@@ -169,9 +156,11 @@ export default function Page() {
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
 									{/* Worker Image */}
 									<div className='h-auto'>
-										<img
+										<Image
 											src={worker.image}
 											alt={worker.f_name_uz}
+											width={200}
+											height={240}
 											className='w-full border h-60 object-cover rounded-lg'
 										/>
 									</div>
@@ -214,12 +203,11 @@ export default function Page() {
 										{['biography'].map(tab => (
 											<button
 												key={tab}
-												className={`px-8 py-2 max-md:w-full text-lg font-bold transition-colors duration-300 rounded-sm ${
-													worker.currentTab === tab
-														? 'bg-blue-500 text-white'
-														: 'bg-gray-200 text-gray-700'
-												}`}
-												onClick={() => handleTabChange(worker.id, tab as any)}
+												className={`px-8 py-2 max-md:w-full text-lg font-bold transition-colors duration-300 rounded-sm ${worker.currentTab === tab
+													? 'bg-blue-500 text-white'
+													: 'bg-gray-200 text-gray-700'
+													}`}
+												onClick={() => handleTabChange(worker.id, tab as 'biography' | 'obligation' | 'workers')}
 											>
 												{tab === 'biography' && `${t('bio')}`}
 												{tab === 'obligation' && `${t('obl')}`}
@@ -249,9 +237,11 @@ export default function Page() {
 														key={subWorker.id}
 														className='flex max-md:flex-col gap-6 border rounded-lg p-6 shadow-md bg-gray-50'
 													>
-														<img
+														<Image
 															src={subWorker.image}
 															alt={subWorker.f_name_uz}
+															width={200}
+															height={240}
 															className='w-[200px] h-60 rounded-lg object-cover'
 														/>
 														<div className='flex flex-col gap-4'>

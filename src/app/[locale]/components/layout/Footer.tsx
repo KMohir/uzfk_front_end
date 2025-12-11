@@ -23,11 +23,11 @@ export default function Footer() {
                                 <Image src='/logo.png' alt='UzFK Logo' fill className='object-contain p-2' />
                             </div>
                             <span className='font-bold text-lg leading-tight text-secondary'>
-                                O'zbekiston Fermerlar Kengashi
+                                O&apos;zbekiston Fermerlar Kengashi
                             </span>
                         </div>
                         <p className='text-gray-400 mb-6 leading-relaxed'>
-                            {t('footer_desc') || "O'zbekiston qishloq xo'jaligini rivojlantirish va fermerlar huquqlarini himoya qilish yo'lida."}
+                            {t('footer_desc') || 'O&apos;zbekiston qishloq xo&apos;jaligini rivojlantirish va fermerlar huquqlarini himoya qilish yo&apos;lida.'}
                         </p>
                         <div className='flex gap-4'>
                             {[Facebook, Instagram, Youtube, Send].map((Icon, i) => (
@@ -72,7 +72,7 @@ export default function Footer() {
                         <ul className='space-y-4'>
                             <li className='flex items-start gap-3 text-gray-400'>
                                 <MapPin className='text-secondary flex-shrink-0 mt-1' size={18} />
-                                <span>Toshkent sh., Sh.Rustaveli ko'chasi 1-mavze, 6-uy</span>
+                                <span>Toshkent sh., Sh.Rustaveli ko&apos;chasi 1-mavze, 6-uy</span>
                             </li>
                             <li className='flex items-center gap-3 text-gray-400'>
                                 <Phone className='text-secondary' size={18} />

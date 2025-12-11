@@ -1,5 +1,5 @@
 import HtmlContent from '@/app/[locale]/components/HtmlContent'
-import Image from 'next/image'
+
 
 async function getNews(slug: string) {
 	const res = await fetch(

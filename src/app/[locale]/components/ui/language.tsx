@@ -1,14 +1,14 @@
 'use client'
 
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
 
 interface LanguageProps {
 	scrolled?: boolean
 }
 
-function Language({ scrolled = false }: LanguageProps): JSX.Element {
+function Language({ scrolled = false }: LanguageProps) {
 	const router = useRouter()
 	const [selectedLang, setSelectedLang] = useState<string>('oz') // Default til
 
@@ -21,7 +21,7 @@ function Language({ scrolled = false }: LanguageProps): JSX.Element {
 		}
 	}, [])
 
-	const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+	const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
 		const newLang = e.target.value
 		setSelectedLang(newLang)
 
@@ -38,8 +38,8 @@ function Language({ scrolled = false }: LanguageProps): JSX.Element {
 					value={selectedLang}
 					onChange={handleLanguageChange}
 					className={`appearance-none cursor-pointer py-1 pr-8 pl-3 border rounded-lg font-medium focus:outline-none focus:ring-2 backdrop-blur-sm transition-all [&>option]:bg-white [&>option]:text-gray-900 ${scrolled
-							? 'border-gray-300 bg-gray-100/50 text-gray-700 hover:bg-gray-200/50 focus:ring-gray-400'
-							: 'border-white/30 bg-white/10 text-white hover:bg-white/20 focus:ring-white/50'
+						? 'border-gray-300 bg-gray-100/50 text-gray-700 hover:bg-gray-200/50 focus:ring-gray-400'
+						: 'border-white/30 bg-white/10 text-white hover:bg-white/20 focus:ring-white/50'
 						}`}
 				>
 					<option value='ru'>RU</option>

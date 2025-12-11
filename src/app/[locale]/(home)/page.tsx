@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+
 import HeroNews from './components/HeroNews'
 import StatsGrid from './components/StatsGrid'
 import MapCalendar from './components/MapCalendar'
@@ -18,7 +18,7 @@ interface News {
 }
 
 export default function Page() {
-	const t = useTranslations()
+
 	const [news, setNews] = useState<News[]>([])
 	const [loading, setLoading] = useState(true)
 

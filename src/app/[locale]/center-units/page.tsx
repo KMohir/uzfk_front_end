@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 interface Worker {
@@ -33,19 +33,14 @@ interface Worker {
 }
 export default function Page() {
 	const t = useTranslations()
-	const pathname = usePathname()
-	const language = pathname.startsWith('/ru')
-		? 'ru'
-		: pathname.startsWith('/oz')
-		? 'oz'
-		: 'uz'
+
 	const [workers, setWorkers] = useState<Worker[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage] = useState(1)
 	const pageSize = 100
 
-	
+
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -88,9 +83,7 @@ export default function Page() {
 		)
 	}
 
-	const handlePageChange = (page: number) => {
-		setCurrentPage(page)
-	}
+
 
 	const paginatedWorkers = workers.slice(
 		(currentPage - 1) * pageSize,
@@ -98,7 +91,7 @@ export default function Page() {
 	)
 
 	console.log(paginatedWorkers);
-	
+
 
 	if (isLoading) {
 		return (
@@ -132,9 +125,11 @@ export default function Page() {
 							>
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
 									<div className='h-auto'>
-										<img
+										<Image
 											src={worker.image}
 											alt={worker.f_name_uz}
+											width={200}
+											height={240}
 											className='w-full border h-60 object-cover rounded-lg'
 										/>
 									</div>
@@ -175,12 +170,11 @@ export default function Page() {
 										{['biography', 'obligation', 'workers'].map(tab => (
 											<button
 												key={tab}
-												className={`px-8 py-2 max-md:w-full text-lg font-bold transition-colors duration-300 rounded-sm ${
-													worker.currentTab === tab
-														? 'bg-blue-500 text-white'
-														: 'bg-gray-200 text-gray-700'
-												}`}
-												onClick={() => handleTabChange(worker.id, tab as any)}
+												className={`px-8 py-2 max-md:w-full text-lg font-bold transition-colors duration-300 rounded-sm ${worker.currentTab === tab
+													? 'bg-blue-500 text-white'
+													: 'bg-gray-200 text-gray-700'
+													}`}
+												onClick={() => handleTabChange(worker.id, tab as 'biography' | 'obligation' | 'workers')}
 											>
 												{tab === 'biography' && `${t('bio')}`}
 												{tab === 'obligation' && `${t('obl')}`}

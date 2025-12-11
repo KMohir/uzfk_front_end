@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 interface Banner {
@@ -69,10 +70,11 @@ export default function Ads() {
 			onClick={() => window.open(banner.link, '_blank')}
 		>
 			{/* Background Image */}
-			<img
+			<Image
 				src={banner.image}
 				alt={title}
-				className='w-full h-full object-cover transition-transform group-hover:scale-105 duration-300'
+				fill
+				className='object-cover transition-transform group-hover:scale-105 duration-300'
 			/>
 
 			{/* Gradient Overlay */}

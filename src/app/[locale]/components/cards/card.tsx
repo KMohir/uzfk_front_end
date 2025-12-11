@@ -1,4 +1,5 @@
 import { PhoneCall } from 'lucide-react'
+import Image from 'next/image'
 import React from 'react'
 
 interface ICard {
@@ -21,9 +22,11 @@ function Card(item: ICard) {
           className="flex-shrink-0"
           style={{ width: '250px', height: '100%' }} // Rasm kengligi va balandligi bir xil
         >
-          <img
-            src={item.image}
+          <Image
+            src={item.image || '/placeholder.png'}
             alt={item.title}
+            width={250}
+            height={200}
             className="object-cover w-full h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none"
           />
         </div>

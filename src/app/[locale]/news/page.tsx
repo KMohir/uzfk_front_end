@@ -25,8 +25,7 @@ interface ApiResponse {
 
 export default function NewsPage() {
 	const [news, setNews] = useState<News[]>([])
-	const [isLoading, setIsLoading] = useState(true)
-	const [error, setError] = useState<string | null>(null)
+
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState(0)
 	const newsPerPage = 12
@@ -35,7 +34,6 @@ export default function NewsPage() {
 
 	useEffect(() => {
 		const fetchNews = async () => {
-			setIsLoading(true)
 			try {
 				const response = await fetch(`${apiUrl}?page=${currentPage}`)
 				if (!response.ok) {
@@ -44,12 +42,8 @@ export default function NewsPage() {
 				const data: ApiResponse = await response.json()
 				setNews(data.results)
 				setTotalPages(Math.ceil(data.count / newsPerPage))
-				setError(null)
-			} catch (error: any) {
-				console.error('So`rovda xatolik yuz berdi:', error.message)
-				setError(error.message)
-			} finally {
-				setIsLoading(false)
+			} catch (error: unknown) {
+				console.error('So`rovda xatolik yuz berdi:', (error as Error).message)
 			}
 		}
 
@@ -136,8 +130,8 @@ export default function NewsPage() {
 							key={page}
 							onClick={() => handlePageChange(page)}
 							className={`px-4 py-2 border rounded-md transition-colors duration-300 ${currentPage === page
-									? 'bg-blue-600 text-white'
-									: 'bg-white text-blue-600 hover:bg-blue-100'
+								? 'bg-blue-600 text-white'
+								: 'bg-white text-blue-600 hover:bg-blue-100'
 								}`}
 						>
 							{String(page).padStart(2, '0')}

@@ -1,6 +1,7 @@
 'use client'
 
 import { FC, useState, SVGProps, CSSProperties } from 'react'
+import Image from 'next/image'
 import { IRegion, regionsPathArray } from './map-array'
 
 interface RegionsMapProps extends SVGProps<SVGSVGElement> {
@@ -62,8 +63,8 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 					isCurrentRegion
 						? selectedFillColor
 						: isHovered
-						? '#00915c' // Hover holati uchun to‘q yashil rang
-						: defaultFillColor
+							? '#00915c' // Hover holati uchun to‘q yashil rang
+							: defaultFillColor
 				}
 			/>
 		)
@@ -99,9 +100,11 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 								</span>
 							</p>
 							<div className='flex'>
-								<img
+								<Image
 									src={hoveredRegion.image}
 									alt='Hudud rasmi'
+									width={56}
+									height={56}
 									className='w-14 h-14 object-cover rounded'
 								/>
 								<p className='ml-2'>

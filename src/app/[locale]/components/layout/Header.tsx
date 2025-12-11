@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, usePathname } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { Menu, X, ChevronDown, User, Globe } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import LanguageSwitcher from '../ui/language'
@@ -73,7 +73,7 @@ export default function Header() {
                                 className={cn(
                                     'flex items-center gap-1 text-sm font-medium transition-colors py-2',
                                     scrolled ? 'text-gray-700 hover:text-primary' : 'text-white/90 hover:text-white',
-                                    pathname.includes(item.href) && item.href !== '#' && 'text-secondary font-bold'
+                                    pathname.includes(item.href) && item.href !== '#' && 'text-primary font-bold'
                                 )}
                             >
                                 {item.label}
