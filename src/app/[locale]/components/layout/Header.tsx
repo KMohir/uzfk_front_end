@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import LanguageSwitcher from '../ui/language'
 
+import MyMarquee from '../marquee/MyMarquee'
+
 export default function Header() {
     const t = useTranslations()
     const pathname = usePathname()
@@ -42,17 +44,21 @@ export default function Header() {
     return (
         <header
             className={cn(
-                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans',
-                scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-2' : 'bg-primary py-4 text-white'
+                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans bg-white/95 backdrop-blur-md shadow-md',
+                scrolled ? 'py-2' : 'py-4'
             )}
         >
-            <div className='container mx-auto px-4 md:px-8 flex items-center justify-between'>
+            <div className='w-full absolute top-0 left-0'>
+                <MyMarquee />
+            </div>
+
+            <div className='container mx-auto px-4 md:px-8 flex items-center justify-between mt-8'>
                 {/* Logo */}
                 <Link href='/' className='flex items-center gap-3 group'>
                     <div className='relative w-12 h-12 overflow-hidden rounded-full border-2 border-secondary group-hover:scale-105 transition-transform'>
                         <Image src='/logo.png' alt='UzFK Logo' fill className='object-cover' />
                     </div>
-                    <div className={cn('flex flex-col', scrolled ? 'text-primary' : 'text-white')}>
+                    <div className='flex flex-col text-primary'>
                         <span className='font-bold text-lg leading-tight tracking-tight max-w-[200px]'>
                             {t('logo')}
                         </span>
@@ -71,8 +77,7 @@ export default function Header() {
                             <Link
                                 href={item.href}
                                 className={cn(
-                                    'flex items-center gap-1 text-sm font-medium transition-colors py-2',
-                                    scrolled ? 'text-gray-700 hover:text-primary' : 'text-white/90 hover:text-white',
+                                    'flex items-center gap-1 text-sm font-medium transition-colors py-2 text-gray-700 hover:text-primary',
                                     pathname.includes(item.href) && item.href !== '#' && 'text-primary font-bold'
                                 )}
                             >
@@ -109,12 +114,12 @@ export default function Header() {
                 <div className='flex items-center gap-4'>
                     {/* Language Switcher Mock */}
                     <div className='hidden lg:block'>
-                        <LanguageSwitcher scrolled={scrolled} />
+                        <LanguageSwitcher />
                     </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className={cn('lg:hidden', scrolled ? 'text-gray-800' : 'text-white')}
+                        className='lg:hidden text-gray-800'
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
                         {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
