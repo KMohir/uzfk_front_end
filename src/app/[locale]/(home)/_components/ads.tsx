@@ -34,6 +34,16 @@ export default function Ads() {
 						},
 					}
 				)
+
+				if (!response.ok) {
+					throw new Error(`Failed to fetch banners: ${response.status} ${response.statusText}`)
+				}
+
+				const contentType = response.headers.get('content-type')
+				if (!contentType || !contentType.includes('application/json')) {
+					throw new Error('Received non-JSON response from banner API')
+				}
+
 				const data = await response.json()
 				setBanners(Array.isArray(data) ? data : data.results || [])
 			} catch (error) {

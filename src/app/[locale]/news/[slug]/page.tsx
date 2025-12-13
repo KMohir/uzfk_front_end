@@ -27,9 +27,9 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 	}
 
 	return (
-		<article className='max-md:px-0 px-24 mx-auto bg-white dark:bg-gray-600 py-8'>
+		<article className='max-md:px-0 px-24 mx-auto bg-white dark:bg-gray-600 py-8 pt-24 md:pt-8'>
 
-			<h1 className='text-4xl text-center font-bold mb-4 text-green-800 dark:text-white'>
+			<h1 className='text-2xl md:text-4xl text-center font-bold mb-4 text-green-800 dark:text-white'>
 				{news.title}
 			</h1>
 			<div className='flex items-center text-gray-600 mb-8'></div>
