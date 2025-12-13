@@ -37,16 +37,13 @@ function Language({ scrolled = false }: LanguageProps) {
 				<select
 					value={selectedLang}
 					onChange={handleLanguageChange}
-					className={`appearance-none cursor-pointer py-1 pr-8 pl-3 border rounded-lg font-medium focus:outline-none focus:ring-2 backdrop-blur-sm transition-all [&>option]:bg-white [&>option]:text-gray-900 ${scrolled
-						? 'border-gray-300 bg-gray-100/50 text-gray-700 hover:bg-gray-200/50 focus:ring-gray-400'
-						: 'border-white/30 bg-white/10 text-white hover:bg-white/20 focus:ring-white/50'
-						}`}
+					className='appearance-none cursor-pointer py-1 pr-8 pl-3 border rounded-lg font-medium focus:outline-none focus:ring-2 backdrop-blur-sm transition-all [&>option]:bg-white [&>option]:text-gray-900 border-gray-300 bg-gray-100/50 text-gray-700 hover:bg-gray-200/50 focus:ring-gray-400'
 				>
 					<option value='ru'>RU</option>
 					<option value='uz'>UZ</option>
 					<option value='oz'>Ўз</option>
 				</select>
-				<div className={`absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none ${scrolled ? 'text-gray-600' : 'text-white'}`}>
+				<div className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-600'>
 					<ChevronDown className='size-4' />
 				</div>
 			</div>

@@ -10,15 +10,19 @@ import LanguageSwitcher from '../ui/language'
 
 import MyMarquee from '../marquee/MyMarquee'
 
+import { createPortal } from 'react-dom'
+
 export default function Header() {
     const t = useTranslations()
     const pathname = usePathname()
     const [scrolled, setScrolled] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+    const [mounted, setMounted] = useState(false)
 
     // Update header style on scroll
     useEffect(() => {
+        setMounted(true)
         const handleScroll = () => setScrolled(window.scrollY > 20)
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
@@ -44,7 +48,7 @@ export default function Header() {
     return (
         <header
             className={cn(
-                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans bg-white/95 backdrop-blur-md shadow-md',
+                'fixed top-0 left-0 right-0 z-[100] transition-all duration-300 font-sans bg-white/95 backdrop-blur-md shadow-md',
                 scrolled ? 'py-2' : 'py-4'
             )}
         >
@@ -113,7 +117,7 @@ export default function Header() {
                 {/* Right Actions */}
                 <div className='flex items-center gap-4'>
                     {/* Language Switcher Mock */}
-                    <div className='hidden lg:block'>
+                    <div className='block'>
                         <LanguageSwitcher />
                     </div>
 
@@ -127,9 +131,9 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
-            {mobileMenuOpen && (
-                <div className='fixed inset-0 z-40 bg-white pt-24 px-6 lg:hidden animate-in slide-in-from-right duration-300'>
+            {/* Mobile Menu Overlay with Portal */}
+            {mobileMenuOpen && mounted && createPortal(
+                <div className='fixed inset-0 z-[90] bg-white pt-24 px-6 lg:hidden animate-in slide-in-from-right duration-300'>
                     <nav className='flex flex-col gap-4'>
                         {navItems.map((item) => (
                             <div key={item.name} className='border-b border-gray-100 pb-2'>
@@ -157,7 +161,12 @@ export default function Header() {
                             </div>
                         ))}
                     </nav>
-                </div>
+                    <div className='mt-4 border-t border-gray-100 pt-4'>
+                        <p className='text-sm text-gray-500 mb-2'>Tilni tanlash:</p>
+                        <LanguageSwitcher />
+                    </div>
+                </div>,
+                document.body
             )}
         </header>
     )

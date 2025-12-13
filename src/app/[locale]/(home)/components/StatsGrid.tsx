@@ -12,7 +12,7 @@
 import React from 'react'
 import CountUp from 'react-countup'
 import ScrollReveal from '../../components/ScrollReveal'
-import { Users, Tractor, Building2, Sprout } from 'lucide-react'
+import { Users, Briefcase, TreeDeciduous, Sprout } from 'lucide-react'
 
 // ============================================
 // TYPE DEFINITIONS
@@ -25,6 +25,7 @@ interface StatItem {
     suffix: string
     color: string
     shadow: string
+    decimals?: number
 }
 
 // ============================================
@@ -39,32 +40,35 @@ export default function StatsGrid() {
         {
             icon: Users,
             label: 'Fermerlar',
-            value: 12500,
+            value: 24300,
             suffix: '+',
             color: 'from-orange-400 via-orange-500 to-amber-500',
             shadow: 'shadow-orange-200'
         },
         {
-            icon: Tractor,
-            label: 'Texnikalar',
-            value: 8400,
-            suffix: '',
+            icon: Briefcase,
+            label: 'Ish bilan bandlik',
+            value: 1.38,
+            suffix: ' Mln',
+            decimals: 2,
             color: 'from-blue-500 via-blue-600 to-cyan-600',
             shadow: 'shadow-blue-200'
         },
         {
-            icon: Building2,
-            label: 'Hududiy Kengashlar',
-            value: 14,
-            suffix: '',
+            icon: TreeDeciduous,
+            label: 'Ekilgan Daraxtlar',
+            value: 24.8,
+            suffix: ' Mln',
+            decimals: 1,
             color: 'from-green-500 via-emerald-600 to-teal-600',
             shadow: 'shadow-green-200'
         },
         {
             icon: Sprout,
             label: 'Ekin Maydonlari',
-            value: 450,
+            value: 200.9,
             suffix: 'k ga',
+            decimals: 1,
             color: 'from-cyan-400 via-cyan-500 to-blue-400',
             shadow: 'shadow-cyan-200'
         },
@@ -142,6 +146,7 @@ export default function StatsGrid() {
                                         end={stat.value}
                                         duration={2.5}
                                         separator=','
+                                        decimals={stat.decimals || 0}
                                         enableScrollSpy
                                         scrollSpyOnce
                                     />
