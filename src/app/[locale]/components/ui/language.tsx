@@ -4,11 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-interface LanguageProps {
-	scrolled?: boolean
-}
-
-function Language({ scrolled = false }: LanguageProps) {
+function Language() {
 	const router = useRouter()
 	const [selectedLang, setSelectedLang] = useState<string>('oz') // Default til
 
