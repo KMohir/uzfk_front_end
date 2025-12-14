@@ -39,8 +39,8 @@ export default function StatsGrid() {
     const stats: StatItem[] = [
         {
             icon: Users,
-            label: 'Fermerlar',
-            value: 24300,
+            label: "Ko'p tarmoqli fermer xo'jaliklar",
+            value: 23400,
             suffix: '+',
             color: 'from-orange-400 via-orange-500 to-amber-500',
             shadow: 'shadow-orange-200'

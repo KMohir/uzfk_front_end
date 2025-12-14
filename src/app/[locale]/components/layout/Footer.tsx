@@ -72,11 +72,11 @@ export default function Footer() {
                         <ul className='space-y-4'>
                             <li className='flex items-start gap-3 text-gray-400'>
                                 <MapPin className='text-secondary flex-shrink-0 mt-1' size={18} />
-                                <span>Toshkent sh., Sh.Rustaveli ko&apos;chasi 1-mavze, 6-uy</span>
+                                <span>Mirobod tumani, Islom Karimov ko&apos;chasi 2A</span>
                             </li>
                             <li className='flex items-center gap-3 text-gray-400'>
                                 <Phone className='text-secondary' size={18} />
-                                <span>+998 71 202 12 34</span>
+                                <span>+998 71 233 06 18</span>
                             </li>
                             <li className='flex items-center gap-3 text-gray-400'>
                                 <Mail className='text-secondary' size={18} />
