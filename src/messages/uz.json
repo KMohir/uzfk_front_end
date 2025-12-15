@@ -60,5 +60,7 @@
 	"stat_farmers": "Ko'p tarmoqli fermer xo'jaliklar",
 	"stat_employment": "Ish bilan bandlik",
 	"stat_trees": "Ekilgan Daraxtlar",
-	"stat_fields": "Ekin Maydonlari"
+	"stat_fields": "Ekin Maydonlari",
+	"unit_mln": " Mln",
+	"unit_k_ga": " ming ga"
 }

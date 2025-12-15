@@ -52,7 +52,7 @@ export default function StatsGrid() {
             icon: Briefcase,
             label: t('stat_employment'),
             value: 1.38,
-            suffix: ' Mln',
+            suffix: t('unit_mln'),
             decimals: 2,
             color: 'from-blue-500 via-blue-600 to-cyan-600',
             shadow: 'shadow-blue-200'
@@ -61,7 +61,7 @@ export default function StatsGrid() {
             icon: TreeDeciduous,
             label: t('stat_trees'),
             value: 24.8,
-            suffix: ' Mln',
+            suffix: t('unit_mln'),
             decimals: 1,
             color: 'from-green-500 via-emerald-600 to-teal-600',
             shadow: 'shadow-green-200'
@@ -70,7 +70,7 @@ export default function StatsGrid() {
             icon: Sprout,
             label: t('stat_fields'),
             value: 200.9,
-            suffix: 'k ga',
+            suffix: t('unit_k_ga'),
             decimals: 1,
             color: 'from-cyan-400 via-cyan-500 to-blue-400',
             shadow: 'shadow-cyan-200'
