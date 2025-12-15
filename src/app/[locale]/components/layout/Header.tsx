@@ -64,7 +64,7 @@ export default function Header() {
             )}
         >
             <div className='w-full absolute top-0 left-0'>
-                <MyMarquee />
+                {!pathname.includes('/news/') && <MyMarquee />}
             </div>
 
             <div className='container mx-auto px-4 md:px-8 flex items-center justify-between mt-8'>
