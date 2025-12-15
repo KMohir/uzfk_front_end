@@ -28,7 +28,7 @@
 	"allNew": "Barcha yangiliklar",
 	"allAnn": "Barcha e`lonlar",
 	"allVideo": "Barcha videolar",
-	"addressTwo": "Toshkent shahar, Mirobod tumani, Islom Karimov ko'chasi 2A uy ",
+	"addressTwo": "Mirobod tumani, Islom Karimov ko'chasi 2A",
 	"phoneTwo": "Ishonch telefoni",
 	"bio": "Biografiya",
 	"obl": "Majburiyatlari",
@@ -53,5 +53,12 @@
 	"footer_desc": "O'zbekiston qishloq xo'jaligini rivojlantirish va fermerlar huquqlarini himoya qilish yo'lida.",
 	"regions": "Hududlar",
 	"calendar": "Taqvim",
-	"services": "Xizmatlar"
+	"services": "Xizmatlar",
+	"stat_title": "Qishloq Xo'jaligi Ko'rsatkichlari",
+	"stat_subtitle": "Mamlakatimiz bo'ylab amalga oshirilayotgan islohotlar va erishilgan natijalar raqamlarda.",
+	"stat_badge": "Raqamlar so'zlaganda",
+	"stat_farmers": "Ko'p tarmoqli fermer xo'jaliklar",
+	"stat_employment": "Ish bilan bandlik",
+	"stat_trees": "Ekilgan Daraxtlar",
+	"stat_fields": "Ekin Maydonlari"
 }

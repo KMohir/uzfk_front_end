@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useLocale } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 interface Link {
 	url: string
 	title_uz: string
+	title?: string
+	[key: string]: any
 }
 const CardLinks = () => {
+	const locale = useLocale()
 	// Holatlarni yaratish
 	const [linksArray, setLinksArray] = useState<Link[]>([])
 	const [loading, setLoading] = useState(true) // Yuklanish holati
@@ -17,7 +21,7 @@ const CardLinks = () => {
 		const fetchLinks = async () => {
 			try {
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/uz/api/links/header/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/links/header/list/`
 				)
 				if (!response.ok) {
 					throw new Error(`Serverda xato: ${response.status}`)
@@ -53,7 +57,7 @@ const CardLinks = () => {
 					onClick={() => window.open(link.url, '_blank')}
 				>
 					<h3 className='text-lg font-semibold text-blue-600 dark:text-white group-hover:text-green-600 '>
-						{link.title_uz}
+						{link.title || link[`title_${locale}`] || link.title_uz}
 					</h3>
 				</div>
 			))}

@@ -11,6 +11,7 @@
 
 import React from 'react'
 import CountUp from 'react-countup'
+import { useTranslations } from 'next-intl'
 import ScrollReveal from '../../components/ScrollReveal'
 import { Users, Briefcase, TreeDeciduous, Sprout } from 'lucide-react'
 
@@ -33,13 +34,15 @@ interface StatItem {
 // ============================================
 
 export default function StatsGrid() {
+    const t = useTranslations()
+
     // ============================================
     // STATISTICS DATA
     // ============================================
     const stats: StatItem[] = [
         {
             icon: Users,
-            label: "Ko'p tarmoqli fermer xo'jaliklar",
+            label: t('stat_farmers'),
             value: 23400,
             suffix: '+',
             color: 'from-orange-400 via-orange-500 to-amber-500',
@@ -47,7 +50,7 @@ export default function StatsGrid() {
         },
         {
             icon: Briefcase,
-            label: 'Ish bilan bandlik',
+            label: t('stat_employment'),
             value: 1.38,
             suffix: ' Mln',
             decimals: 2,
@@ -56,7 +59,7 @@ export default function StatsGrid() {
         },
         {
             icon: TreeDeciduous,
-            label: 'Ekilgan Daraxtlar',
+            label: t('stat_trees'),
             value: 24.8,
             suffix: ' Mln',
             decimals: 1,
@@ -65,7 +68,7 @@ export default function StatsGrid() {
         },
         {
             icon: Sprout,
-            label: 'Ekin Maydonlari',
+            label: t('stat_fields'),
             value: 200.9,
             suffix: 'k ga',
             decimals: 1,
@@ -84,19 +87,19 @@ export default function StatsGrid() {
                     <div className='text-center mb-16'>
                         {/* Category badge */}
                         <span className='inline-block px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 uppercase tracking-wider animate-scale-in'>
-                            Raqamlar so&apos;zlaganda
+                            {t('stat_badge')}
                         </span>
 
                         {/* Main heading with gradient text */}
                         <h2 className='text-3xl md:text-5xl font-bold text-gray-800 tracking-tight'>
                             <span className='gradient-text'>
-                                Qishloq Xo&apos;jaligi Ko&apos;rsatkichlari
+                                {t('stat_title')}
                             </span>
                         </h2>
 
                         {/* Subtitle */}
                         <p className='mt-4 text-gray-500 max-w-2xl mx-auto'>
-                            Mamlakatimiz bo&apos;ylab amalga oshirilayotgan islohotlar va erishilgan natijalar raqamlarda.
+                            {t('stat_subtitle')}
                         </p>
                     </div>
                 </ScrollReveal>

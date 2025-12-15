@@ -10,7 +10,7 @@ export default function Footer() {
     const t = useTranslations()
 
     return (
-        <footer className='bg-gray-900 text-white pt-20 pb-10 relative overflow-hidden'>
+        <footer id='footer' className='bg-gray-900 text-white pt-20 pb-10 relative overflow-hidden'>
             {/* Wheat Pattern Overlay */}
             <div className='absolute inset-0 opacity-5 wheat-pattern mix-blend-overlay' />
 
@@ -44,7 +44,14 @@ export default function Footer() {
                         <ul className='space-y-4'>
                             {['management', 'apparatus', 'centers'].map((item) => (
                                 <li key={item}>
-                                    <Link href={`/${item}`} className='text-gray-400 hover:text-secondary transition-colors inline-block'>
+                                    <Link
+                                        href={
+                                            item === 'apparatus' ? '/structure' :
+                                                item === 'centers' ? '/center-units' :
+                                                    `/${item}`
+                                        }
+                                        className='text-gray-400 hover:text-secondary transition-colors inline-block'
+                                    >
                                         {t(item)}
                                     </Link>
                                 </li>
@@ -72,7 +79,7 @@ export default function Footer() {
                         <ul className='space-y-4'>
                             <li className='flex items-start gap-3 text-gray-400'>
                                 <MapPin className='text-secondary flex-shrink-0 mt-1' size={18} />
-                                <span>Mirobod tumani, Islom Karimov ko&apos;chasi 2A</span>
+                                <span>{t('addressTwo')}</span>
                             </li>
                             <li className='flex items-center gap-3 text-gray-400'>
                                 <Phone className='text-secondary' size={18} />

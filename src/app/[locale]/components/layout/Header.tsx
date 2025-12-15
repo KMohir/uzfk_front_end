@@ -30,7 +30,18 @@ export default function Header() {
 
     const navItems = [
         { name: 'home', label: t('nav1'), href: '/' },
-        { name: 'about', label: t('nav2'), href: '/about-us' },
+        {
+            name: 'about',
+            label: t('nav2'),
+            href: '#',
+            dropdown: [
+                { label: t('nav4'), href: '/management' },
+                { label: t('structure'), href: '/structure' },
+                { label: t('centers'), href: '/center-units' },
+                { label: t('goals'), href: '/goals' },
+                { label: t('nav7'), href: '/regions' },
+            ]
+        },
         {
             name: 'press',
             label: t('nav8'),
