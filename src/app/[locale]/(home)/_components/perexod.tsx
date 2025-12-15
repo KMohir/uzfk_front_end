@@ -36,7 +36,7 @@ const CardLinks = () => {
 		}
 
 		fetchLinks()
-	}, [])
+	}, [locale])
 
 	// Agar yuklanayotgan bo'lsa
 	if (loading) {
