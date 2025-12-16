@@ -25,6 +25,11 @@ export default function Ads() {
 	const pathname = usePathname()
 	const language = pathname.startsWith('/ru') ? 'ru' : 'uz'
 
+	// Hide ads on news detail pages logic
+	if (pathname.includes('/news/') && pathname.split('/').length > 3) {
+		return null
+	}
+
 	useEffect(() => {
 		const fetchBanners = async () => {
 			try {
