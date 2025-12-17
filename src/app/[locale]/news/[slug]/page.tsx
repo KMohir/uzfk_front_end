@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import HtmlContent from '@/app/[locale]/components/HtmlContent'
+import { Link } from '@/i18n/routing'
 
 async function getNews(slug: string) {
 	const res = await fetch(
@@ -74,9 +75,9 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 
 					{/* Share/Footer Section */}
 					<div className='mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center'>
-						<a href='/news' className='text-blue-600 hover:text-blue-800 font-medium transition-colors'>
+						<Link href='/news' className='text-blue-600 hover:text-blue-800 font-medium transition-colors'>
 							← Barcha yangiliklar
-						</a>
+						</Link>
 					</div>
 				</div>
 			</article>

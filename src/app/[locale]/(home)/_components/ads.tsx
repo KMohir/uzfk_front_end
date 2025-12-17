@@ -26,9 +26,7 @@ export default function Ads() {
 	const language = pathname.startsWith('/ru') ? 'ru' : 'uz'
 
 	// Hide ads on news detail pages logic
-	if (pathname.includes('/news/') && pathname.split('/').length > 3) {
-		return null
-	}
+	const isNewsDetailPage = pathname.includes('/news/') && pathname.split('/').length > 3
 
 	useEffect(() => {
 		const fetchBanners = async () => {
@@ -98,7 +96,7 @@ export default function Ads() {
 		return <div className='w-full h-[600px] max-md:h-[150px] bg-gray-100 animate-pulse rounded-2xl mt-2' />
 	}
 
-	if (!banners || banners.length === 0) {
+	if (!banners || banners.length === 0 || isNewsDetailPage) {
 		return null
 	}
 
