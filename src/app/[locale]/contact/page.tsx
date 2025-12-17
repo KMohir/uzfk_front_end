@@ -50,7 +50,7 @@ export default function ContactPage() {
 				throw new Error('Xatolik yuz berdi')
 			}
 		} catch (err) {
-			setError('Xabar yuborishda xatolik yuz berdi. Qaytadan urinib ko\'ring.')
+			setError('Xabar yuborishda xatolik yuz berdi. Qaytadan urinib ko&apos;ring.')
 			console.error(err)
 		} finally {
 			setLoading(false)
@@ -67,7 +67,7 @@ export default function ContactPage() {
 							{t('nav15')}
 						</h1>
 						<p className='text-gray-600 dark:text-gray-300 text-lg md:text-xl'>
-							Biz bilan bog'laning, sizning savollaringizga javob beramiz
+							Biz bilan bog&apos;laning, sizning savollaringizga javob beramiz
 						</p>
 					</div>
 
@@ -76,7 +76,7 @@ export default function ContactPage() {
 						<div className='space-y-6'>
 							<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8'>
 								<h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6'>
-									Aloqa ma'lumotlari
+									Aloqa ma&apos;lumotlari
 								</h2>
 
 								<div className='space-y-6'>
@@ -149,7 +149,7 @@ export default function ContactPage() {
 
 							{success && (
 								<div className='mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg'>
-									✅ Murojaatingiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog'lanamiz.
+									✅ Murojaatingiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog&apos;lanamiz.
 								</div>
 							)}
 
