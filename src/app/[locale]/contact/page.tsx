@@ -60,21 +60,20 @@ export default function ContactPage() {
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-green-50 to-white dark:from-gray-900 dark:to-gray-800 py-24'>
 			<div className='container mx-auto px-4 md:px-8'>
-				<div className='max-w-6xl mx-auto'>
-					{/* Header */}
-					<div className='text-center mb-12'>
-						<h1 className='text-4xl md:text-5xl font-bold text-green-700 dark:text-white mb-4'>
-							{t('nav15')}
-						</h1>
-						<p className='text-gray-600 dark:text-gray-300 text-lg md:text-xl'>
-							Biz bilan bog&apos;laning, sizning savollaringizga javob beramiz
-						</p>
-					</div>
+				{/* Header */}
+				<div className='text-center mb-12'>
+					<h1 className='text-4xl md:text-5xl font-bold text-green-700 dark:text-white mb-4'>
+						{t('nav15')}
+					</h1>
+					<p className='text-gray-600 dark:text-gray-300 text-lg md:text-xl'>
+						Biz bilan bog&apos;laning, sizning savollaringizga javob beramiz
+					</p>
+				</div>
 
-					<div className='grid md:grid-cols-2 gap-8'>
-						{/* Contact Info */}
-						<div className='space-y-6'>
-							<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8'>
+				<div className='grid md:grid-cols-2 gap-8 max-w-7xl mx-auto'>
+					{/* Contact Info */}
+					<div className='space-y-6'>
+							<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8'>
 								<h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6'>
 									Aloqa ma&apos;lumotlari
 								</h2>
@@ -129,7 +128,7 @@ export default function ContactPage() {
 							</div>
 
 							{/* Map placeholder */}
-							<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 h-64'>
+							<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 h-80 md:h-96'>
 								<iframe
 									src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.7207087394447!2d69.28447931541826!3d41.31117997927034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3a5e6e3e3d%3A0x3e6e3e3e3e3e3e3e!2sIslom%20Karimov%20ko%27chasi%202A%2C%20Toshkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s'
 									width='100%'
@@ -139,10 +138,10 @@ export default function ContactPage() {
 									loading='lazy'
 								/>
 							</div>
-						</div>
+					</div>
 
-						{/* Contact Form */}
-						<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8'>
+					{/* Contact Form */}
+					<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8'>
 							<h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6'>
 								Murojat yuborish
 							</h2>
@@ -227,7 +226,6 @@ export default function ContactPage() {
 									)}
 								</button>
 							</form>
-						</div>
 					</div>
 				</div>
 			</div>

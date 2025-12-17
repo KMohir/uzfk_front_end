@@ -61,6 +61,16 @@ const CardLinks = () => {
 					</h3>
 				</div>
 			))}
+			
+			{/* Bog'lanish kartasi */}
+			<div
+				className='p-4 hover:bg-gray-50 dark:bg-blue-800/40 bg-white shadow-lg group rounded-lg hover:shadow-lg transition cursor-pointer'
+				onClick={() => window.location.href = `/${locale}/contact`}
+			>
+				<h3 className='text-lg font-semibold text-blue-600 dark:text-white group-hover:text-green-600'>
+					{locale === 'uz' ? "Bog'lanish" : locale === 'oz' ? "Боғланиш" : "Контакты"}
+				</h3>
+			</div>
 		</div>
 	)
 }
