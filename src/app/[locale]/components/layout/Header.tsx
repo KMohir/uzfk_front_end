@@ -37,9 +37,8 @@ export default function Header() {
             dropdown: [
                 { label: t('nav4'), href: '/management' },
                 { label: t('structure'), href: '/structure' },
-                { label: t('centers'), href: '/center-units' },
                 { label: t('goals'), href: '/goals' },
-                { label: t('nav7'), href: '/regions' },
+                { label: t('centers'), href: '/center-units' },
             ]
         },
         {
@@ -49,7 +48,7 @@ export default function Header() {
             dropdown: [
                 { label: t('nav9'), href: '/news' },
                 { label: t('nav10'), href: '/announcements' },
-                { label: t('videos'), href: '/video' }
+                { label: t('videos'), href: 'https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos', external: true }
             ]
         },
         { name: 'normatives', label: t('nav13'), href: '/normatives' },
@@ -110,13 +109,25 @@ export default function Header() {
                                 >
                                     <div className='bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-1'>
                                         {item.dropdown.map((subItem) => (
-                                            <Link
-                                                key={subItem.href}
-                                                href={subItem.href}
-                                                className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
-                                            >
-                                                {subItem.label}
-                                            </Link>
+                                            subItem.external ? (
+                                                <a
+                                                    key={subItem.href}
+                                                    href={subItem.href}
+                                                    target='_blank'
+                                                    rel='noopener noreferrer'
+                                                    className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
+                                                >
+                                                    {subItem.label}
+                                                </a>
+                                            ) : (
+                                                <Link
+                                                    key={subItem.href}
+                                                    href={subItem.href}
+                                                    className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
+                                                >
+                                                    {subItem.label}
+                                                </Link>
+                                            )
                                         ))}
                                     </div>
                                 </div>
@@ -158,14 +169,27 @@ export default function Header() {
                                 {item.dropdown && (
                                     <div className='pl-4 flex flex-col gap-2'>
                                         {item.dropdown.map((subItem) => (
-                                            <Link
-                                                key={subItem.href}
-                                                href={subItem.href}
-                                                className='text-gray-500 hover:text-primary transition-colors'
-                                                onClick={() => setMobileMenuOpen(false)}
-                                            >
-                                                {subItem.label}
-                                            </Link>
+                                            subItem.external ? (
+                                                <a
+                                                    key={subItem.href}
+                                                    href={subItem.href}
+                                                    target='_blank'
+                                                    rel='noopener noreferrer'
+                                                    className='text-gray-500 hover:text-primary transition-colors'
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                >
+                                                    {subItem.label}
+                                                </a>
+                                            ) : (
+                                                <Link
+                                                    key={subItem.href}
+                                                    href={subItem.href}
+                                                    className='text-gray-500 hover:text-primary transition-colors'
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                >
+                                                    {subItem.label}
+                                                </Link>
+                                            )
                                         ))}
                                     </div>
                                 )}
