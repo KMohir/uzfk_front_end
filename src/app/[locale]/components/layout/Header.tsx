@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, usePathname } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Facebook, Instagram, Youtube, Send } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import LanguageSwitcher from '../ui/language'
@@ -52,7 +52,7 @@ export default function Header() {
             ]
         },
         { name: 'normatives', label: t('nav13'), href: '/normatives' },
-        { name: 'contacts', label: t('nav15'), href: '#footer' }, // Temporary link to footer
+        { name: 'contacts', label: t('nav15'), href: '/contact' }
     ]
 
     return (
@@ -66,89 +66,131 @@ export default function Header() {
                 {!pathname.includes('/news/') && <MyMarquee />}
             </div>
 
-            <div className='container mx-auto px-4 md:px-8 flex items-center justify-between mt-8'>
-                {/* Logo */}
-                <Link href='/' className='flex items-center gap-3 group'>
+            <div className='container mx-auto px-4 lg:px-6 flex items-center justify-between mt-8'>
+                {/* Logo - chap tomon */}
+                <Link href='/' className='flex items-center gap-3 group flex-shrink-0'>
                     <div className='relative w-12 h-12 overflow-hidden rounded-full border-2 border-secondary group-hover:scale-105 transition-transform'>
                         <Image src='/logo.png' alt='UzFK Logo' fill className='object-cover' />
                     </div>
-                    <div className='flex flex-col text-primary'>
-                        <span className='font-bold text-lg leading-tight tracking-tight max-w-[200px]'>
+                    <div className='hidden sm:flex flex-col text-primary'>
+                        <span className='font-bold text-sm lg:text-base leading-tight tracking-tight uppercase'>
                             {t('logo')}
                         </span>
                     </div>
                 </Link>
 
-                {/* Desktop Nav */}
-                <nav className='hidden lg:flex items-center gap-6'>
-                    {navItems.map((item) => (
-                        <div
-                            key={item.name}
-                            className='relative group h-full flex items-center'
-                            onMouseEnter={() => setActiveDropdown(item.name)}
-                            onMouseLeave={() => setActiveDropdown(null)}
-                        >
-                            <Link
-                                href={item.href}
-                                className={cn(
-                                    'flex items-center gap-1 text-sm font-medium transition-colors py-2 text-gray-700 hover:text-primary',
-                                    pathname.includes(item.href) && item.href !== '#' && 'text-primary font-bold'
-                                )}
+                {/* Desktop Nav - o'rta */}
+                <nav className='hidden lg:flex items-center justify-center flex-1 mx-4'>
+                    <div className='flex items-center gap-6 xl:gap-8'>
+                        {navItems.map((item) => (
+                            <div
+                                key={item.name}
+                                className='relative group h-full flex items-center'
+                                onMouseEnter={() => setActiveDropdown(item.name)}
+                                onMouseLeave={() => setActiveDropdown(null)}
                             >
-                                {item.label}
-                                {item.dropdown && <ChevronDown size={14} className='group-hover:rotate-180 transition-transform' />}
-                            </Link>
-
-                            {/* Dropdown */}
-                            {item.dropdown && (
-                                <div
+                                <Link
+                                    href={item.href}
                                     className={cn(
-                                        'absolute top-full left-1/2 -translate-x-1/2 w-56 pt-2 opacity-0 invisible transition-all duration-200 transform translate-y-2',
-                                        activeDropdown === item.name && 'opacity-100 visible translate-y-0'
+                                        'flex items-center gap-1 text-sm xl:text-base font-medium transition-colors py-2 text-gray-700 hover:text-primary whitespace-nowrap',
+                                        pathname.includes(item.href) && item.href !== '#' && 'text-primary font-bold'
                                     )}
                                 >
-                                    <div className='bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-1'>
-                                        {item.dropdown.map((subItem) => (
-                                            subItem.external ? (
-                                                <a
-                                                    key={subItem.href}
-                                                    href={subItem.href}
-                                                    target='_blank'
-                                                    rel='noopener noreferrer'
-                                                    className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
-                                                >
-                                                    {subItem.label}
-                                                </a>
-                                            ) : (
-                                                <Link
-                                                    key={subItem.href}
-                                                    href={subItem.href}
-                                                    className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
-                                                >
-                                                    {subItem.label}
-                                                </Link>
-                                            )
-                                        ))}
+                                    {item.label}
+                                    {item.dropdown && <ChevronDown size={14} className='group-hover:rotate-180 transition-transform' />}
+                                </Link>
+
+                                {/* Dropdown */}
+                                {item.dropdown && (
+                                    <div
+                                        className={cn(
+                                            'absolute top-full left-1/2 -translate-x-1/2 w-56 pt-2 opacity-0 invisible transition-all duration-200 transform translate-y-2',
+                                            activeDropdown === item.name && 'opacity-100 visible translate-y-0'
+                                        )}
+                                    >
+                                        <div className='bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-1'>
+                                            {item.dropdown.map((subItem) => (
+                                                subItem.external ? (
+                                                    <a
+                                                        key={subItem.href}
+                                                        href={subItem.href}
+                                                        target='_blank'
+                                                        rel='noopener noreferrer'
+                                                        className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
+                                                    >
+                                                        {subItem.label}
+                                                    </a>
+                                                ) : (
+                                                    <Link
+                                                        key={subItem.href}
+                                                        href={subItem.href}
+                                                        className='block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors'
+                                                    >
+                                                        {subItem.label}
+                                                    </Link>
+                                                )
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </nav>
 
-                {/* Right Actions */}
-                <div className='flex items-center gap-4'>
-                    {/* Language Switcher Mock */}
-                    <div className='block'>
+                {/* Right Actions - o'ng tomon */}
+                <div className='flex items-center gap-3 flex-shrink-0'>
+                    {/* Social Media Icons */}
+                    <div className='hidden lg:flex items-center gap-2'>
+                        <a
+                            href='https://t.me/uzfermerkengashi'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-500 hover:text-white transition-all'
+                            title='Telegram'
+                        >
+                            <Send size={16} />
+                        </a>
+                        <a
+                            href='https://www.instagram.com/uzfk.uz/'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all'
+                            title='Instagram'
+                        >
+                            <Instagram size={16} />
+                        </a>
+                        <a
+                            href='https://www.facebook.com/uzfk.uz'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-600 hover:text-white transition-all'
+                            title='Facebook'
+                        >
+                            <Facebook size={16} />
+                        </a>
+                        <a
+                            href='https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white transition-all'
+                            title='YouTube'
+                        >
+                            <Youtube size={16} />
+                        </a>
+                    </div>
+
+                    {/* Language Switcher */}
+                    <div className='hidden sm:block'>
                         <LanguageSwitcher />
                     </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className='lg:hidden text-gray-800'
+                        className='lg:hidden text-gray-800 p-1'
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
-                        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
                     </button>
                 </div>
             </div>
