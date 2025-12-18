@@ -156,6 +156,29 @@ export default function PressCards() {
                             </Link>
                         </ScrollReveal>
                     ))}
+
+                    {/* ============================================
+                        STATIC CONTACT CARD (4th Card)
+                        ============================================ */}
+                    <ScrollReveal delay={links.length * 100}>
+                        <Link
+                            href='/contact'
+                            className='group block h-full bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:border-secondary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover-lift'
+                        >
+                            <div className='flex justify-between items-start mb-6'>
+                                <div className='w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-gradient-primary group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-12'>
+                                    <ExternalLink size={24} />
+                                </div>
+                                <span className='text-gray-300 group-hover:text-secondary transition-colors font-bold text-lg'>
+                                    0{links.length + 1}
+                                </span>
+                            </div>
+                            <h3 className='text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight mb-2'>
+                                {t('contact_for')}
+                            </h3>
+                            <div className='w-8 h-1 bg-secondary rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300' />
+                        </Link>
+                    </ScrollReveal>
                 </div>
             </div>
         </section>
