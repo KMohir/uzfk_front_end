@@ -66,5 +66,21 @@
 	"farm_info_center": "ИНФОРМАЦИОННЫЙ ЦЕНТР ФЕРМЕРСКИХ ХОЗЯЙСТВ",
 	"farmers_tribune": "Трибуна фермеров",
 	"library": "Библиотека",
-	"contact_for": "Для связи"
+	"contact_for": "Для связи",
+	"contact_subtitle": "Свяжитесь с нами, мы ответим на ваши вопросы",
+	"contact_info_title": "Контактная информация",
+	"contact_send_title": "Отправить обращение",
+	"contact_name_label": "Имя и фамилия",
+	"contact_name_placeholder": "Введите ваше имя",
+	"contact_phone_label": "Номер телефона",
+	"contact_message_label": "Сообщение",
+	"contact_message_placeholder": "Напишите ваше сообщение...",
+	"contact_submit_button": "Отправить",
+	"contact_submitting_button": "Отправка...",
+	"contact_success_message": "Ваше обращение успешно отправлено! Мы свяжемся с вами в ближайшее время.",
+	"contact_error_message": "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.",
+	"new_appeal": "Новое обращение!",
+	"appeal_name": "Имя",
+	"appeal_phone": "Номер телефона",
+	"appeal_message": "Сообщение"
 }

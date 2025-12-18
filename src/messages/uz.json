@@ -66,5 +66,21 @@
 	"farm_info_center": "FERMER XO'JALIKLARI AXBOROT MARKAZI",
 	"farmers_tribune": "Fermerlar minbari",
 	"library": "Kutubxona",
-	"contact_for": "Bogʻlanish uchun"
+	"contact_for": "Bogʻlanish uchun",
+	"contact_subtitle": "Biz bilan bog'laning, sizning savollaringizga javob beramiz",
+	"contact_info_title": "Aloqa ma'lumotlari",
+	"contact_send_title": "Murojat yuborish",
+	"contact_name_label": "Ism va Familiya",
+	"contact_name_placeholder": "Ismingizni kiriting",
+	"contact_phone_label": "Telefon raqam",
+	"contact_message_label": "Xabar",
+	"contact_message_placeholder": "Xabaringizni yozing...",
+	"contact_submit_button": "Yuborish",
+	"contact_submitting_button": "Yuborilmoqda...",
+	"contact_success_message": "Murojaatingiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog'lanamiz.",
+	"contact_error_message": "Xabar yuborishda xatolik yuz berdi. Qaytadan urinib ko'ring.",
+	"new_appeal": "Yangi murojat!",
+	"appeal_name": "Ism",
+	"appeal_phone": "Telefon raqam",
+	"appeal_message": "Habar"
 }
