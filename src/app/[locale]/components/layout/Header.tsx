@@ -69,11 +69,11 @@ export default function Header() {
             <div className='container mx-auto px-4 lg:px-6 flex items-center justify-between mt-8'>
                 {/* Logo - chap tomon */}
                 <Link href='/' className='flex items-center gap-3 group flex-shrink-0'>
-                    <div className='relative w-12 h-12 overflow-hidden rounded-full border-2 border-secondary group-hover:scale-105 transition-transform'>
+                    <div className='relative w-16 h-16 overflow-hidden rounded-full border-2 border-secondary group-hover:scale-105 transition-transform'>
                         <Image src='/logo.png' alt='UzFK Logo' fill className='object-cover' />
                     </div>
                     <div className='hidden sm:flex flex-col text-primary'>
-                        <span className='font-bold text-sm lg:text-base leading-tight tracking-tight uppercase'>
+                        <span className='font-bold text-base lg:text-xl leading-tight tracking-tight uppercase'>
                             {t('logo')}
                         </span>
                     </div>
@@ -92,7 +92,7 @@ export default function Header() {
                                 <Link
                                     href={item.href}
                                     className={cn(
-                                        'flex items-center gap-1 text-sm xl:text-base font-medium transition-colors py-2 text-gray-700 hover:text-primary whitespace-nowrap',
+                                        'flex items-center gap-1 text-base xl:text-lg font-medium transition-colors py-2 text-gray-700 hover:text-primary whitespace-nowrap',
                                         pathname.includes(item.href) && item.href !== '#' && 'text-primary font-bold'
                                     )}
                                 >
