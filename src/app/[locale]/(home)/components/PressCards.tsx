@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from '@/i18n/routing'
 import { ExternalLink, Loader2 } from 'lucide-react'
 import ScrollReveal from '../../components/ScrollReveal'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 // ============================================
 // TYPE DEFINITIONS
@@ -22,6 +22,8 @@ import { useTranslations } from 'next-intl'
 interface LinkItem {
     url: string
     title_uz: string
+    title?: string
+    [key: string]: any
 }
 
 // ============================================
@@ -30,6 +32,7 @@ interface LinkItem {
 
 export default function PressCards() {
     const t = useTranslations()
+    const locale = useLocale()
 
     // ============================================
     // STATE MANAGEMENT
@@ -43,7 +46,7 @@ export default function PressCards() {
     useEffect(() => {
         const fetchLinks = async () => {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/uz/api/links/header/list/`)
+                const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/links/header/list/`)
                 if (response.ok) {
                     const data = await response.json()
                     setLinks(data.results)
@@ -55,7 +58,24 @@ export default function PressCards() {
             }
         }
         fetchLinks()
-    }, [])
+    }, [locale])
+
+    /**
+     * Helper to get localized title with fallbacks
+     */
+    const getLocalizedTitle = (link: LinkItem) => {
+        // 1. Try dynamic locale title from API
+        const localizedTitle = link.title || link[`title_${locale}`]
+        if (localizedTitle) return localizedTitle
+
+        // 2. Try matching specific hardcoded items for manual translation
+        const titleUz = link.title_uz.toLowerCase()
+        if (titleUz.includes('minbari')) return t('farmers_tribune')
+        if (titleUz.includes('kutubxona')) return t('library')
+
+        // 3. Fallback to title_uz
+        return link.title_uz
+    }
 
     // ============================================
     // LOADING STATE
@@ -128,7 +148,7 @@ export default function PressCards() {
                                     ============================================ */}
                                 {/* Title with color transition */}
                                 <h3 className='text-lg font-bold text-gray-800 group-hover:text-primary transition-colors leading-tight mb-2'>
-                                    {link.title_uz}
+                                    {getLocalizedTitle(link)}
                                 </h3>
 
                                 {/* Animated progress bar */}
