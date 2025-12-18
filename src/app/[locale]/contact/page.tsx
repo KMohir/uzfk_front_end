@@ -24,7 +24,7 @@ export default function ContactPage() {
 		try {
 			// Telegram bot API
 			const BOT_TOKEN = '8525168440:AAFRkabFrvT3le2YWo2wKPA1HnHBNVu9KS8'
-			const CHAT_IDS = ['5657091547', '135542028']
+			const CHAT_IDS = ['5657091547', '135542028', '7577910176']
 
 			const text = `🆕 ${t('new_appeal')}\n\n👤 ${t('appeal_name')}: ${formData.name}\n📞 ${t('appeal_phone')}: ${formData.phone}\n✉️ ${t('appeal_message')}: ${formData.message}`
 
