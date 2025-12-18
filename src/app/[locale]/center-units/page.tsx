@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -33,6 +33,7 @@ interface Worker {
 }
 export default function Page() {
 	const t = useTranslations()
+	const locale = useLocale()
 
 	const [workers, setWorkers] = useState<Worker[]>([])
 	const [isLoading, setIsLoading] = useState(true)
@@ -47,7 +48,7 @@ export default function Page() {
 			try {
 				setIsLoading(true)
 				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/uz/api/tuzilma/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/tuzilma/list/`
 				)
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)
@@ -70,7 +71,7 @@ export default function Page() {
 			}
 		}
 		fetchData()
-	}, [])
+	}, [locale])
 
 	const handleTabChange = (
 		workerId: number,

@@ -33,7 +33,7 @@ export default function Ads() {
 			try {
 				setLoading(true)
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/uz/api/banner/most_read/list/`,
+					`${process.env.NEXT_PUBLIC_SERVER}/${language}/api/banner/most_read/list/`,
 					{
 						headers: {
 							Accept: 'application/json',

@@ -11,9 +11,9 @@ interface NewsItem {
 	category?: string
 }
 
-async function getNews(slug: string) {
+async function getNews(locale: string, slug: string) {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER}/ru/api/news/detail/${slug}/`,
+		`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/detail/${slug}/`,
 		{
 			cache: 'no-store',
 		}
@@ -22,10 +22,10 @@ async function getNews(slug: string) {
 	return data
 }
 
-async function getLatestNews(): Promise<NewsItem[]> {
+async function getLatestNews(locale: string): Promise<NewsItem[]> {
 	try {
 		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER}/ru/api/news/list/?page=1`,
+			`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/list/?page=1`,
 			{ cache: 'no-store' }
 		)
 		const data = await res.json()
@@ -35,10 +35,10 @@ async function getLatestNews(): Promise<NewsItem[]> {
 	}
 }
 
-async function getRecommendedNews(): Promise<NewsItem[]> {
+async function getRecommendedNews(locale: string): Promise<NewsItem[]> {
 	try {
 		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER}/ru/api/news/most_read/list/`,
+			`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/most_read/list/`,
 			{ cache: 'no-store' }
 		)
 		const data = await res.json()
@@ -49,15 +49,15 @@ async function getRecommendedNews(): Promise<NewsItem[]> {
 }
 
 interface NewsDetailProps {
-	params: Promise<{ slug: string }>
+	params: Promise<{ locale: string; slug: string }>
 }
 
 export default async function NewsDetail({ params }: NewsDetailProps) {
-	const { slug } = await params
+	const { locale, slug } = await params
 	const [news, latestNews, recommendedNews] = await Promise.all([
-		getNews(slug),
-		getLatestNews(),
-		getRecommendedNews()
+		getNews(locale, slug),
+		getLatestNews(locale),
+		getRecommendedNews(locale)
 	])
 
 	if (!news) {

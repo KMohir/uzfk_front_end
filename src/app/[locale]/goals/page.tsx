@@ -52,7 +52,7 @@ export default function Page() {
 			try {
 				setIsLoading(true)
 				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/uz/api/maqsad/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${language}/api/maqsad/list/`
 				)
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)
@@ -76,7 +76,7 @@ export default function Page() {
 		}
 
 		fetchData()
-	}, [])
+	}, [language])
 
 	const handleTabChange = (
 		workerId: number,

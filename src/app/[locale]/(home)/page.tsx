@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useLocale } from 'next-intl'
 
 import HeroNews from './components/HeroNews'
 import StatsGrid from './components/StatsGrid'
@@ -18,12 +19,13 @@ interface News {
 }
 
 export default function Page() {
+	const locale = useLocale()
 
 	const [news, setNews] = useState<News[]>([])
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/news/list/`)
+		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/list/`)
 			.then(res => res.json())
 			.then(data => {
 				setNews(data.results)
@@ -33,7 +35,7 @@ export default function Page() {
 				console.error('Error loading news:', err)
 				setLoading(false)
 			})
-	}, [])
+	}, [locale])
 
 	if (loading) {
 		return <div className="h-screen flex items-center justify-center bg-accent/20">Loading...</div>

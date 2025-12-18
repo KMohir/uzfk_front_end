@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 
 interface Video {
 	id: number
@@ -11,11 +12,12 @@ interface Video {
 }
 
 export default function Videos() {
+	const locale = useLocale()
 	const [videos, setVideos] = useState<Video[]>([])
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_SERVER}/uz/api/youtube/header/list/`)
+		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/youtube/header/list/`)
 			.then(res => res.json())
 			.then(data => {
 				setVideos(data.results)

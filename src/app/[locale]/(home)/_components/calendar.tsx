@@ -2,10 +2,12 @@
 'use client'
 
 import * as React from 'react'
+import { useLocale } from 'next-intl'
 
 import { Calendar } from '@/app/[locale]/components/ui/calendar'
 
 export function CalendarDemo() {
+	const locale = useLocale()
 	const [date, setDate] = React.useState<Date | undefined>(new Date()) // Tanlangan sana
 	const [news, setNews] = React.useState<any[]>([]) // API dan kelgan yangiliklar
 	const [loading, setLoading] = React.useState(false) // Yuklanish holati
@@ -22,7 +24,7 @@ export function CalendarDemo() {
 
 			// API so'rovi
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_SERVER}/uz/api/news/date-filter/?date=${formattedDate}`
+				`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/date-filter/?date=${formattedDate}`
 			)
 			if (!response.ok) {
 				throw new Error('Serverdan yangiliklarni olishda xatolik!')

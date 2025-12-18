@@ -2,9 +2,9 @@
 
 import HtmlContent from '@/app/[locale]/components/HtmlContent'
 
-async function getAnnouncement(slug: string) {
+async function getAnnouncement(locale: string, slug: string) {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER}/ru/api/elon/detail/${slug}`,
+		`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/elon/detail/${slug}`,
 		{
 			cache: 'no-store',
 		}
@@ -16,15 +16,15 @@ async function getAnnouncement(slug: string) {
 }
 
 interface AnnouncementDetailProps {
-	params: Promise<{ slug: string }>
+	params: Promise<{ locale: string; slug: string }>
 }
 
 export default async function AnnouncementDetail({
 	params,
 }: AnnouncementDetailProps) {
-	const { slug } = await params
+	const { locale, slug } = await params
 	try {
-		const announcement = await getAnnouncement(slug)
+		const announcement = await getAnnouncement(locale, slug)
 
 		if (!announcement) {
 			return (

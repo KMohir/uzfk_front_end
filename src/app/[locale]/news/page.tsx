@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 
 interface News {
 	id: number
@@ -24,13 +25,14 @@ interface ApiResponse {
 }
 
 export default function NewsPage() {
+	const locale = useLocale()
 	const [news, setNews] = useState<News[]>([])
 
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPages, setTotalPages] = useState(0)
 	const newsPerPage = 12
 
-	const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/ru/api/news/list/`
+	const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/list/`
 
 	useEffect(() => {
 		const fetchNews = async () => {
@@ -48,7 +50,7 @@ export default function NewsPage() {
 		}
 
 		fetchNews()
-	}, [apiUrl, currentPage])
+	}, [apiUrl, currentPage, locale])
 
 	const handlePageChange = (page: number) => {
 		if (page >= 1 && page <= totalPages) {

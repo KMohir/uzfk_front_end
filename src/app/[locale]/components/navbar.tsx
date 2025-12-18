@@ -54,7 +54,7 @@ function Navbar() {
 
 	// Yangiliklarni API dan olish
 	useEffect(() => {
-		const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/uz/api/news/list/`
+		const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/list/`
 		fetch(apiUrl)
 			.then(response => response.json())
 			.then(data => {

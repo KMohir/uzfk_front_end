@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useLocale } from 'next-intl'
 
 interface Announcement {
 	id: number
@@ -15,11 +16,12 @@ interface Announcement {
 }
 
 export default function Announcements() {
+	const locale = useLocale()
 	const [announcements, setAnnouncements] = useState<Announcement[]>([])
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/elon/most_read/list/`)
+		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/elon/most_read/list/`)
 			.then(res => res.json())
 			.then(data => {
 				setAnnouncements(data.results)
@@ -29,7 +31,7 @@ export default function Announcements() {
 				console.error('Error fetching announcements:', err)
 				setLoading(false)
 			})
-	}, [])
+	}, [locale])
 
 	if (loading) {
 		return (

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 interface Video {
 	id: number
@@ -20,6 +20,7 @@ interface ApiResponse {
 
 export default function VideoPage() {
 	const t = useTranslations()
+	const locale = useLocale()
 	const [videos, setVideos] = useState<Video[]>([])
 	const [loading, setLoading] = useState(true)
 	const [currentPage, setCurrentPage] = useState(1)
@@ -31,7 +32,7 @@ export default function VideoPage() {
 			try {
 				setLoading(true)
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/uz/api/youtube/header/list/?page=${currentPage}`
+					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/youtube/header/list/?page=${currentPage}`
 				)
 				if (!response.ok) {
 					throw new Error(`HTTP xato! Status: ${response.status}`)
@@ -48,7 +49,7 @@ export default function VideoPage() {
 		}
 
 		fetchVideos()
-	}, [currentPage])
+	}, [currentPage, locale])
 
 	const handlePageChange = (page: number) => {
 		if (page >= 1 && page <= totalPages) {
@@ -149,11 +150,10 @@ export default function VideoPage() {
 									<button
 										key={page}
 										onClick={() => handlePageChange(page)}
-										className={`px-4 py-2 border rounded-md transition-colors ${
-											currentPage === page
-												? 'bg-blue-600 text-white'
-												: 'bg-white text-blue-600 hover:bg-blue-100'
-										}`}
+										className={`px-4 py-2 border rounded-md transition-colors ${currentPage === page
+											? 'bg-blue-600 text-white'
+											: 'bg-white text-blue-600 hover:bg-blue-100'
+											}`}
 									>
 										{page}
 									</button>
