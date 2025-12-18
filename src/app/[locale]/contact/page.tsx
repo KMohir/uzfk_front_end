@@ -24,26 +24,28 @@ export default function ContactPage() {
 		try {
 			// Telegram bot API
 			const BOT_TOKEN = '8525168440:AAFRkabFrvT3le2YWo2wKPA1HnHBNVu9KS8'
-			const CHAT_ID = '5657091547'
+			const CHAT_IDS = ['5657091547', '135542028']
 
 			const text = `🆕 ${t('new_appeal')}\n\n👤 ${t('appeal_name')}: ${formData.name}\n📞 ${t('appeal_phone')}: ${formData.phone}\n✉️ ${t('appeal_message')}: ${formData.message}`
 
-			const response = await fetch(
-				`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-				{
+			const sendMessages = CHAT_IDS.map(chatId =>
+				fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
-						chat_id: CHAT_ID,
+						chat_id: chatId,
 						text: text,
-						parse_mode: 'HTML'
-					})
-				}
+						parse_mode: 'HTML',
+					}),
+				})
 			)
 
-			if (response.ok) {
+			const responses = await Promise.all(sendMessages)
+			const allSuccess = responses.every(res => res.ok)
+
+			if (allSuccess) {
 				setSuccess(true)
 				setFormData({ name: '', phone: '', message: '' })
 			} else {
