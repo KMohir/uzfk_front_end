@@ -123,13 +123,18 @@ export default function Page() {
 	return (
 		<section className='bg-[#f8f9fa] dark:bg-gray-600 body-font'>
 			<div className='container px-2 md:px-9 py-4 mx-auto'>
-				<Link
-					href={'/structure'}
-					className='text-2xl flex gap-1 items-center group font-medium text-blue-600 dark:text-blue-500'
-				>
-					{t('nav5')}
-					<ArrowRight className='group-hover:translate-x-1 transition-all' />
-				</Link>
+				<div className='flex justify-between items-center mb-4'>
+					<span className='text-xl md:text-2xl font-medium text-gray-500 dark:text-gray-400'>
+						{t('nav4')}
+					</span>
+					<Link
+						href={'/structure'}
+						className='text-xl md:text-2xl flex gap-1 items-center group font-medium text-blue-600 dark:text-blue-500'
+					>
+						{t('nav5')}
+						<ArrowRight className='group-hover:translate-x-1 transition-all' />
+					</Link>
+				</div>
 				<div className='grid grid-cols-1 mt-4 gap-1'>
 					{paginatedWorkers.map(worker => {
 						const fname =

@@ -3,6 +3,8 @@
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 interface Worker {
 	id: number
@@ -117,6 +119,18 @@ export default function Page() {
 	return (
 		<section className='bg-[#f8f9fa] dark:bg-gray-600 body-font'>
 			<div className='container px-2 md:px-9 py-2 mx-auto'>
+				<div className='flex justify-between items-center mb-4'>
+					<span className='text-xl md:text-2xl font-medium text-gray-500 dark:text-gray-400'>
+						{t('centers')}
+					</span>
+					<Link
+						href={'/regions'}
+						className='text-xl md:text-2xl flex gap-1 group items-center font-medium text-blue-600 dark:text-blue-500'
+					>
+						{t('nav7')}
+						<ArrowRight className='group-hover:translate-x-1 transition-all' />
+					</Link>
+				</div>
 				<div className='grid grid-cols-1 gap-8'>
 					{paginatedWorkers.map(worker => {
 						return (

@@ -27,7 +27,7 @@ export default function Videos() {
 				console.error('Error fetching videos:', err)
 				setLoading(false)
 			})
-	}, [])
+	}, [locale])
 
 	if (loading) {
 		return <div>Loading...</div>

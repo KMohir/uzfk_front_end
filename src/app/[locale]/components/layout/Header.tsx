@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import LanguageSwitcher from '../ui/language'
 
-import MyMarquee from '../marquee/MyMarquee'
+
 
 import { createPortal } from 'react-dom'
 
@@ -51,7 +51,7 @@ export default function Header() {
                 { label: t('videos'), href: 'https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos', external: true }
             ]
         },
-        { name: 'normatives', label: t('nav13'), href: '/normatives' },
+        { name: 'normatives', label: t('normatives_title'), href: '/normatives' },
         { name: 'contacts', label: t('nav15'), href: '/contact' }
     ]
 
@@ -62,13 +62,14 @@ export default function Header() {
                 scrolled ? 'py-2' : 'py-4'
             )}
         >
-            <div className='w-full absolute top-0 left-0'>
-                {!pathname.includes('/news/') && <MyMarquee />}
-            </div>
-
-            <div className='container mx-auto px-4 lg:px-6 flex items-center justify-between mt-8'>
+            <div className='container mx-auto px-4 lg:px-6 flex items-center justify-between'>
                 {/* Logo - chap tomon */}
-                <Link href='/' className='flex items-center gap-3 group flex-shrink-0'>
+                <a
+                    href='https://fkreestr.uz/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-center gap-3 group flex-shrink-0'
+                >
                     <div className='relative w-16 h-16 overflow-hidden rounded-full border-2 border-secondary group-hover:scale-105 transition-transform'>
                         <Image src='/logo.png' alt='UzFK Logo' fill className='object-cover' />
                     </div>
@@ -77,7 +78,7 @@ export default function Header() {
                             {t('logo')}
                         </span>
                     </div>
-                </Link>
+                </a>
 
                 {/* Desktop Nav - o'rta */}
                 <nav className='hidden lg:flex items-center justify-center flex-1 mx-4'>
@@ -197,7 +198,7 @@ export default function Header() {
 
             {/* Mobile Menu Overlay with Portal */}
             {mobileMenuOpen && mounted && createPortal(
-                <div className='fixed inset-0 z-[90] bg-white pt-24 px-6 lg:hidden animate-in slide-in-from-right duration-300'>
+                <div className='fixed inset-0 z-[90] bg-white pt-12 px-6 lg:hidden animate-in slide-in-from-right duration-300'>
                     <nav className='flex flex-col gap-4'>
                         {navItems.map((item) => (
                             <div key={item.name} className='border-b border-gray-100 pb-2'>

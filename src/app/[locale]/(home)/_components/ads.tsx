@@ -64,7 +64,7 @@ export default function Ads() {
 		}
 
 		fetchBanners()
-	}, [])
+	}, [language])
 
 	// Auto-slide functionality
 	useEffect(() => {

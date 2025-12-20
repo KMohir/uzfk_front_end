@@ -41,14 +41,14 @@ export default async function RootLayout({ children, params }: Props) {
 	return (
 		<html lang={locale} suppressHydrationWarning className='scroll-smooth'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground grain-overlay`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-gray-900 text-foreground grain-overlay`}
 			>
 				<NextIntlClientProvider messages={messages}>
 					<ThemeProvider attribute='class' defaultTheme='light' enableSystem={false}>
 						<Loader />
 						<div className='min-h-screen flex flex-col font-sans'>
 							{/* Top Bar with Marquee & Ads */}
-							<div className='z-40 relative bg-white'>
+							<div className='z-40 relative bg-gray-50 dark:bg-gray-900'>
 								<MyMarquee />
 								{/* Ads - keeping existing component but wrapping safely */}
 								<div className='container mx-auto px-4 hidden md:block'>
@@ -60,7 +60,7 @@ export default async function RootLayout({ children, params }: Props) {
 
 							<Header />
 
-							<main className='flex-grow'>
+							<main className='flex-grow pt-[80px] md:pt-[100px]'>
 								{children}
 							</main>
 							<Footer />

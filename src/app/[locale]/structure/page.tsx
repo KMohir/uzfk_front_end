@@ -121,13 +121,18 @@ export default function Page() {
 	return (
 		<section className='bg-[#f8f9fa] dark:bg-gray-600 body-font'>
 			<div className='container px-2 md:px-9 py-4 mx-auto'>
-				<Link
-					href={'/goals'}
-					className='text-2xl flex gap-1 group items-center font-medium text-blue-500'
-				>
-					{t('nav6')}
-					<ArrowRight className='group-hover:translate-x-1 transition-all' />
-				</Link>
+				<div className='flex justify-between items-center mb-4'>
+					<span className='text-xl md:text-2xl font-medium text-gray-500 dark:text-gray-400'>
+						{t('nav5')}
+					</span>
+					<Link
+						href={'/goals'}
+						className='text-xl md:text-2xl flex gap-1 group items-center font-medium text-blue-500'
+					>
+						{t('goals')}
+						<ArrowRight className='group-hover:translate-x-1 transition-all' />
+					</Link>
+				</div>
 				<div className='grid grid-cols-1 mt-4 gap-8'>
 					{paginatedWorkers.map(worker => {
 						const fname =
