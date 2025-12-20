@@ -32,7 +32,8 @@ export default function NewsPage() {
 	const [totalPages, setTotalPages] = useState(0)
 	const newsPerPage = 12
 
-	const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/list/`
+	const apiLocale = locale === 'oz' ? 'uz' : locale
+	const apiUrl = `${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/list/`
 
 	useEffect(() => {
 		const fetchNews = async () => {

@@ -32,8 +32,9 @@ export default function Ads() {
 		const fetchBanners = async () => {
 			try {
 				setLoading(true)
+				const apiLanguage = language // language already maps to uz or ru
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${language}/api/banner/most_read/list/`,
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLanguage}/api/banner/most_read/list/`,
 					{
 						headers: {
 							Accept: 'application/json',

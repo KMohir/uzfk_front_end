@@ -49,8 +49,9 @@ export default function Page() {
 		const fetchData = async () => {
 			try {
 				setIsLoading(true)
+				const apiLocale = locale === 'oz' ? 'uz' : locale
 				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/tuzilma/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/unit/list/`
 				)
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)

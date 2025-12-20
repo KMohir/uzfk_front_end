@@ -21,16 +21,23 @@ export default function Announcements() {
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/elon/most_read/list/`)
-			.then(res => res.json())
-			.then(data => {
+		const fetchAnnouncements = async () => {
+			setLoading(true)
+			try {
+				const apiLocale = locale === 'oz' ? 'uz' : locale
+				const response = await fetch(
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/elon/list/`
+				)
+				const data = await response.json()
 				setAnnouncements(data.results)
-				setLoading(false)
-			})
-			.catch(err => {
+			} catch (err) {
 				console.error('Error fetching announcements:', err)
+			} finally {
 				setLoading(false)
-			})
+			}
+		}
+
+		fetchAnnouncements()
 	}, [locale])
 
 	if (loading) {

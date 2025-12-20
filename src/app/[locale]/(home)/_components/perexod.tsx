@@ -20,8 +20,9 @@ const CardLinks = () => {
 		// API fetch qilish
 		const fetchLinks = async () => {
 			try {
+				const apiLocale = locale === 'oz' ? 'uz' : locale
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/links/header/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/links/header/list/`
 				)
 				if (!response.ok) {
 					throw new Error(`Serverda xato: ${response.status}`)
@@ -61,7 +62,7 @@ const CardLinks = () => {
 					</h3>
 				</div>
 			))}
-			
+
 			{/* Bog'lanish kartasi */}
 			<div
 				className='p-4 hover:bg-gray-50 dark:bg-blue-800/40 bg-white shadow-lg group rounded-lg hover:shadow-lg transition cursor-pointer'

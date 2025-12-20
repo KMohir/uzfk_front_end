@@ -46,7 +46,8 @@ export default function PressCards() {
     useEffect(() => {
         const fetchLinks = async () => {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/links/header/list/`)
+                const apiLocale = locale === 'oz' ? 'uz' : locale
+                const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/question/list/`)
                 if (response.ok) {
                     const data = await response.json()
                     setLinks(data.results)

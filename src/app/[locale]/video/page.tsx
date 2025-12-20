@@ -31,8 +31,9 @@ export default function VideoPage() {
 		const fetchVideos = async () => {
 			try {
 				setLoading(true)
+				const apiLocale = locale === 'oz' ? 'uz' : locale
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/youtube/header/list/?page=${currentPage}`
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/youtube/header/list/?page=${currentPage}`
 				)
 				if (!response.ok) {
 					throw new Error(`HTTP xato! Status: ${response.status}`)

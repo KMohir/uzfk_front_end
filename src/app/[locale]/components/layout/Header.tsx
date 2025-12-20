@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, usePathname } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { Menu, X, ChevronDown, Facebook, Instagram, Youtube, Send } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import LanguageSwitcher from '../ui/language'
@@ -143,42 +143,7 @@ export default function Header() {
                 <div className='flex items-center gap-3 flex-shrink-0'>
                     {/* Social Media Icons */}
                     <div className='hidden lg:flex items-center gap-2'>
-                        <a
-                            href='https://t.me/uzfermerkengashi'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-500 hover:text-white transition-all'
-                            title='Telegram'
-                        >
-                            <Send size={16} />
-                        </a>
-                        <a
-                            href='https://www.instagram.com/uzfk.uz/'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all'
-                            title='Instagram'
-                        >
-                            <Instagram size={16} />
-                        </a>
-                        <a
-                            href='https://www.facebook.com/uzfk.uz'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-blue-600 hover:text-white transition-all'
-                            title='Facebook'
-                        >
-                            <Facebook size={16} />
-                        </a>
-                        <a
-                            href='https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white transition-all'
-                            title='YouTube'
-                        >
-                            <Youtube size={16} />
-                        </a>
+
                     </div>
 
                     {/* Language Switcher */}

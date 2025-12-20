@@ -25,7 +25,8 @@ export default function AnnouncementsPage() {
 	const [error, setError] = useState<string | null>(null)
 
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/elon/most_read/list/`)
+		const apiLocale = locale === 'oz' ? 'uz' : locale
+		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/elon/most_read/list/`)
 			.then(res => {
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)

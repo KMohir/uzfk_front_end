@@ -23,8 +23,9 @@ export function CalendarDemo() {
 			const formattedDate = `${year}-${month}-${day}`
 
 			// API so'rovi
+			const apiLocale = locale === 'oz' ? 'uz' : locale
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/date-filter/?date=${formattedDate}`
+				`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/date-filter/?date=${formattedDate}`
 			)
 			if (!response.ok) {
 				throw new Error('Serverdan yangiliklarni olishda xatolik!')
