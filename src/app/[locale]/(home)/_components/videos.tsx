@@ -18,7 +18,7 @@ export default function Videos() {
 
 	useEffect(() => {
 		const apiLocale = locale === 'oz' ? 'uz' : locale
-		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/youtube/list/`)
+		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/youtube/header/list/`)
 			.then(res => res.json())
 			.then(data => {
 				setVideos(data.results)

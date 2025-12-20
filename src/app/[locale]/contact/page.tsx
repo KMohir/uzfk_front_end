@@ -189,7 +189,7 @@ export default function ContactPage() {
 									value={formData.phone}
 									onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
 									className='w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white'
-									placeholder='+998 90 123 45 67'
+									placeholder={t('contact_phone_placeholder')}
 								/>
 							</div>
 

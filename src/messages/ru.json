@@ -74,6 +74,7 @@
 	"contact_name_label": "Имя и фамилия",
 	"contact_name_placeholder": "Введите ваше имя",
 	"contact_phone_label": "Номер телефона",
+	"contact_phone_placeholder": "+998 90 123 45 67",
 	"contact_message_label": "Сообщение",
 	"contact_message_placeholder": "Напишите ваше сообщение...",
 	"contact_submit_button": "Отправить",

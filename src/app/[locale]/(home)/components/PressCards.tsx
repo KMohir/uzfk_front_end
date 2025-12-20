@@ -46,14 +46,34 @@ export default function PressCards() {
     useEffect(() => {
         const fetchLinks = async () => {
             try {
-                const apiLocale = locale === 'oz' ? 'uz' : locale
-                const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/question/list/`)
+                const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/links/header/list/`)
                 if (response.ok) {
                     const data = await response.json()
-                    setLinks(data.results)
+                    // If API results are empty or less than 3, provide defaults
+                    if (!data.results || data.results.length === 0) {
+                        setLinks([
+                            { url: 'https://fermerlarminbari.uz/', title_uz: 'Fermerlar minbari' },
+                            { url: 'https://kutubxona.uzfk.uz/', title_uz: 'Kutubxona' },
+                            { url: '/farm', title_uz: 'Fermerlar markazi' }
+                        ])
+                    } else {
+                        setLinks(data.results)
+                    }
+                } else {
+                    // Fallback on error
+                    setLinks([
+                        { url: 'https://fermerlarminbari.uz/', title_uz: 'Fermerlar minbari' },
+                        { url: 'https://kutubxona.uzfk.uz/', title_uz: 'Kutubxona' },
+                        { url: '/farm', title_uz: 'Fermerlar markazi' }
+                    ])
                 }
             } catch (error) {
                 console.error('Failed to fetch links:', error)
+                setLinks([
+                    { url: 'https://fermerlarminbari.uz/', title_uz: 'Fermerlar minbari' },
+                    { url: 'https://kutubxona.uzfk.uz/', title_uz: 'Kutubxona' },
+                    { url: '/farm', title_uz: 'Fermerlar markazi' }
+                ])
             } finally {
                 setLoading(false)
             }
