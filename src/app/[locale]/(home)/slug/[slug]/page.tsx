@@ -27,8 +27,9 @@ export default function NewsDetail() {
 			try {
 				setIsLoading(true)
 				setError(null)
+				const apiLocale = params.locale === 'oz' ? 'uz' : params.locale
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_API_URL}/news?slug=${params.slug}`
+					`${process.env.NEXT_PUBLIC_API_URL}/${apiLocale}/news?slug=${params.slug}`
 				)
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`)

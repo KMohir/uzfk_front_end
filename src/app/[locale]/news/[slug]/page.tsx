@@ -12,8 +12,9 @@ interface NewsItem {
 }
 
 async function getNews(locale: string, slug: string) {
+	const apiLocale = locale === 'oz' ? 'uz' : locale
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/detail/${slug}/`,
+		`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/detail/${slug}/`,
 		{
 			cache: 'no-store',
 		}
@@ -23,9 +24,10 @@ async function getNews(locale: string, slug: string) {
 }
 
 async function getLatestNews(locale: string): Promise<NewsItem[]> {
+	const apiLocale = locale === 'oz' ? 'uz' : locale
 	try {
 		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/list/?page=1`,
+			`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/list/?page=1`,
 			{ cache: 'no-store' }
 		)
 		const data = await res.json()
@@ -36,9 +38,10 @@ async function getLatestNews(locale: string): Promise<NewsItem[]> {
 }
 
 async function getRecommendedNews(locale: string): Promise<NewsItem[]> {
+	const apiLocale = locale === 'oz' ? 'uz' : locale
 	try {
 		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/news/most_read/list/`,
+			`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/most_read/list/`,
 			{ cache: 'no-store' }
 		)
 		const data = await res.json()

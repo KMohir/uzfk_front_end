@@ -151,19 +151,30 @@ export default function Page() {
 									</div>
 									{/* Worker Info */}
 									<div className='flex flex-col gap-1'>
-										<h3 className='text-sm flex flex-wrap md:text-3xl font-semibold text-gray-900 mb-4'>
-											{worker.f_name}
-										</h3>
-										{/* <p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
-											<b className='text-black max-md:text-sm'>
-												{t('lavozim')}:
-											</b>{' '}
-											{position}
-										</p> */}
-										<p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
-											{/* <b className='text-black max-md:text-sm'>{t('bolm')}:</b>{' '} */}
-											{worker.section.name}
-										</p>
+										{(() => {
+											const fname =
+												locale === 'ru'
+													? worker.f_name_ru
+													: locale === 'oz'
+														? worker.f_name_uz
+														: worker.f_name_uz
+											const sectionName =
+												locale === 'ru'
+													? worker.section.name_ru
+													: locale === 'oz'
+														? worker.section.name
+														: worker.section.name
+											return (
+												<>
+													<h3 className='text-sm flex flex-wrap md:text-3xl font-semibold text-gray-900 mb-4'>
+														{fname}
+													</h3>
+													<p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
+														{sectionName}
+													</p>
+												</>
+											)
+										})()}
 										<p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
 											<b className='text-black max-md:text-sm'>{t('tel')}:</b>{' '}
 											{worker.phone}

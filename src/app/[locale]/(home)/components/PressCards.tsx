@@ -86,7 +86,7 @@ export default function PressCards() {
      */
     const getLocalizedTitle = (link: LinkItem) => {
         // 1. Try dynamic locale title from API
-        const localizedTitle = link.title || link[`title_${locale}`]
+        const localizedTitle = link.title || link[`title_${locale}`] || (locale === 'oz' ? link.title_uz : undefined)
         if (localizedTitle) return localizedTitle
 
         // 2. Try matching specific hardcoded items for manual translation

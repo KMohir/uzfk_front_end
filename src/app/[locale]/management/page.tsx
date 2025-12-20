@@ -47,13 +47,14 @@ export default function Page() {
 		: pathname.startsWith('/oz')
 			? 'oz'
 			: 'uz'
+	const apiLocale = language === 'oz' ? 'uz' : language
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setIsLoading(true)
 				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${language}/api/workers/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/workers/list/`
 				)
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)
@@ -141,13 +142,13 @@ export default function Page() {
 							language === 'ru'
 								? worker.f_name_ru
 								: language === 'oz'
-									? worker.f_name_en
+									? worker.f_name_uz
 									: worker.f_name_uz
 						const section =
 							language === 'ru'
 								? worker.section.name_ru
 								: language === 'oz'
-									? worker.section.name_en
+									? worker.section.name_uz
 									: worker.section.name_uz
 
 
