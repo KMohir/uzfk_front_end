@@ -86,15 +86,16 @@ export default function PressCards() {
      */
     const getLocalizedTitle = (link: LinkItem) => {
         // 1. Try dynamic locale title from API
-        const localizedTitle = link.title || link[`title_${locale}`] || (locale === 'oz' ? link.title_uz : undefined)
+        const localizedTitle = link.title || link[`title_${locale}`]
         if (localizedTitle) return localizedTitle
 
         // 2. Try matching specific hardcoded items for manual translation
         const titleUz = link.title_uz.toLowerCase()
         if (titleUz.includes('minbari')) return t('farmers_tribune')
         if (titleUz.includes('kutubxona')) return t('library')
+        if (titleUz.includes('markazi')) return t('farm_info_center')
 
-        // 3. Fallback to title_uz
+        // 3. Last resort fallback to title_uz (for oz, also return title_uz if nothing else matched)
         return link.title_uz
     }
 

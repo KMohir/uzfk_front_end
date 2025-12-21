@@ -23,7 +23,7 @@ export default function Footer() {
                                 <Image src='/logo.png' alt='UzFK Logo' fill className='object-contain p-2' />
                             </div>
                             <span className='font-bold text-lg leading-tight text-secondary'>
-                                O&apos;zbekiston Fermerlar Kengashi
+                                {t('logo')}
                             </span>
                         </div>
                         <p className='text-gray-400 mb-6 leading-relaxed'>
