@@ -79,7 +79,7 @@ export default function Page() {
 		}
 
 		fetchData()
-	}, [language])
+	}, [language, apiLocale])
 
 	const handleTabChange = (
 		workerId: number,

@@ -50,7 +50,7 @@ export default function NewsDetail() {
 		if (params.slug) {
 			fetchNewsDetail()
 		}
-	}, [params.slug])
+	}, [params.slug, params.locale])
 
 	if (isLoading) {
 		return (
