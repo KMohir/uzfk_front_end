@@ -155,8 +155,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                             {new Date(news.created_at).toLocaleDateString()}
                                         </span>
 
-                                        {/* Title with color transition on hover */}
-                                        <h3 className='font-bold text-gray-800 leading-snug group-hover:text-primary transition-colors line-clamp-2'>
+                                        <h3 className='font-bold text-gray-800 leading-snug group-hover:text-[#078D3A] transition-colors line-clamp-2'>
                                             {news.title}
                                         </h3>
                                     </div>

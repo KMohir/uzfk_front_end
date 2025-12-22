@@ -21,7 +21,7 @@ import ScrollReveal from '../../components/ScrollReveal'
 export default function MapCalendar() {
 
     return (
-        <section className='pt-10 pb-10 bg-gradient-to-b from-accent/20 to-white'>
+        <section className='pt-0 pb-10 bg-gradient-to-b from-accent/20 to-white'>
             <div className='container mx-auto px-4 md:px-8'>
                 {/* ============================================
                     SECTION HEADER
@@ -30,7 +30,7 @@ export default function MapCalendar() {
                 {/* ============================================
                     MAP & CALENDAR GRID
                     ============================================ */}
-                <div className='grid lg:grid-cols-2 gap-8'>
+                <div className='grid lg:grid-cols-[1fr,1.3fr] gap-6'>
                     {/* ============================================
                         INTERACTIVE MAP SECTION
                         ============================================ */}

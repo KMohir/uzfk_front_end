@@ -78,7 +78,7 @@ export default function StatsGrid() {
     ]
 
     return (
-        <section className='pt-8 pb-20 relative overflow-hidden'>
+        <section className='pt-8 pb-4 relative overflow-hidden'>
             {/* ============================================
                 BACKGROUND DECORATION
                 ============================================ */}
