@@ -30,8 +30,13 @@ export default function Footer() {
                             {t('footer_desc') || 'O&apos;zbekiston qishloq xo&apos;jaligini rivojlantirish va fermerlar huquqlarini himoya qilish yo&apos;lida.'}
                         </p>
                         <div className='flex gap-4'>
-                            {[Facebook, Instagram, Youtube, Send].map((Icon, i) => (
-                                <Link key={i} href='#' className='w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all'>
+                            {[
+                                { Icon: Facebook, href: 'https://www.facebook.com/uzbfermer' },
+                                { Icon: Instagram, href: 'https://www.instagram.com/uzbekiston_fermerlari_kengashi/' },
+                                { Icon: Youtube, href: 'https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos' },
+                                { Icon: Send, href: 'https://t.me/uzbfermer' }
+                            ].map(({ Icon, href }, i) => (
+                                <Link key={i} href={href} target='_blank' className='w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all'>
                                     <Icon size={18} />
                                 </Link>
                             ))}
@@ -40,15 +45,16 @@ export default function Footer() {
 
                     {/* Links */}
                     <div>
-                        <h4 className='text-lg font-bold mb-6 text-white'>{t('structure')}</h4>
+                        <h4 className='text-lg font-bold mb-6 text-white'>{t('nav2')}</h4>
                         <ul className='space-y-4'>
-                            {['management', 'apparatus', 'centers'].map((item) => (
+                            {['management', 'apparatus', 'nav6', 'nav7'].map((item) => (
                                 <li key={item}>
                                     <Link
                                         href={
                                             item === 'apparatus' ? '/structure' :
                                                 item === 'centers' ? '/center-units' :
-                                                    `/${item}`
+                                                    item === 'nav7' ? '/regions' :
+                                                        `/${item}`
                                         }
                                         className='text-gray-400 hover:text-secondary transition-colors inline-block'
                                     >
