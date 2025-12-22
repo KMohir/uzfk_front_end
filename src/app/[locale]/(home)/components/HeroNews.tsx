@@ -47,7 +47,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
     if (!mainNews) return null
 
     return (
-        <section className='relative min-h-[85vh] flex items-center pt-24 md:pt-6 pb-12 overflow-hidden'>
+        <section className='relative flex items-center pt-24 md:pt-6 pb-0 overflow-hidden'>
             {/* ============================================
                 BACKGROUND LAYERS
                 ============================================ */}

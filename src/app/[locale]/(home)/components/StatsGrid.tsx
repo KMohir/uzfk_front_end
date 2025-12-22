@@ -78,7 +78,7 @@ export default function StatsGrid() {
     ]
 
     return (
-        <section className='py-20 bg-gradient-to-b from-gray-50/50 to-white'>
+        <section className='pt-8 pb-20 bg-gradient-to-b from-gray-50/50 to-white'>
             <div className='container mx-auto px-4 md:px-8'>
                 {/* ============================================
                     SECTION HEADER
