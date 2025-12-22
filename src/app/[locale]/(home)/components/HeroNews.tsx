@@ -16,7 +16,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { ArrowRight, Calendar } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import ScrollReveal from '../../components/ScrollReveal'
 
 // ============================================
@@ -25,7 +25,10 @@ import ScrollReveal from '../../components/ScrollReveal'
 
 interface NewsItem {
     id: number
-    title: string
+    title_uz: string
+    title_oz: string
+    title_ru: string
+    title?: string
     slug: string
     image: string
     created_at: string
@@ -42,6 +45,7 @@ interface HeroNewsProps {
 
 export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
     const t = useTranslations()
+    const locale = useLocale()
 
     // Early return if no main news available
     if (!mainNews) return null
@@ -75,7 +79,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                 {/* Hero image with zoom effect on hover */}
                                 <Image
                                     src={mainNews.image}
-                                    alt={mainNews.title}
+                                    alt={locale === 'ru' ? mainNews.title_ru : locale === 'oz' ? (mainNews.title_oz || mainNews.title_uz) : mainNews.title_uz}
                                     fill
                                     className='object-cover transition-transform duration-700 group-hover:scale-110'
                                     priority
@@ -96,7 +100,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
 
                                     {/* Main headline with gradient text on hover */}
                                     <h1 className='text-2xl md:text-4xl font-bold text-white leading-tight mb-4 group-hover:gradient-text transition-all line-clamp-3'>
-                                        {mainNews.title}
+                                        {locale === 'ru' ? mainNews.title_ru : locale === 'oz' ? (mainNews.title_oz || mainNews.title_uz) : mainNews.title_uz}
                                     </h1>
 
                                     {/* Metadata and CTA */}
@@ -132,7 +136,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                     <div className='relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden'>
                                         <Image
                                             src={news.image}
-                                            alt={news.title}
+                                            alt={locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
                                             fill
                                             className='object-cover group-hover:scale-110 transition-transform duration-500'
                                         />

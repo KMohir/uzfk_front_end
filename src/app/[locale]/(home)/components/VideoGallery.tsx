@@ -24,7 +24,7 @@ export default function VideoGallery() {
     const t = useTranslations()
 
     return (
-        <section className='py-24 bg-white relative overflow-hidden'>
+        <section className='pt-10 pb-24 bg-white relative overflow-hidden'>
             {/* ============================================
                 BACKGROUND DECORATION
                 ============================================ */}
@@ -50,7 +50,7 @@ export default function VideoGallery() {
                             {/* Main heading */}
                             <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight'>
                                 <span className='gradient-text'>
-                                    {t('videos')}
+                                    {t('press_service_activity')}
                                 </span>
                             </h2>
                         </div>

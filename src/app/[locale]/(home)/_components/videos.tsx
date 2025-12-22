@@ -5,9 +5,13 @@ import { useLocale } from 'next-intl'
 
 interface Video {
 	id: number
-	title: string
+	title_uz: string
+	title_oz: string
+	title_ru: string
 	url: string
-	description: string
+	description_uz: string
+	description_oz: string
+	description_ru: string
 	added_at: string
 }
 
@@ -52,7 +56,7 @@ export default function Videos() {
 					{/* Title bo'limi */}
 					<div className='p-4 bg-gray-50 dark:bg-gray-600 dark:text-white'>
 						<h3 className='text-lg font-semibold text-blue-600 group-hover:text-green-600 truncate dark:text-white'>
-							{video.title}
+							{locale === 'ru' ? video.title_ru : locale === 'oz' ? (video.title_oz || video.title_uz) : video.title_uz}
 						</h3>
 					</div>
 				</div>

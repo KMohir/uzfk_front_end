@@ -16,6 +16,7 @@ export default function NormativesPage() {
 			docNum_oz: 'ПФ-5199-сонли Фармони',
 			docNum_ru: 'Указ № УП-5199',
 			link: 'https://lex.uz/docs/3375308',
+			effectiveDate: '09.10.2017',
 		},
 		{
 			id: 2,
@@ -26,6 +27,7 @@ export default function NormativesPage() {
 			docNum_oz: 'ПҚ-3318-сонли қарори',
 			docNum_ru: 'Постановление № ПП-3318',
 			link: 'https://lex.uz/docs/3377755',
+			effectiveDate: '10.10.2017',
 		},
 		{
 			id: 3,
@@ -36,6 +38,7 @@ export default function NormativesPage() {
 			docNum_oz: '205-сонли қарори',
 			docNum_ru: 'Постановление № 205',
 			link: 'https://lex.uz/docs/3592882',
+			effectiveDate: '19.03.2018',
 		},
 		{
 			id: 4,
@@ -46,6 +49,7 @@ export default function NormativesPage() {
 			docNum_oz: 'O‘RQ-680-сонли Қонуни',
 			docNum_ru: 'Закон № ЗРУ-680',
 			link: 'https://lex.uz/docs/5351781',
+			effectiveDate: '02.04.2021',
 		},
 		{
 			id: 5,
@@ -56,6 +60,7 @@ export default function NormativesPage() {
 			docNum_oz: 'O‘RQ-602-I-сонли Қонуни',
 			docNum_ru: 'Закон № ЗРУ-602-I',
 			link: 'https://lex.uz/docs/111453',
+			effectiveDate: '01.05.1998',
 		},
 		{
 			id: 6,
@@ -66,6 +71,7 @@ export default function NormativesPage() {
 			docNum_oz: 'ПҚ-3680-сонли қарори',
 			docNum_ru: 'Постановление № ПП-3680',
 			link: 'https://lex.uz/docs/3709543',
+			effectiveDate: '26.04.2018',
 		},
 		{
 			id: 7,
@@ -76,6 +82,7 @@ export default function NormativesPage() {
 			docNum_oz: '433-сонли қарори',
 			docNum_ru: 'Постановление № 433',
 			link: 'https://lex.uz/docs/3771569',
+			effectiveDate: '08.06.2018',
 		},
 		{
 			id: 8,
@@ -86,16 +93,18 @@ export default function NormativesPage() {
 			docNum_oz: '3121-сонли қарори',
 			docNum_ru: 'Постановление № 3121',
 			link: 'https://lex.uz/docs/4164871',
+			effectiveDate: '15.01.2019',
 		},
 		{
 			id: 9,
-			text_uz: 'O‘zbekiston Respublikasi Prezidentining 2025-yil 14-fevraldagi "Tomorqa yer egalari va dehqon xo‘jaliklari faoliyatida zamonaviy tashkiliy tizimni joriy qilish va moliyaviy qo‘llab-quvvatlashning qo‘shimcha chora-tadbirlari to‘g‘risida"gi',
+			text_uz: 'O‘zbekiston Respublikasi Prezidentining 2025-yil 14-fevraldagi "Tomorqa yer egalari va dehqon xo‘jaliklari faoliyatida zamonaviy tashkiliy tizimni joriy qilish va moliyaviy qo‘llab-quvvatlashning qo‘shimcha chora-tadbirlari to‘g‘risidai"gi',
 			text_oz: 'Ўзбекистон Республикаси Президентининг 2025 йил 14 февралдаги "Томорқа ер эгалари ва деҳқон хўжаликлари фаолиятида замонавий ташкилий тизимни жорий қилиш ва молиявий қўллаб-қувватлашнинг қўшимча чора-тадбирлари тўғрисида"ги',
 			text_ru: 'Указ Президента Республики Узбекистан от 14 февраля 2025 года «О дополнительных мерах по внедрению современной организационной системы и финансовой поддержке деятельности владельцев приусадебных земель и дехканских хозяйств»',
 			docNum_uz: 'PF-22-sonli Farmoni',
 			docNum_oz: 'ПФ-22-сонли Фармони',
 			docNum_ru: 'Указ № УП-22',
 			link: 'https://lex.uz/docs/7085773',
+			effectiveDate: '14.02.2025',
 		},
 		{
 			id: 10,
@@ -106,16 +115,18 @@ export default function NormativesPage() {
 			docNum_oz: 'ПФ-4478-сонли Фармони',
 			docNum_ru: 'Указ № УП-4478',
 			link: 'https://lex.uz/docs/2070362',
+			effectiveDate: '23.10.2012',
 		},
 		{
 			id: 11,
-			text_uz: 'O‘zbekiston Respublikasi Vazirlar Mahkamasining 2025-yil 14-iyuldagi "Respublika ijro etuvchi hokimiyat organlari hamda xo‘jalik birlashmalari rahbarlari va ularning o‘rinbosarlari faoliyatining eng muhim samaradorlik ko‘rsatkichlarini ishlab chiqish tartibini yanada takomillashtirish to‘g‘risida"gi',
+			text_uz: 'O‘zbekiston Respublikasi Vazirlar Mahkamasining 2025-yil 14-iyuldagi "Respublika ijro etuvchi hokimiyat organlari hamda xo‘jalik birlashmalari rahbarlari va ularning o‘rinbosarlari faoliyatining eng muhim samaradorlik ko‘рsatkichlarini ishlab chiqish tartibini yanada takomillashtirish to‘g‘risida"gi',
 			text_oz: 'Ўзбекистон Республикаси Вазирлар Маҳкамасининг 2025 йил 14 июлдаги "Республика ижро этувчи ҳокимият органлари ҳамда хўжалик бирлашмалари раҳбарлари ва уларнинг ўринбосарлари фаолиятининг энг муҳим самарадорлик кўрсаткичларини ишлаб чиқиш тартибини янада такомиллаштириш тўғрисида"ги',
 			text_ru: 'Постановление Кабинета Министров Республики Узбекистан от 14 июля 2025 года «О дальнейшем совершенствовании порядка разработки наиболее важных показателей эффективности деятельности руководителей органов исполнительной власти республики и хозяйственных объединений и их заместителей»',
 			docNum_uz: '435-sonli qarori',
 			docNum_oz: '435-сонли қарори',
 			docNum_ru: 'Постановление № 435',
 			link: 'https://lex.uz/docs/7241215',
+			effectiveDate: '15.07.2025',
 		},
 	]
 
@@ -150,16 +161,21 @@ export default function NormativesPage() {
 										<span className='flex-shrink-0 w-8 h-8 flex items-center justify-center bg-primary/10 text-primary font-bold rounded-full text-sm mt-1'>
 											{index + 1}
 										</span>
-										<p className='text-lg text-gray-700 dark:text-gray-200 leading-relaxed font-medium'>
-											{text}{' '}-{' '}
-											<Link
-												href={doc.link}
-												target='_blank'
-												className='text-primary font-bold underline decoration-2 decoration-primary/30 hover:decoration-primary transition-all inline-block mt-1'
-											>
-												{docNum}
-											</Link>
-										</p>
+										<div className='flex flex-col gap-1'>
+											<p className='text-lg text-gray-700 dark:text-gray-200 leading-relaxed font-medium'>
+												{text}{' '}-{' '}
+												<Link
+													href={doc.link}
+													target='_blank'
+													className='text-primary font-bold underline decoration-2 decoration-primary/30 hover:decoration-primary transition-all inline-block'
+												>
+													{docNum}
+												</Link>
+											</p>
+											<p className='text-sm text-gray-500 dark:text-gray-400'>
+												<span className='font-semibold'>{t('effective_date')}:</span> {doc.effectiveDate}
+											</p>
+										</div>
 									</div>
 								</div>
 							</ScrollReveal>

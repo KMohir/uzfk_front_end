@@ -84,23 +84,11 @@ export default function StatsGrid() {
                     SECTION HEADER
                     ============================================ */}
                 <ScrollReveal>
-                    <div className='text-center mb-16'>
+                    <div className='text-center mb-10'>
                         {/* Category badge */}
                         <span className='inline-block px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 uppercase tracking-wider animate-scale-in'>
                             {t('stat_badge')}
                         </span>
-
-                        {/* Main heading with gradient text */}
-                        <h2 className='text-3xl md:text-5xl font-bold text-gray-800 tracking-tight'>
-                            <span className='gradient-text'>
-                                {t('stat_title')}
-                            </span>
-                        </h2>
-
-                        {/* Subtitle */}
-                        <p className='mt-4 text-gray-500 max-w-2xl mx-auto'>
-                            {t('stat_subtitle')}
-                        </p>
                     </div>
                 </ScrollReveal>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -7,8 +8,10 @@ import { useEffect, useState } from 'react'
 interface Banner {
 	id: number
 	title_uz: string
+	title_oz: string
 	title_ru: string
 	description_uz: string
+	description_oz: string
 	description_ru: string
 	image: string
 	link: string
@@ -21,9 +24,8 @@ export default function Ads() {
 	const [loading, setLoading] = useState(true)
 	const [currentIndex, setCurrentIndex] = useState(0)
 
-	// URL-dagi tilni aniqlash
+	const locale = useLocale()
 	const pathname = usePathname()
-	const language = pathname.startsWith('/ru') ? 'ru' : 'uz'
 
 	// Hide ads on news detail pages logic
 	const isNewsDetailPage = pathname.includes('/news/') && pathname.split('/').length > 3
@@ -32,9 +34,9 @@ export default function Ads() {
 		const fetchBanners = async () => {
 			try {
 				setLoading(true)
-				const apiLanguage = language // language already maps to uz or ru
+				const apiLocale = locale === 'oz' ? 'uz' : locale
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${apiLanguage}/api/banner/most_read/list/`,
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/banner/most_read/list/`,
 					{
 						headers: {
 							Accept: 'application/json',
@@ -65,7 +67,7 @@ export default function Ads() {
 		}
 
 		fetchBanners()
-	}, [language])
+	}, [locale])
 
 	// Auto-slide functionality
 	useEffect(() => {
@@ -103,9 +105,9 @@ export default function Ads() {
 
 	const banner = banners[currentIndex]
 	// Tilga qarab title va description tanlash
-	const title = language === 'ru' ? banner.title_ru : banner.title_uz
+	const title = locale === 'ru' ? banner.title_ru : locale === 'oz' ? (banner.title_oz || banner.title_uz) : banner.title_uz
 	const description =
-		language === 'ru' ? banner.description_ru : banner.description_uz
+		locale === 'ru' ? banner.description_ru : locale === 'oz' ? (banner.description_oz || banner.description_uz) : banner.description_uz
 
 	return (
 		<div

@@ -11,8 +11,12 @@ import PressCards from './components/PressCards'
 
 interface News {
 	id: number
-	title: string
-	subtitle: string
+	title_uz: string
+	title_oz: string
+	title_ru: string
+	subtitle_uz: string
+	subtitle_oz: string
+	subtitle_ru: string
 	image: string
 	slug: string
 	created_at: string

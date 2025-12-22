@@ -4,12 +4,20 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 interface INews {
 	id: number
-	title: string
-	subtitle: string
+	title_uz: string
+	title_oz: string
+	title_ru: string
+	subtitle_uz: string
+	subtitle_oz: string
+	subtitle_ru: string
 	image: string
+	post_uz: string
+	post_oz: string
+	post_ru: string
 	post: string
 	author_post: string
 	added_at: string
@@ -17,6 +25,7 @@ interface INews {
 }
 
 export default function NewsDetail() {
+	const t = useTranslations()
 	const params = useParams()
 	const [news, setNews] = useState<INews | null>(null)
 	const [isLoading, setIsLoading] = useState(true)
@@ -64,13 +73,13 @@ export default function NewsDetail() {
 		return (
 			<div className='max-w-7xl mx-auto h-full flex items-center justify-center py-24'>
 				<div className='text-red-500 text-center'>
-					<h2 className='text-2xl font-bold mb-2'>Xatolik yuz berdi</h2>
-					<p>{error || 'Yangilik topilmadi'}</p>
+					<h2 className='text-2xl font-bold mb-2'>{t('contact_error_message')}</h2>
+					<p>{error || t('not_found')}</p>
 					<Link
 						href='/'
 						className='text-blue-500 hover:text-blue-700 mt-4 inline-block'
 					>
-						Bosh sahifaga qaytish
+						{t('nav1')}
 					</Link>
 				</div>
 			</div>
@@ -81,7 +90,7 @@ export default function NewsDetail() {
 		<div className='max-w-7xl mx-auto py-12 px-4'>
 			<div className='mb-8'>
 				<Link href='/' className='text-blue-500 hover:text-blue-700'>
-					← Bosh sahifaga qaytish
+					← {t('nav1')}
 				</Link>
 			</div>
 
@@ -89,7 +98,7 @@ export default function NewsDetail() {
 				<div className='relative w-full h-[400px]'>
 					<Image
 						src={news.image}
-						alt={news.title}
+						alt={params.locale === 'ru' ? news.title_ru : params.locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
 						fill
 						className='object-cover'
 						priority
@@ -98,13 +107,13 @@ export default function NewsDetail() {
 
 				<div className='p-8'>
 					<h1 className='text-4xl font-bold text-gray-900 mb-4'>
-						{news.title}
+						{params.locale === 'ru' ? news.title_ru : params.locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
 					</h1>
 
 					<div className='flex items-center text-gray-600 mb-8'>
 						<span className='mr-4'>{news.author_post}</span>
 						<time dateTime={news.added_at}>
-							{new Date(news.added_at).toLocaleDateString('uz-UZ', {
+							{new Date(news.added_at).toLocaleDateString(params.locale === 'oz' ? 'uz-UZ' : (params.locale === 'ru' ? 'ru-RU' : 'uz-UZ'), {
 								year: 'numeric',
 								month: 'long',
 								day: 'numeric',
@@ -113,10 +122,12 @@ export default function NewsDetail() {
 					</div>
 
 					<div className='prose max-w-none'>
-						<p className='text-xl text-gray-600 mb-6'>{news.subtitle}</p>
+						<p className='text-xl text-gray-600 mb-6'>
+							{params.locale === 'ru' ? news.subtitle_ru : params.locale === 'oz' ? (news.subtitle_oz || news.subtitle_uz) : news.subtitle_uz}
+						</p>
 						<div
 							className='text-gray-800 leading-relaxed'
-							dangerouslySetInnerHTML={{ __html: news.post }}
+							dangerouslySetInnerHTML={{ __html: params.locale === 'ru' ? news.post_ru : params.locale === 'oz' ? (news.post_oz || news.post_uz) : news.post_uz }}
 						/>
 					</div>
 				</div>

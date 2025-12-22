@@ -64,10 +64,8 @@ export default function Header() {
         >
             <div className='container mx-auto px-4 lg:px-6 flex items-center justify-between'>
                 {/* Logo - chap tomon */}
-                <a
-                    href='https://fkreestr.uz/'
-                    target='_blank'
-                    rel='noopener noreferrer'
+                <Link
+                    href='/about-us'
                     className='flex items-center gap-3 group flex-shrink-0'
                 >
                     <div className='relative w-16 h-16 overflow-hidden rounded-full border-2 border-secondary group-hover:scale-105 transition-transform'>
@@ -78,7 +76,7 @@ export default function Header() {
                             {t('logo')}
                         </span>
                     </div>
-                </a>
+                </Link>
 
                 {/* Desktop Nav - o'rta */}
                 <nav className='hidden lg:flex items-center justify-center flex-1 mx-4'>

@@ -23,7 +23,7 @@ export default function MapCalendar() {
     const t = useTranslations()
 
     return (
-        <section className='py-24 bg-gradient-to-b from-accent/20 to-white'>
+        <section className='pt-24 pb-10 bg-gradient-to-b from-accent/20 to-white'>
             <div className='container mx-auto px-4 md:px-8'>
                 {/* ============================================
                     SECTION HEADER

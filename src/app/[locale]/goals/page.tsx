@@ -11,19 +11,21 @@ interface Worker {
 	id: number
 	f_name_uz: string
 	f_name_ru: string
-	f_name_en: string
+	f_name_oz: string
 	image: string
 	phone: string
 	email: string
 	section: {
 		id: number
 		name_uz: string
+		name_oz: string
 		name_ru: string
 		name_en: string
 	}
 	position: {
 		id: number
 		name_uz: string
+		name_oz: string
 		name_ru: string
 		name_en: string
 	}
@@ -140,13 +142,13 @@ export default function Page() {
 							language === 'ru'
 								? worker.f_name_ru
 								: language === 'oz'
-									? worker.f_name_uz
+									? (worker.f_name_oz || worker.f_name_uz)
 									: worker.f_name_uz
 						const section =
 							language === 'ru'
 								? worker.section.name_ru
 								: language === 'oz'
-									? worker.section.name_uz
+									? (worker.section.name_oz || worker.section.name_uz)
 									: worker.section.name_uz
 
 
@@ -244,13 +246,13 @@ export default function Page() {
 														/>
 														<div className='flex flex-col gap-4'>
 															<h4 className='text-xl font-semibold text-gray-900'>
-																{subWorker.f_name_uz}
+																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_oz || subWorker.f_name_uz) : subWorker.f_name_uz}
 															</h4>
 															<p className='text-base text-blue-600'>
-																<b>Lavozimi:</b> {subWorker.position.name_uz}
+																<b>{t('lavozim')}:</b> {language === 'ru' ? subWorker.position.name_ru : language === 'oz' ? (subWorker.position.name_oz || subWorker.position.name_uz) : subWorker.position.name_uz}
 															</p>
 															<p className='text-base text-blue-600'>
-																<b>Telefon:</b> {subWorker.phone}
+																<b>{t('tel')}:</b> {subWorker.phone}
 															</p>
 														</div>
 													</div>
