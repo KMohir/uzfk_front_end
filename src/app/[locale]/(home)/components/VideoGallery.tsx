@@ -38,34 +38,23 @@ export default function VideoGallery() {
                 {/* ============================================
                     SECTION HEADER
                     ============================================ */}
-                <div className='flex justify-between items-end mb-12'>
+                <div className='flex justify-center items-center mb-12'>
                     {/* Title section */}
                     <ScrollReveal>
-                        <div>
-                            {/* Category label */}
-                            <span className='text-secondary font-bold tracking-widest uppercase text-sm mb-2 block'>
-                                Media
-                            </span>
-
-                            {/* Main heading */}
-                            <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight'>
-                                <span className='gradient-text'>
-                                    {t('press_service_activity')}
-                                </span>
-                            </h2>
+                        <div className='text-center'>
+                            {/* Main heading linked to YouTube */}
+                            <Link
+                                href='https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos'
+                                target='_blank'
+                                className='group'
+                            >
+                                <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight group-hover:opacity-80 transition-opacity'>
+                                    <span className='gradient-text'>
+                                        {t('press_service_activity')}
+                                    </span>
+                                </h2>
+                            </Link>
                         </div>
-                    </ScrollReveal>
-
-                    {/* View all link (desktop) */}
-                    <ScrollReveal delay={200} className='hidden md:block'>
-                        <Link
-                            href='https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos'
-                            target='_blank'
-                            className='flex items-center gap-2 text-primary font-bold hover:text-green-700 transition-colors group'
-                        >
-                            {t('allVideo')}
-                            <ArrowRight size={20} className='group-hover:translate-x-1 transition-transform' />
-                        </Link>
                     </ScrollReveal>
                 </div>
 

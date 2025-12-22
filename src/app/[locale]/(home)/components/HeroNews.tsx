@@ -66,11 +66,9 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                 ============================================ */}
             <div className='container mx-auto px-4 md:px-8 relative z-10'>
                 {/* Section Title */}
-                <div className='mb-6'>
+                <div className='mb-6 text-center'>
                     <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight'>
-                        <span className='gradient-text'>
-                            {t('news')}
-                        </span>
+                        {t('nav9')}
                     </h2>
                 </div>
 
