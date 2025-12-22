@@ -131,10 +131,12 @@ export default function PressCards() {
                     ============================================ */}
                 <ScrollReveal>
                     <div className='text-center mb-10'>
-                        {/* Category badge */}
-                        <span className='text-secondary font-bold tracking-widest uppercase text-sm mb-2 block'>
-                            {t('interactive')}
-                        </span>
+                        {/* Main heading */}
+                        <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight'>
+                            <span className='gradient-text'>
+                                {t('interactive')}
+                            </span>
+                        </h2>
                     </div>
                 </ScrollReveal>
 
