@@ -8,7 +8,6 @@ import localFont from 'next/font/local'
 import Ads from './(home)/_components/ads'
 import Loader from './components/ui/loader'
 import './globals.css'
-import MyMarquee from './components/marquee/MyMarquee'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -49,7 +48,6 @@ export default async function RootLayout({ children, params }: Props) {
 						<div className='min-h-screen flex flex-col font-sans'>
 							{/* Top Bar with Marquee & Ads */}
 							<div className='z-40 relative bg-gray-50 dark:bg-gray-900'>
-								<MyMarquee />
 								{/* Ads - keeping existing component but wrapping safely */}
 								<div className='container mx-auto px-4 hidden md:block'>
 									<div className='py-2 overflow-hidden'>

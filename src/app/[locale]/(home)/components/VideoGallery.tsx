@@ -43,7 +43,7 @@ export default function VideoGallery() {
                     <ScrollReveal>
                         <div>
                             {/* Category label */}
-                            <span className='text-gray-500 font-bold tracking-widest uppercase text-sm mb-2 block'>
+                            <span className='text-secondary font-bold tracking-widest uppercase text-sm mb-2 block'>
                                 Media
                             </span>
 

@@ -92,7 +92,7 @@ export default function StatsGrid() {
                 <ScrollReveal>
                     <div className='text-center mb-10'>
                         {/* Category badge */}
-                        <span className='inline-block px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 uppercase tracking-wider animate-scale-in'>
+                        <span className='text-secondary font-bold tracking-widest uppercase text-sm mb-2 block'>
                             {t('stat_badge')}
                         </span>
                     </div>
