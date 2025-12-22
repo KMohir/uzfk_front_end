@@ -30,18 +30,16 @@ export default function MapCalendar() {
                 {/* ============================================
                     MAP & CALENDAR GRID
                     ============================================ */}
-                <div className='grid lg:grid-cols-[1fr,1.3fr] gap-6'>
+                <div className='grid lg:grid-cols-2 gap-6'>
                     {/* ============================================
                         INTERACTIVE MAP SECTION
                         ============================================ */}
                     <div className='flex'>
                         {/* Map container with hover effect */}
                         <div className='w-full bg-white p-6 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary/20 transition-all duration-500 flex flex-col'>
-                            <ScrollReveal delay={200} className='h-full'>
-                                <div className='aspect-[4/3] w-full h-full flex items-center justify-center'>
-                                    <RegionsMap />
-                                </div>
-                            </ScrollReveal>
+                            <div className='w-full h-full flex items-center justify-center'>
+                                <RegionsMap />
+                            </div>
                         </div>
                     </div>
 
@@ -55,7 +53,7 @@ export default function MapCalendar() {
                                 {/* Calendar header */}
 
                                 {/* Calendar component */}
-                                <div className='flex justify-center flex-grow items-center'>
+                                <div className='w-full h-full'>
                                     <CalendarDemo />
                                 </div>
                             </ScrollReveal>

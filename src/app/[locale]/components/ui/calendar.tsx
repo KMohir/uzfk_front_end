@@ -22,33 +22,33 @@ function Calendar({
 				months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
 				month: 'space-y-4 text-blue-600',
 				caption: 'flex justify-center pt-1 relative items-center',
-				caption_label: 'text-xl font-bold', // Katta va semiz shrift
-				nav: 'space-x-2 flex items-center', // Kengroq tugma oralig'i
+				caption_label: 'text-2xl font-bold', // Katta va semiz shrift
+				nav: 'space-x-4 flex items-center', // Kengroq tugma oralig'i
 				nav_button: cn(
 					buttonVariants({ variant: 'outline' }),
-					'h-10 w-10 bg-transparent p-0 opacity-50 hover:opacity-100' // Tugmalar kattaroq
+					'h-12 w-12 bg-transparent p-0 opacity-50 hover:opacity-100' // Tugmalar kattaroq
 				),
 				nav_button_previous: 'absolute left-2',
 				nav_button_next: 'absolute right-2',
 				table: 'w-full border-collapse space-y-2', // Yangi qatorlar oralig'i kattaroq
 				head_row: 'flex',
 				head_cell:
-					'text-blue-900 text-base rounded-md w-10 font-semibold text-[1rem]', // Katta shrift
-				row: 'flex w-full mt-3',
+					'text-blue-900 text-lg rounded-md w-14 font-semibold', // Katta shrift
+				row: 'flex w-full mt-4',
 				cell: cn(
-					'relative p-0 text-center text-lg focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md',
+					'relative p-0 text-center text-xl focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md',
 					props.mode === 'range'
 						? '[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md'
 						: '[&:has([aria-selected])]:rounded-md'
 				),
 				day: cn(
 					buttonVariants({ variant: 'ghost' }),
-					'h-10 w-10 p-0 font-semibold text-lg aria-selected:opacity-100 text-blue-500' // Kattaroq kunlar
+					'h-14 w-14 p-0 font-semibold text-xl aria-selected:opacity-100 text-blue-500' // Kattaroq kunlar
 				),
 				day_range_start: 'day-range-start',
 				day_range_end: 'day-range-end',
 				day_selected:
-					'bg-blue-500 text-white hover:bg-blue-600 hover:text-white focus:bg-blue-500 focus:text-white text-lg',
+					'bg-blue-500 text-white hover:bg-blue-600 hover:text-white focus:bg-blue-500 focus:text-white text-xl',
 				day_today: 'bg-accent text-blue-500',
 				day_outside:
 					'day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground',

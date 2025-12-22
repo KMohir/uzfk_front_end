@@ -71,7 +71,7 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 	}
 
 	return (
-		<div className='w-full max-w-2xl mx-auto p-4 relative'>
+		<div className='w-full mx-auto p-4 relative'>
 			<div className='relative'>
 				<svg
 					viewBox='0 0 1000 700'
