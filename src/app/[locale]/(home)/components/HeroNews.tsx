@@ -102,10 +102,6 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
 
                                 {/* Content overlay */}
                                 <div className='absolute bottom-0 left-0 p-8 md:p-12 w-full max-w-[85%]'>
-                                    {/* Category badge with pulse animation */}
-                                    <span className='inline-block px-4 py-1.5 bg-primary text-white text-sm font-bold rounded-full mb-4 animate-pulse-glow'>
-                                        {t('news')}
-                                    </span>
 
                                     {/* Main headline with gradient text on hover */}
                                     <h1 className='text-2xl md:text-4xl font-bold text-white leading-tight mb-4 group-hover:gradient-text transition-all line-clamp-3'>
@@ -139,7 +135,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                             <ScrollReveal key={news.id} delay={index * 150} className='flex-1'>
                                 <Link
                                     href={`/news/${news.slug}`}
-                                    className='group flex gap-4 glass-strong p-4 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-secondary/20 h-full'
+                                    className='group flex gap-4 glass-strong p-4 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary/20 h-full'
                                 >
                                     {/* Thumbnail with zoom effect */}
                                     <div className='relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden'>
@@ -160,7 +156,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                         </span>
 
                                         {/* Title with color transition on hover */}
-                                        <h3 className='font-bold text-gray-800 leading-snug group-hover:text-secondary transition-colors line-clamp-2'>
+                                        <h3 className='font-bold text-gray-800 leading-snug group-hover:text-primary transition-colors line-clamp-2'>
                                             {news.title}
                                         </h3>
                                     </div>
