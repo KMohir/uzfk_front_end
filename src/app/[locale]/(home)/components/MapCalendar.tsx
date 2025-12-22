@@ -36,7 +36,7 @@ export default function MapCalendar() {
                         ============================================ */}
                     <div className='flex'>
                         {/* Map container with hover effect */}
-                        <div className='w-full bg-white p-6 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary/20 transition-all duration-500 flex flex-col'>
+                        <div className='w-full bg-white p-12 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary/20 transition-all duration-500 flex flex-col justify-center'>
                             <div className='w-full h-full flex items-center justify-center'>
                                 <RegionsMap />
                             </div>
@@ -48,7 +48,7 @@ export default function MapCalendar() {
                         ============================================ */}
                     <div className='flex'>
                         {/* Calendar container with glassmorphism */}
-                        <div className='w-full glass-strong p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden flex flex-col transition-all duration-500 hover:shadow-2xl hover:border-secondary/20'>
+                        <div className='w-full glass-strong p-12 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden flex flex-col transition-all duration-500 hover:shadow-2xl hover:border-secondary/20'>
                             <ScrollReveal delay={400} className='h-full flex flex-col'>
                                 {/* Calendar header */}
 

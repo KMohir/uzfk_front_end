@@ -26,14 +26,14 @@ function Calendar({
 				nav: 'space-x-4 flex items-center', // Kengroq tugma oralig'i
 				nav_button: cn(
 					buttonVariants({ variant: 'outline' }),
-					'h-12 w-12 bg-transparent p-0 opacity-50 hover:opacity-100' // Tugmalar kattaroq
+					'h-14 w-14 bg-transparent p-0 opacity-50 hover:opacity-100' // Tugmalar kattaroq
 				),
 				nav_button_previous: 'absolute left-2',
 				nav_button_next: 'absolute right-2',
 				table: 'w-full border-collapse space-y-2', // Yangi qatorlar oralig'i kattaroq
 				head_row: 'flex',
 				head_cell:
-					'text-blue-900 text-lg rounded-md w-14 font-semibold', // Katta shrift
+					'text-blue-900 text-xl rounded-md w-16 font-semibold', // Katta shrift
 				row: 'flex w-full mt-4',
 				cell: cn(
 					'relative p-0 text-center text-xl focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md',
@@ -43,7 +43,7 @@ function Calendar({
 				),
 				day: cn(
 					buttonVariants({ variant: 'ghost' }),
-					'h-14 w-14 p-0 font-semibold text-xl aria-selected:opacity-100 text-blue-500' // Kattaroq kunlar
+					'h-16 w-16 p-0 font-semibold text-2xl aria-selected:opacity-100 text-blue-500' // Kattaroq kunlar
 				),
 				day_range_start: 'day-range-start',
 				day_range_end: 'day-range-end',

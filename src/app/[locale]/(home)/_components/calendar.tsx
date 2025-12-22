@@ -50,7 +50,7 @@ export function CalendarDemo() {
 	}
 
 	return (
-		<div className='space-y-4'>
+		<div className='space-y-8 h-full flex flex-col'>
 			<Calendar
 				mode='single'
 				selected={date}
@@ -59,8 +59,8 @@ export function CalendarDemo() {
 			/>
 
 			{/* Yangiliklar ko'rinishi */}
-			<div className='rounded-md dark:border-none border p-4 shadow w-full dark:bg-blue-800/40 bg-white'>
-				<h3 className='font-bold mb-2 text-blue-600 dark:text-white '>
+			<div className='rounded-md dark:border-none border p-6 shadow w-full dark:bg-blue-800/40 bg-white flex-grow'>
+				<h3 className='font-bold mb-4 text-blue-600 dark:text-white text-xl'>
 					Yangiliklar:
 				</h3>
 				{loading ? (
