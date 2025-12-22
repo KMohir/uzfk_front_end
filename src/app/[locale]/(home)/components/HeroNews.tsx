@@ -51,7 +51,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
     if (!mainNews) return null
 
     return (
-        <section className='relative flex items-center pt-24 md:pt-6 pb-0 overflow-hidden'>
+        <section className='relative flex items-center pt-4 pb-0 overflow-hidden'>
             {/* ============================================
                 BACKGROUND LAYERS
                 ============================================ */}
@@ -65,6 +65,15 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                 CONTENT CONTAINER
                 ============================================ */}
             <div className='container mx-auto px-4 md:px-8 relative z-10'>
+                {/* Section Title */}
+                <div className='mb-6'>
+                    <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight'>
+                        <span className='gradient-text'>
+                            {t('news')}
+                        </span>
+                    </h2>
+                </div>
+
                 <div className='grid lg:grid-cols-12 gap-8 items-start'>
 
                     {/* ============================================
