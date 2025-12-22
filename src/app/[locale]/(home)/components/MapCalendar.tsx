@@ -30,7 +30,7 @@ export default function MapCalendar() {
                 {/* ============================================
                     MAP & CALENDAR GRID
                     ============================================ */}
-                <div className='grid lg:grid-cols-2 gap-6'>
+                <div className='grid lg:grid-cols-[1.5fr,1fr] gap-6'>
                     {/* ============================================
                         INTERACTIVE MAP SECTION
                         ============================================ */}
@@ -48,7 +48,7 @@ export default function MapCalendar() {
                         ============================================ */}
                     <div className='flex'>
                         {/* Calendar container with glassmorphism */}
-                        <div className='w-full glass-strong p-12 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden flex flex-col transition-all duration-500 hover:shadow-2xl hover:border-secondary/20'>
+                        <div className='w-full glass-strong p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden flex flex-col transition-all duration-500 hover:shadow-2xl hover:border-secondary/20'>
                             <ScrollReveal delay={400} className='h-full flex flex-col'>
                                 {/* Calendar header */}
 
