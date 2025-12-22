@@ -55,11 +55,11 @@ export function CalendarDemo() {
 				mode='single'
 				selected={date}
 				onSelect={handleDateSelect}
-				className='rounded-md border shadow w-[310px] bg-white'
+				className='rounded-md border shadow w-full bg-white flex justify-center'
 			/>
 
 			{/* Yangiliklar ko'rinishi */}
-			<div className='rounded-md dark:border-none border p-4 shadow w-[310px] dark:bg-blue-800/40 bg-white'>
+			<div className='rounded-md dark:border-none border p-4 shadow w-full dark:bg-blue-800/40 bg-white'>
 				<h3 className='font-bold mb-2 text-blue-600 dark:text-white '>
 					Yangiliklar:
 				</h3>

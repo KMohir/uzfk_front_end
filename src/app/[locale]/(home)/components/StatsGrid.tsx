@@ -78,8 +78,14 @@ export default function StatsGrid() {
     ]
 
     return (
-        <section className='pt-8 pb-20 bg-gradient-to-b from-gray-50/50 to-white'>
-            <div className='container mx-auto px-4 md:px-8'>
+        <section className='pt-8 pb-20 relative overflow-hidden'>
+            {/* ============================================
+                BACKGROUND DECORATION
+                ============================================ */}
+            {/* Skewed background with primary color */}
+            <div className='absolute inset-0 bg-gradient-to-br from-primary/5 via-primary/10 to-secondary/5 skew-y-3 z-0' />
+
+            <div className='container mx-auto px-4 md:px-8 relative z-10'>
                 {/* ============================================
                     SECTION HEADER
                     ============================================ */}
