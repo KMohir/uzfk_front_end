@@ -43,7 +43,7 @@ export default function Page() {
 		: pathname.startsWith('/oz')
 			? 'oz'
 			: 'uz'
-	const apiLocale = language === 'oz' ? 'uz' : language
+	const apiLocale = language
 	const [workers, setWorkers] = useState<Worker[]>([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)

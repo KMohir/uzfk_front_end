@@ -49,7 +49,7 @@ export default function Page() {
 		: pathname.startsWith('/oz')
 			? 'oz'
 			: 'uz'
-	const apiLocale = language === 'oz' ? 'uz' : language
+	const apiLocale = language
 
 	useEffect(() => {
 		const fetchData = async () => {

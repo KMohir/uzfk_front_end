@@ -85,10 +85,7 @@ export default function PressCards() {
      * Helper to get localized title with fallbacks
      */
     const getLocalizedTitle = (link: LinkItem) => {
-        // 1. Try explicit locale-specific title from API (e.g. title_ru, title_oz)
-        if (link[`title_${locale}`]) return link[`title_${locale}`]
-
-        // 2. Try matching known items for manual translation (overrides generic 'title' which might be stuck in Uzbek)
+        // 1. Try matching known items for manual translation (ensures localized strings from next-intl)
         if (link.title_uz) {
             const titleUz = link.title_uz.toLowerCase()
             if (titleUz.includes('minbari')) return t('farmers_tribune')
@@ -96,7 +93,10 @@ export default function PressCards() {
             if (titleUz.includes('markazi')) return t('farm_info_center')
         }
 
-        // 3. Fallback to generic title (might be Uzbek if API didn't translate)
+        // 2. Try explicit locale-specific title from API (e.g. title_ru, title_oz)
+        if (link[`title_${locale}`]) return link[`title_${locale}`]
+
+        // 3. Fallback to generic title
         if (link.title) return link.title
 
         // 4. Last resort
