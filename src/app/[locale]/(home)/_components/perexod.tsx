@@ -20,7 +20,7 @@ const CardLinks = () => {
 		// API fetch qilish
 		const fetchLinks = async () => {
 			try {
-				const apiLocale = locale === 'oz' ? 'uz' : locale
+				const apiLocale = 'ru'
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/links/header/list/`
 				)

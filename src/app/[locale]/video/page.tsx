@@ -31,7 +31,7 @@ export default function VideoPage() {
 		const fetchVideos = async () => {
 			try {
 				setLoading(true)
-				const apiLocale = locale === 'oz' ? 'uz' : locale
+				const apiLocale = 'ru'
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/youtube/header/list/?page=${currentPage}`
 				)

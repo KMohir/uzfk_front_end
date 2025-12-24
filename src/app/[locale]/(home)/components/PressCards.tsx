@@ -45,6 +45,7 @@ export default function PressCards() {
     // ============================================
     useEffect(() => {
         const fetchLinks = async () => {
+            const apiLocale = 'ru';
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/links/header/list/`)
                 if (response.ok) {

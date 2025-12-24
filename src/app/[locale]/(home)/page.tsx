@@ -29,7 +29,7 @@ export default function Page() {
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		const apiLocale = locale === 'oz' ? 'uz' : locale
+		const apiLocale = 'ru'
 		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/list/`)
 			.then(res => res.json())
 			.then(data => {

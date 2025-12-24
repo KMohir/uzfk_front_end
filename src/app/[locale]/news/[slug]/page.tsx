@@ -23,7 +23,7 @@ interface NewsItem {
 }
 
 async function getNews(locale: string, slug: string) {
-	const apiLocale = locale === 'oz' ? 'uz' : locale
+	const apiLocale = 'ru'
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/detail/${slug}/`,
 		{
@@ -35,7 +35,7 @@ async function getNews(locale: string, slug: string) {
 }
 
 async function getLatestNews(locale: string): Promise<NewsItem[]> {
-	const apiLocale = locale === 'oz' ? 'uz' : locale
+	const apiLocale = 'ru'
 	try {
 		const res = await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/list/?page=1`,
@@ -49,7 +49,7 @@ async function getLatestNews(locale: string): Promise<NewsItem[]> {
 }
 
 async function getRecommendedNews(locale: string): Promise<NewsItem[]> {
-	const apiLocale = locale === 'oz' ? 'uz' : locale
+	const apiLocale = 'ru'
 	try {
 		const res = await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/most_read/list/`,

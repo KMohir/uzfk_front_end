@@ -3,7 +3,7 @@
 import HtmlContent from '@/app/[locale]/components/HtmlContent'
 
 async function getAnnouncement(locale: string, slug: string) {
-	const apiLocale = locale === 'oz' ? 'uz' : locale
+	const apiLocale = 'ru'
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/elon/detail/${slug}`,
 		{

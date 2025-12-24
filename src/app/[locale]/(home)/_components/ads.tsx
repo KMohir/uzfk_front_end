@@ -34,7 +34,7 @@ export default function Ads() {
 		const fetchBanners = async () => {
 			try {
 				setLoading(true)
-				const apiLocale = locale === 'oz' ? 'uz' : locale
+				const apiLocale = 'ru'
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/banner/most_read/list/`,
 					{

@@ -23,7 +23,7 @@ export function CalendarDemo() {
 			const formattedDate = `${year}-${month}-${day}`
 
 			// API so'rovi
-			const apiLocale = locale === 'oz' ? 'uz' : locale
+			const apiLocale = 'ru'
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/news/date-filter/?date=${formattedDate}`
 			)

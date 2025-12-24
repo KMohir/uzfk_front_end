@@ -24,7 +24,7 @@ export default function Announcements() {
 		const fetchAnnouncements = async () => {
 			setLoading(true)
 			try {
-				const apiLocale = locale === 'oz' ? 'uz' : locale
+				const apiLocale = 'ru'
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/elon/most_read/list/`
 				)

@@ -21,7 +21,7 @@ export default function Videos() {
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		const apiLocale = locale === 'oz' ? 'uz' : locale
+		const apiLocale = 'ru'
 		fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/youtube/header/list/`)
 			.then(res => res.json())
 			.then(data => {
