@@ -156,7 +156,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                         </span>
 
                                         <h3 className='font-bold text-gray-800 leading-snug group-hover:text-[#078D3A] transition-colors line-clamp-2'>
-                                            {news.title}
+                                            {locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
                                         </h3>
                                     </div>
                                 </Link>

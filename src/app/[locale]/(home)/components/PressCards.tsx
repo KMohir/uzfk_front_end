@@ -46,7 +46,7 @@ export default function PressCards() {
     useEffect(() => {
         const fetchLinks = async () => {
             try {
-                const apiLocale = locale === 'uz' ? 'uz' : 'ru'; // Determine API locale based on current locale
+                const apiLocale = 'ru'; // Force Russian API for all locales as it has the most complete data
                 const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/links/header/list/`)
                 if (response.ok) {
                     const data = await response.json()
