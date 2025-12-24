@@ -30,7 +30,7 @@ export const navLink = [
 			{
 				id: 4,
 				title: 'nav7',
-				url: '/center-units',
+				url: '/regions',
 			},
 		],
 	},

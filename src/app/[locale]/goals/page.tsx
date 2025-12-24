@@ -129,7 +129,7 @@ export default function Page() {
 						{t('goals')}
 					</span>
 					<Link
-						href={'/center-units'}
+						href={'/regions'}
 						className='text-xl md:text-2xl flex gap-1 group items-center font-medium text-blue-600 dark:text-blue-500'
 					>
 						{t('centers')}

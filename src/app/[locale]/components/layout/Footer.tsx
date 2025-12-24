@@ -34,7 +34,7 @@ export default function Footer() {
                                 { Icon: Facebook, href: 'https://www.facebook.com/uzbfermer' },
                                 { Icon: Instagram, href: 'https://www.instagram.com/uzbekiston_fermerlari_kengashi/' },
                                 { Icon: Youtube, href: 'https://www.youtube.com/c/OzbekistonFermerlarKengashiuzbfermer/videos' },
-                                { Icon: Send, href: 'https://t.me/uzbfermer' }
+                                { Icon: Send, href: 'https://t.me/info_uzfk' }
                             ].map(({ Icon, href }, i) => (
                                 <Link key={i} href={href} target='_blank' className='w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all'>
                                     <Icon size={18} />
@@ -52,7 +52,7 @@ export default function Footer() {
                                     <Link
                                         href={
                                             item === 'apparatus' ? '/structure' :
-                                                item === 'centers' ? '/center-units' :
+                                                item === 'nav6' ? '/goals' :
                                                     item === 'nav7' ? '/regions' :
                                                         `/${item}`
                                         }

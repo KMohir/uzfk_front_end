@@ -131,7 +131,11 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 						{/* Content */}
 						<div className='prose prose-lg dark:prose-invert max-w-none'>
 							<div className='text-base md:text-lg leading-relaxed text-gray-800 dark:text-gray-200'>
-								<HtmlContent content={locale === 'ru' ? news.post_ru : locale === 'oz' ? (news.post_oz || news.post_uz) : news.post_uz} />
+								<HtmlContent content={
+									locale === 'ru' ? (news.post_ru || news.post) :
+										locale === 'oz' ? (news.post_oz || news.post_uz || news.post) :
+											(news.post_uz || news.post)
+								} />
 							</div>
 						</div>
 

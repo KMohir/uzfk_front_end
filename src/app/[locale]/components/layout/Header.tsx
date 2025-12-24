@@ -38,7 +38,7 @@ export default function Header() {
             dropdown: [
                 { label: t('nav4'), href: '/management' },
                 { label: t('structure'), href: '/structure' },
-                { label: t('nav6'), href: '#' },
+                { label: t('nav6'), href: '/goals' },
                 { label: t('nav7'), href: '/regions' },
             ]
         },
