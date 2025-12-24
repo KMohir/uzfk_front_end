@@ -34,7 +34,7 @@ async function getNews(locale: string, slug: string) {
 	return data
 }
 
-async function getLatestNews(locale: string): Promise<NewsItem[]> {
+async function getLatestNews(): Promise<NewsItem[]> {
 	const apiLocale = 'ru'
 	try {
 		const res = await fetch(
@@ -48,7 +48,7 @@ async function getLatestNews(locale: string): Promise<NewsItem[]> {
 	}
 }
 
-async function getRecommendedNews(locale: string): Promise<NewsItem[]> {
+async function getRecommendedNews(): Promise<NewsItem[]> {
 	const apiLocale = 'ru'
 	try {
 		const res = await fetch(
@@ -71,8 +71,8 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 	const t = await getTranslations({ locale })
 	const [news, latestNews, recommendedNews] = await Promise.all([
 		getNews(locale, slug),
-		getLatestNews(locale),
-		getRecommendedNews(locale)
+		getLatestNews(),
+		getRecommendedNews()
 	])
 
 	if (!news) {
