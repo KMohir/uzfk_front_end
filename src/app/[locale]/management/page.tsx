@@ -144,13 +144,13 @@ export default function Page() {
 							language === 'ru'
 								? worker.f_name_ru
 								: language === 'oz'
-									? (worker.f_name_oz || worker.f_name_uz)
+									? (worker.f_name_oz || worker.f_name_ru || worker.f_name_uz)
 									: worker.f_name_uz
 						const section =
 							language === 'ru'
 								? worker.section.name_ru
 								: language === 'oz'
-									? (worker.section.name_oz || worker.section.name_uz)
+									? (worker.section.name_oz || worker.section.name_ru || worker.section.name_uz)
 									: worker.section.name_uz
 
 
@@ -254,10 +254,10 @@ export default function Page() {
 														/>
 														<div className='flex flex-col gap-4'>
 															<h4 className='text-xl font-semibold text-gray-900'>
-																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_oz || subWorker.f_name_uz) : subWorker.f_name_uz}
+																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_oz || subWorker.f_name_ru || subWorker.f_name_uz) : subWorker.f_name_uz}
 															</h4>
 															<p className='text-base text-blue-600'>
-																<b>{t('lavozim')}:</b> {language === 'ru' ? subWorker.position.name_ru : language === 'oz' ? (subWorker.position.name_oz || subWorker.position.name_uz) : subWorker.position.name_uz}
+																<b>{t('lavozim')}:</b> {language === 'ru' ? subWorker.position.name_ru : language === 'oz' ? (subWorker.position.name_oz || subWorker.position.name_ru || subWorker.position.name_uz) : subWorker.position.name_uz}
 															</p>
 															<p className='text-base text-blue-600'>
 																<b>{t('tel')}:</b> {subWorker.phone}
