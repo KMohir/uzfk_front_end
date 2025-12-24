@@ -1,183 +1,84 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { RegionsMap } from '../(home)/_components/map'
 
 interface Region {
-	id: string
-	name_uz: string
-	name_oz: string
-	name_ru: string
-	title_uz: string
-	title_oz: string
-	title_ru: string
-	person: string
+	id: number
+	hudud?: string
+	hudud_uz?: string
+	hudud_ru?: string
+	hudud_en?: string
+	name?: string
+	name_uz?: string
+	name_ru?: string
+	name_en?: string
+	position?: string
+	position_uz?: string
+	position_ru?: string
+	position_en?: string
 	image: string
 }
-
-const regionsData: Region[] = [
-	{
-		id: 'UZB356',
-		name_uz: "Qoraqalpog'iston",
-		name_oz: "Қорақалпоғистон",
-		name_ru: "Каракалпакстан",
-		title_uz: "Qoraqalpog'iston fermerlari Kengashi raisi",
-		title_oz: "Қорақалпоғистон фермерлари Кенгаши раиси",
-		title_ru: "Председатель Совета фермеров Каракалпакстана",
-		person: 'YUNUSOV ILXAMBAY KUCHKAROVICH',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB355',
-		name_uz: 'Xorazm',
-		name_oz: 'Хоразм',
-		name_ru: 'Хорезм',
-		title_uz: 'Xorazm viloyat fermerlari Kengashi raisi',
-		title_oz: 'Хоразм вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Хорезмской области',
-		person: 'RAJABOV QACHRAMON SATIMBAEVICH',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB354',
-		name_uz: 'Buxoro',
-		name_oz: 'Бухоро',
-		name_ru: 'Бухара',
-		title_uz: 'Buxoro viloyat fermerlari Kengashi raisi',
-		title_oz: 'Бухоро вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Бухарской области',
-		person: 'Boltaev Xurshid Xomitovich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB357',
-		name_uz: 'Navoiy',
-		name_oz: 'Навоий',
-		name_ru: 'Навои',
-		title_uz: 'Navoiy viloyat fermerlari Kengashi raisi',
-		title_oz: 'Навоий вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Навоийской области',
-		person: 'YARLAKABOV SHOKIRJON ABDIKAYUMOVICH',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB358',
-		name_uz: 'Samarqand',
-		name_oz: 'Самарқанд',
-		name_ru: 'Самарканд',
-		title_uz: 'Samarqand viloyat fermerlari Kengashi raisi',
-		title_oz: 'Самарқанд вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Самаркандской области',
-		person: "Rabbimov Abror Mehriddin o'g'li",
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB361',
-		name_uz: 'Qashqadaryo',
-		name_oz: 'Қашқадарё',
-		name_ru: 'Кашкадарья',
-		title_uz: 'Qashqadaryo viloyat fermerlari Kengashi raisi',
-		title_oz: 'Қашқадарё вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Кашкадарьинской области',
-		person: 'Abdinazarov Jahongir Nodirshoevich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB362',
-		name_uz: 'Surxondaryo',
-		name_oz: 'Сурхондарё',
-		name_ru: 'Сурхандарья',
-		title_uz: 'Surxondaryo viloyat fermerlari Kengashi raisi',
-		title_oz: 'Сурхондарё вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Сурхандарьинской области',
-		person: 'Murodov Muxiddin Nazarovich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB370',
-		name_uz: 'Jizzax',
-		name_oz: 'Жиззах',
-		name_ru: 'Джизак',
-		title_uz: 'Jizzax viloyat fermerlari Kengashi raisi',
-		title_oz: 'Жиззах вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Джизакской области',
-		person: 'Eshmatov Anarboy Abbosovich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB371',
-		name_uz: 'Sirdaryo',
-		name_oz: 'Сирдарё',
-		name_ru: 'Сырдарья',
-		title_uz: 'Sirdaryo viloyat fermerlari Kengashi raisi',
-		title_oz: 'Сирдарё вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Сырдарьинской области',
-		person: "Primqulov Ro'ziqul Ummatqulovich",
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB372',
-		name_uz: 'Toshkent viloyati',
-		name_oz: 'Тошкент вилояти',
-		name_ru: 'Ташкентская область',
-		title_uz: 'Toshkent viloyat fermerlari Kengashi raisi',
-		title_oz: 'Тошкент вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Ташкентской области',
-		person: "Do'sbekov Shuxrat Begimqulovich",
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB363',
-		name_uz: 'Andijon',
-		name_oz: 'Андижон',
-		name_ru: 'Андижан',
-		title_uz: 'Andijon viloyat fermerlari Kengashi raisi',
-		title_oz: 'Андижон вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Андижанской области',
-		person: 'Nabijanov Farhod Isroilovich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB364',
-		name_uz: "Farg'ona",
-		name_oz: "Фарғона",
-		name_ru: "Фергана",
-		title_uz: "Farg'ona viloyat fermerlari Kengashi raisi",
-		title_oz: "Фарғона вилоят фермерлари Кенгаши раиси",
-		title_ru: "Председатель Совета фермеров Ферганской области",
-		person: 'Maxmudov Nodirjon Shoxobidinovich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-	{
-		id: 'UZB365',
-		name_uz: 'Namangan',
-		name_oz: 'Наманган',
-		name_ru: 'Наманган',
-		title_uz: 'Namangan viloyat fermerlari Kengashi raisi',
-		title_oz: 'Наманган вилоят фермерлари Кенгаши раиси',
-		title_ru: 'Председатель Совета фермеров Наманганской области',
-		person: 'Kaimov Nosirjon Zakirjonovich',
-		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
-	},
-]
 
 export default function RegionsPage() {
 	const t = useTranslations()
 	const locale = useLocale()
+	const [regions, setRegions] = useState<Region[]>([])
+	const [loading, setLoading] = useState(true)
 	const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
 
+	useEffect(() => {
+		const fetchRegions = async () => {
+			try {
+				const response = await fetch(
+					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/interactive-map/list/`
+				)
+				if (!response.ok) {
+					throw new Error('Failed to fetch regions')
+				}
+				const data = await response.json()
+				setRegions(data.results || [])
+			} catch (error) {
+				console.error('Error fetching regions:', error)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		fetchRegions()
+	}, [locale])
+
 	const getRegionName = (region: Region) => {
-		if (locale === 'ru') return region.name_ru
-		if (locale === 'oz') return region.name_oz
-		return region.name_uz
+		if (locale === 'ru') return region.hudud_ru || region.hudud
+		if (locale === 'oz') return region.hudud_uz || region.hudud
+		return region.hudud_uz || region.hudud
 	}
 
-	const getRegionTitle = (region: Region) => {
-		if (locale === 'ru') return region.title_ru
-		if (locale === 'oz') return region.title_oz
-		return region.title_uz
+	const getPersonName = (region: Region) => {
+		if (locale === 'ru') return region.name_ru || region.name
+		if (locale === 'oz') return region.name_uz || region.name
+		return region.name_uz || region.name
+	}
+
+	const getPosition = (region: Region) => {
+		if (locale === 'ru') return region.position_ru || region.position
+		if (locale === 'oz') return region.position_uz || region.position
+		return region.position_uz || region.position
+	}
+
+	if (loading) {
+		return (
+			<div className='min-h-screen bg-white dark:bg-gray-600 py-24'>
+				<div className='container mx-auto px-4 md:px-8'>
+					<div className='text-center'>
+						<div className='inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-green-700'></div>
+						<p className='mt-4 text-gray-600'>Yuklanmoqda...</p>
+					</div>
+				</div>
+			</div>
+		)
 	}
 
 	return (
@@ -196,7 +97,7 @@ export default function RegionsPage() {
 
 				{/* Regions Grid */}
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-					{regionsData.map((region) => (
+					{regions.map((region) => (
 						<div
 							key={region.id}
 							className={`bg-white dark:bg-gray-500 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all cursor-pointer border-2 ${
@@ -211,7 +112,7 @@ export default function RegionsPage() {
 									<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
 										<Image
 											src={region.image}
-											alt={region.person}
+											alt={getPersonName(region) || 'Region'}
 											fill
 											className='object-cover'
 										/>
@@ -221,12 +122,12 @@ export default function RegionsPage() {
 											{getRegionName(region)}
 										</h3>
 										<p className='text-sm text-gray-600 dark:text-gray-300'>
-											{region.person}
+											{getPersonName(region)}
 										</p>
 									</div>
 								</div>
 								<p className='mt-3 text-xs text-gray-500 dark:text-gray-400'>
-									{getRegionTitle(region)}
+									{getPosition(region)}
 								</p>
 							</div>
 						</div>

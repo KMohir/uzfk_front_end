@@ -2,15 +2,9 @@ import React from 'react'
 
 export interface IRegion {
 	id: string
-	name_uz: string
-	name_oz: string
-	name_ru: string
-	title_uz: string
-	title_oz: string
-	title_ru: string
-	person_uz: string
-	person_oz: string
-	person_ru: string
+	name: string
+	title: string
+	person: string
 	image: string
 	path: React.SVGAttributes<SVGPathElement>['d']
 }
