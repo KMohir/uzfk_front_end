@@ -6,7 +6,13 @@ import { useLocale } from 'next-intl'
 
 interface News {
 	id: number
+	title_uz: string
+	title_oz: string
+	title_ru: string
 	title: string
+	description_uz: string
+	description_oz: string
+	description_ru: string
 	description: string
 	image: string
 	date: string
@@ -95,9 +101,19 @@ export default function NewsPage() {
 								</div>
 								<div className='p-6 h-[140px] border-t'>
 									<p className='text-xl dark:text-white font-semibold mb-2 text-blue-600 transition-colors duration-300 max-2xl:text-base group-hover:text-green-600'>
-										{item.title.slice(0, 20) + '...'}
+										{
+											(locale === 'ru' ? item.title_ru :
+												locale === 'oz' ? (item.title_oz || item.title_uz) :
+													item.title_uz || item.title).slice(0, 30) + '...'
+										}
 									</p>
-									<p className='text-gray-600 mb-4'>{item.description}</p>
+									<p className='text-gray-600 mb-4 line-clamp-2'>
+										{
+											locale === 'ru' ? item.description_ru :
+												locale === 'oz' ? (item.description_oz || item.description_uz) :
+													item.description_uz || item.description
+										}
+									</p>
 									<div className='flex items-center justify-between text-sm dark:text-white text-gray-500'>
 										<span>✍️ {item.author_post}</span>
 										<span className='text-blue-800 font-semibold dark:text-white'>
