@@ -1,14 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import { RegionsMap } from '../(home)/_components/map'
 
 interface Region {
 	id: string
-	name: string
-	title: string
+	name_uz: string
+	name_oz: string
+	name_ru: string
+	title_uz: string
+	title_oz: string
+	title_ru: string
 	person: string
 	image: string
 }
@@ -16,92 +20,144 @@ interface Region {
 const regionsData: Region[] = [
 	{
 		id: 'UZB356',
-		name: "Qoraqalpog'iston",
-		title: "Qoraqalpog'iston fermerlari Kengashi raisi",
+		name_uz: "Qoraqalpog'iston",
+		name_oz: "Қорақалпоғистон",
+		name_ru: "Каракалпакстан",
+		title_uz: "Qoraqalpog'iston fermerlari Kengashi raisi",
+		title_oz: "Қорақалпоғистон фермерлари Кенгаши раиси",
+		title_ru: "Председатель Совета фермеров Каракалпакстана",
 		person: 'YUNUSOV ILXAMBAY KUCHKAROVICH',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB355',
-		name: 'Xorazm',
-		title: 'Xorazm viloyat fermerlari Kengashi raisi',
+		name_uz: 'Xorazm',
+		name_oz: 'Хоразм',
+		name_ru: 'Хорезм',
+		title_uz: 'Xorazm viloyat fermerlari Kengashi raisi',
+		title_oz: 'Хоразм вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Хорезмской области',
 		person: 'RAJABOV QACHRAMON SATIMBAEVICH',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB354',
-		name: 'Buxoro',
-		title: 'Buxoro viloyat fermerlari Kengashi raisi',
+		name_uz: 'Buxoro',
+		name_oz: 'Бухоро',
+		name_ru: 'Бухара',
+		title_uz: 'Buxoro viloyat fermerlari Kengashi raisi',
+		title_oz: 'Бухоро вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Бухарской области',
 		person: 'Boltaev Xurshid Xomitovich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB357',
-		name: 'Navoiy',
-		title: 'Navoiy viloyat fermerlari Kengashi raisi',
+		name_uz: 'Navoiy',
+		name_oz: 'Навоий',
+		name_ru: 'Навои',
+		title_uz: 'Navoiy viloyat fermerlari Kengashi raisi',
+		title_oz: 'Навоий вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Навоийской области',
 		person: 'YARLAKABOV SHOKIRJON ABDIKAYUMOVICH',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB358',
-		name: 'Samarqand',
-		title: 'Samarqand viloyat fermerlari Kengashi raisi',
+		name_uz: 'Samarqand',
+		name_oz: 'Самарқанд',
+		name_ru: 'Самарканд',
+		title_uz: 'Samarqand viloyat fermerlari Kengashi raisi',
+		title_oz: 'Самарқанд вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Самаркандской области',
 		person: "Rabbimov Abror Mehriddin o'g'li",
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB361',
-		name: 'Qashqadaryo',
-		title: 'Qashqadaryo viloyat fermerlari Kengashi raisi',
+		name_uz: 'Qashqadaryo',
+		name_oz: 'Қашқадарё',
+		name_ru: 'Кашкадарья',
+		title_uz: 'Qashqadaryo viloyat fermerlari Kengashi raisi',
+		title_oz: 'Қашқадарё вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Кашкадарьинской области',
 		person: 'Abdinazarov Jahongir Nodirshoevich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB362',
-		name: 'Surxondaryo',
-		title: 'Surxondaryo viloyat fermerlari Kengashi raisi',
+		name_uz: 'Surxondaryo',
+		name_oz: 'Сурхондарё',
+		name_ru: 'Сурхандарья',
+		title_uz: 'Surxondaryo viloyat fermerlari Kengashi raisi',
+		title_oz: 'Сурхондарё вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Сурхандарьинской области',
 		person: 'Murodov Muxiddin Nazarovich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB370',
-		name: 'Jizzax',
-		title: 'Jizzax viloyat fermerlari Kengashi raisi',
+		name_uz: 'Jizzax',
+		name_oz: 'Жиззах',
+		name_ru: 'Джизак',
+		title_uz: 'Jizzax viloyat fermerlari Kengashi raisi',
+		title_oz: 'Жиззах вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Джизакской области',
 		person: 'Eshmatov Anarboy Abbosovich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB371',
-		name: 'Sirdaryo',
-		title: 'Sirdaryo viloyat fermerlari Kengashi raisi',
+		name_uz: 'Sirdaryo',
+		name_oz: 'Сирдарё',
+		name_ru: 'Сырдарья',
+		title_uz: 'Sirdaryo viloyat fermerlari Kengashi raisi',
+		title_oz: 'Сирдарё вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Сырдарьинской области',
 		person: "Primqulov Ro'ziqul Ummatqulovich",
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB372',
-		name: 'Toshkent viloyati',
-		title: 'Toshkent viloyat fermerlari Kengashi raisi',
+		name_uz: 'Toshkent viloyati',
+		name_oz: 'Тошкент вилояти',
+		name_ru: 'Ташкентская область',
+		title_uz: 'Toshkent viloyat fermerlari Kengashi raisi',
+		title_oz: 'Тошкент вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Ташкентской области',
 		person: "Do'sbekov Shuxrat Begimqulovich",
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB363',
-		name: 'Andijon',
-		title: 'Andijon viloyat fermerlari Kengashi raisi',
+		name_uz: 'Andijon',
+		name_oz: 'Андижон',
+		name_ru: 'Андижан',
+		title_uz: 'Andijon viloyat fermerlari Kengashi raisi',
+		title_oz: 'Андижон вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Андижанской области',
 		person: 'Nabijanov Farhod Isroilovich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB364',
-		name: "Farg'ona",
-		title: "Farg'ona viloyat fermerlari Kengashi raisi",
+		name_uz: "Farg'ona",
+		name_oz: "Фарғона",
+		name_ru: "Фергана",
+		title_uz: "Farg'ona viloyat fermerlari Kengashi raisi",
+		title_oz: "Фарғона вилоят фермерлари Кенгаши раиси",
+		title_ru: "Председатель Совета фермеров Ферганской области",
 		person: 'Maxmudov Nodirjon Shoxobidinovich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
 	{
 		id: 'UZB365',
-		name: 'Namangan',
-		title: 'Namangan viloyat fermerlari Kengashi raisi',
+		name_uz: 'Namangan',
+		name_oz: 'Наманган',
+		name_ru: 'Наманган',
+		title_uz: 'Namangan viloyat fermerlari Kengashi raisi',
+		title_oz: 'Наманган вилоят фермерлари Кенгаши раиси',
+		title_ru: 'Председатель Совета фермеров Наманганской области',
 		person: 'Kaimov Nosirjon Zakirjonovich',
 		image: 'https://uzfk.uz/media/adminstration_card/image_2025-01-23_15-48-46.png',
 	},
@@ -109,7 +165,20 @@ const regionsData: Region[] = [
 
 export default function RegionsPage() {
 	const t = useTranslations()
+	const locale = useLocale()
 	const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
+
+	const getRegionName = (region: Region) => {
+		if (locale === 'ru') return region.name_ru
+		if (locale === 'oz') return region.name_oz
+		return region.name_uz
+	}
+
+	const getRegionTitle = (region: Region) => {
+		if (locale === 'ru') return region.title_ru
+		if (locale === 'oz') return region.title_oz
+		return region.title_uz
+	}
 
 	return (
 		<div className='min-h-screen bg-white dark:bg-gray-600 py-24'>
@@ -149,7 +218,7 @@ export default function RegionsPage() {
 									</div>
 									<div>
 										<h3 className='text-lg font-bold text-green-700 dark:text-white'>
-											{region.name}
+											{getRegionName(region)}
 										</h3>
 										<p className='text-sm text-gray-600 dark:text-gray-300'>
 											{region.person}
@@ -157,7 +226,7 @@ export default function RegionsPage() {
 									</div>
 								</div>
 								<p className='mt-3 text-xs text-gray-500 dark:text-gray-400'>
-									{region.title}
+									{getRegionTitle(region)}
 								</p>
 							</div>
 						</div>
