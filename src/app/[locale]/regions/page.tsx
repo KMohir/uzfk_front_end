@@ -32,16 +32,19 @@ export default function RegionsPage() {
 	useEffect(() => {
 		const fetchRegions = async () => {
 			try {
+				// Barcha tillar uchun ru API'sidan ma'lumot olamiz
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${locale}/api/interactive-map/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/ru/api/interactive-map/list/`
 				)
 				if (!response.ok) {
 					throw new Error('Failed to fetch regions')
 				}
 				const data = await response.json()
+				console.log('Regions data:', data) // Debug uchun
 				setRegions(data.results || [])
 			} catch (error) {
 				console.error('Error fetching regions:', error)
+				setRegions([])
 			} finally {
 				setLoading(false)
 			}
@@ -51,20 +54,17 @@ export default function RegionsPage() {
 	}, [locale])
 
 	const getRegionName = (region: Region) => {
-		if (locale === 'ru') return region.hudud_ru || region.hudud
-		if (locale === 'oz') return region.hudud_uz || region.hudud
+		if (locale === 'ru' || locale === 'oz') return region.hudud_ru || region.hudud
 		return region.hudud_uz || region.hudud
 	}
 
 	const getPersonName = (region: Region) => {
-		if (locale === 'ru') return region.name_ru || region.name
-		if (locale === 'oz') return region.name_uz || region.name
+		if (locale === 'ru' || locale === 'oz') return region.name_ru || region.name
 		return region.name_uz || region.name
 	}
 
 	const getPosition = (region: Region) => {
-		if (locale === 'ru') return region.position_ru || region.position
-		if (locale === 'oz') return region.position_uz || region.position
+		if (locale === 'ru' || locale === 'oz') return region.position_ru || region.position
 		return region.position_uz || region.position
 	}
 
@@ -96,7 +96,12 @@ export default function RegionsPage() {
 				</div>
 
 				{/* Regions Grid */}
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+				{regions.length === 0 ? (
+					<div className='text-center py-12'>
+						<p className='text-xl text-gray-500'>Ma&apos;lumotlar topilmadi</p>
+					</div>
+				) : (
+					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
 					{regions.map((region) => (
 						<div
 							key={region.id}
@@ -133,6 +138,7 @@ export default function RegionsPage() {
 						</div>
 					))}
 				</div>
+				)}
 			</div>
 		</div>
 	)
