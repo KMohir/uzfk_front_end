@@ -164,7 +164,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                             {new Date(news.created_at).toLocaleDateString()}
                                         </span>
 
-                                        <h3 className='font-bold text-gray-800 leading-snug group-hover:text-[#078D3A] transition-colors line-clamp-2'>
+                                        <h3 className='font-bold text-black leading-snug group-hover:text-primary transition-colors line-clamp-2'>
                                             {(() => {
                                                 const title = locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz
                                                 return title || ''
