@@ -102,16 +102,22 @@ export default function NewsPage() {
 								<div className='p-6 h-[140px] border-t'>
 									<p className='text-xl dark:text-white font-semibold mb-2 text-blue-600 transition-colors duration-300 max-2xl:text-base group-hover:text-green-600'>
 										{
-											(locale === 'ru' ? item.title_ru :
-												locale === 'oz' ? (item.title_oz || item.title_uz) :
-													item.title_uz || item.title).slice(0, 30) + '...'
+											(() => {
+												const title = locale === 'ru' ? item.title_ru :
+													locale === 'oz' ? (item.title_oz || item.title_uz) :
+														item.title_uz || item.title
+												return (title || '').slice(0, 30) + '...'
+											})()
 										}
 									</p>
 									<p className='text-gray-600 mb-4 line-clamp-2'>
 										{
-											locale === 'ru' ? item.description_ru :
-												locale === 'oz' ? (item.description_oz || item.description_uz) :
-													item.description_uz || item.description
+											(() => {
+												const desc = locale === 'ru' ? item.description_ru :
+													locale === 'oz' ? (item.description_oz || item.description_uz) :
+														item.description_uz || item.description
+												return desc || ''
+											})()
 										}
 									</p>
 									<div className='flex items-center justify-between text-sm dark:text-white text-gray-500'>

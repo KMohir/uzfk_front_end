@@ -7,18 +7,18 @@ import { RegionsMap } from '../(home)/_components/map'
 
 interface Region {
 	id: number
-	hudud?: string
-	hudud_uz?: string
-	hudud_ru?: string
-	hudud_en?: string
-	name?: string
-	name_uz?: string
-	name_ru?: string
-	name_en?: string
-	position?: string
-	position_uz?: string
-	position_ru?: string
-	position_en?: string
+	hudud: string
+	hudud_uz: string
+	hudud_ru: string
+	hudud_en: string
+	name: string
+	name_uz: string
+	name_ru: string
+	name_en: string
+	position: string
+	position_uz: string
+	position_ru: string
+	position_en: string
 	image: string
 }
 
@@ -91,7 +91,8 @@ export default function RegionsPage() {
 				{/* Map Section */}
 				<div className='mb-12 flex justify-center'>
 					<div className='w-full max-w-4xl'>
-						<RegionsMap />
+						{/* We pass the fetched regions to the map */}
+						<RegionsMap regions={regions} />
 					</div>
 				</div>
 
@@ -102,42 +103,41 @@ export default function RegionsPage() {
 					</div>
 				) : (
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-					{regions.map((region) => (
-						<div
-							key={region.id}
-							className={`bg-white dark:bg-gray-500 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all cursor-pointer border-2 ${
-								selectedRegion?.id === region.id
+						{regions.map((region) => (
+							<div
+								key={region.id}
+								className={`bg-white dark:bg-gray-500 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all cursor-pointer border-2 ${selectedRegion?.id === region.id
 									? 'border-green-500'
 									: 'border-transparent'
-							}`}
-							onClick={() => setSelectedRegion(region)}
-						>
-							<div className='p-4'>
-								<div className='flex items-center gap-4'>
-									<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
-										<Image
-											src={region.image}
-											alt={getPersonName(region) || 'Region'}
-											fill
-											className='object-cover'
-										/>
+									}`}
+								onClick={() => setSelectedRegion(region)}
+							>
+								<div className='p-4'>
+									<div className='flex items-center gap-4'>
+										<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
+											<Image
+												src={region.image}
+												alt={getPersonName(region) || 'Region'}
+												fill
+												className='object-cover'
+											/>
+										</div>
+										<div>
+											<h3 className='text-lg font-bold text-green-700 dark:text-white'>
+												{getRegionName(region)}
+											</h3>
+											<p className='text-sm text-gray-600 dark:text-gray-300'>
+												{getPersonName(region)}
+											</p>
+										</div>
 									</div>
-									<div>
-										<h3 className='text-lg font-bold text-green-700 dark:text-white'>
-											{getRegionName(region)}
-										</h3>
-										<p className='text-sm text-gray-600 dark:text-gray-300'>
-											{getPersonName(region)}
-										</p>
-									</div>
+									<p className='mt-3 text-xs text-gray-500 dark:text-gray-400'>
+										{getPosition(region)}
+									</p>
 								</div>
-								<p className='mt-3 text-xs text-gray-500 dark:text-gray-400'>
-									{getPosition(region)}
-								</p>
 							</div>
-						</div>
-					))}
-				</div>
+						))}
+					</div>
 				)}
 			</div>
 		</div>

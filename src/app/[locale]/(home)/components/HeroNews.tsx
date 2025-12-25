@@ -88,7 +88,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                 {/* Hero image with zoom effect on hover */}
                                 <Image
                                     src={mainNews.image}
-                                    alt={locale === 'ru' ? mainNews.title_ru : locale === 'oz' ? (mainNews.title_oz || mainNews.title_uz) : mainNews.title_uz}
+                                    alt={(() => {
+                                        const title = locale === 'ru' ? mainNews.title_ru : locale === 'oz' ? (mainNews.title_oz || mainNews.title_uz) : mainNews.title_uz
+                                        return title || 'Main News'
+                                    })()}
                                     fill
                                     className='object-cover transition-transform duration-700 group-hover:scale-110'
                                     priority
@@ -105,7 +108,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
 
                                     {/* Main headline with gradient text on hover */}
                                     <h1 className='text-2xl md:text-4xl font-bold text-white leading-tight mb-4 group-hover:gradient-text transition-all line-clamp-3'>
-                                        {locale === 'ru' ? mainNews.title_ru : locale === 'oz' ? (mainNews.title_oz || mainNews.title_uz) : mainNews.title_uz}
+                                        {(() => {
+                                            const title = locale === 'ru' ? mainNews.title_ru : locale === 'oz' ? (mainNews.title_oz || mainNews.title_uz) : mainNews.title_uz
+                                            return title || ''
+                                        })()}
                                     </h1>
 
                                     {/* Metadata and CTA */}
@@ -141,7 +147,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                     <div className='relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden'>
                                         <Image
                                             src={news.image}
-                                            alt={locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
+                                            alt={(() => {
+                                                const title = locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz
+                                                return title || 'News Image'
+                                            })()}
                                             fill
                                             className='object-cover group-hover:scale-110 transition-transform duration-500'
                                         />
@@ -156,7 +165,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                         </span>
 
                                         <h3 className='font-bold text-gray-800 leading-snug group-hover:text-[#078D3A] transition-colors line-clamp-2'>
-                                            {locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
+                                            {(() => {
+                                                const title = locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz
+                                                return title || ''
+                                            })()}
                                         </h3>
                                     </div>
                                 </Link>
