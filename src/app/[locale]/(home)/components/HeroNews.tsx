@@ -90,10 +90,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                     src={mainNews.image}
                                     alt={(() => {
                                         const title = locale === 'ru'
-                                            ? (mainNews.title_ru || mainNews.title_uz || mainNews.title_oz)
+                                            ? (mainNews.title_ru || mainNews.title_uz || mainNews.title_oz || mainNews.title)
                                             : locale === 'oz'
-                                                ? (mainNews.title_oz || mainNews.title_uz || mainNews.title_ru)
-                                                : (mainNews.title_uz || mainNews.title_oz || mainNews.title_ru)
+                                                ? (mainNews.title_oz || mainNews.title_uz || mainNews.title_ru || mainNews.title)
+                                                : (mainNews.title_uz || mainNews.title_oz || mainNews.title_ru || mainNews.title)
                                         return title || 'Main News'
                                     })()}
                                     fill
@@ -114,10 +114,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                     <h1 className='text-2xl md:text-4xl font-bold text-white leading-tight mb-4 group-hover:gradient-text transition-all line-clamp-3'>
                                         {(() => {
                                             const title = locale === 'ru'
-                                                ? (mainNews.title_ru || mainNews.title_uz || mainNews.title_oz)
+                                                ? (mainNews.title_ru || mainNews.title_uz || mainNews.title_oz || mainNews.title)
                                                 : locale === 'oz'
-                                                    ? (mainNews.title_oz || mainNews.title_uz || mainNews.title_ru)
-                                                    : (mainNews.title_uz || mainNews.title_oz || mainNews.title_ru)
+                                                    ? (mainNews.title_oz || mainNews.title_uz || mainNews.title_ru || mainNews.title)
+                                                    : (mainNews.title_uz || mainNews.title_oz || mainNews.title_ru || mainNews.title)
                                             return title || 'No Title'
                                         })()}
                                     </h1>
@@ -157,10 +157,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                             src={news.image}
                                             alt={(() => {
                                                 const title = locale === 'ru'
-                                                    ? (news.title_ru || news.title_uz || news.title_oz)
+                                                    ? (news.title_ru || news.title_uz || news.title_oz || news.title)
                                                     : locale === 'oz'
-                                                        ? (news.title_oz || news.title_uz || news.title_ru)
-                                                        : (news.title_uz || news.title_oz || news.title_ru)
+                                                        ? (news.title_oz || news.title_uz || news.title_ru || news.title)
+                                                        : (news.title_uz || news.title_oz || news.title_ru || news.title)
                                                 return title || 'News Image'
                                             })()}
                                             fill
@@ -179,10 +179,10 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                         <h3 className='font-bold text-black leading-snug group-hover:text-primary transition-colors line-clamp-2'>
                                             {(() => {
                                                 const title = locale === 'ru'
-                                                    ? (news.title_ru || news.title_uz || news.title_oz)
+                                                    ? (news.title_ru || news.title_uz || news.title_oz || news.title)
                                                     : locale === 'oz'
-                                                        ? (news.title_oz || news.title_uz || news.title_ru)
-                                                        : (news.title_uz || news.title_oz || news.title_ru)
+                                                        ? (news.title_oz || news.title_uz || news.title_ru || news.title)
+                                                        : (news.title_uz || news.title_oz || news.title_ru || news.title)
                                                 return title || 'No Title'
                                             })()}
                                         </h3>

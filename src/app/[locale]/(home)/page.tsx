@@ -15,6 +15,7 @@ interface News {
 	title_uz: string
 	title_oz: string
 	title_ru: string
+	title?: string
 	subtitle_uz: string
 	subtitle_oz: string
 	subtitle_ru: string
