@@ -48,7 +48,7 @@ export default async function RootLayout({ children, params }: Props) {
 
 							<Header />
 
-							<main className='flex-grow pt-[80px] md:pt-[100px]'>
+							<main className='flex-grow pt-[120px] md:pt-[140px]'>
 
 								{children}
 							</main>
