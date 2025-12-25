@@ -129,7 +129,7 @@ export default function Page() {
 						{t('nav5')}
 					</span>
 					<Link
-						href={'/goals'}
+						href={`/${language}/goals`}
 						className='text-xl md:text-2xl flex gap-1 group items-center font-medium text-blue-500'
 					>
 						{t('goals')}
