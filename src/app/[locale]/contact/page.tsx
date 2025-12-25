@@ -21,6 +21,14 @@ export default function ContactPage() {
 		setError('')
 		setSuccess(false)
 
+		// Phone validation: +998 followed by 7 to 9 digits
+		const phoneRegex = /^\+998\d{7,9}$/
+		if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+			setError(t('invalid_phone_format') || 'Phone number must start with +998 and contain 7-9 digits (e.g., +998901234567)')
+			setLoading(false)
+			return
+		}
+
 		try {
 			// Telegram bot API
 			const BOT_TOKEN = '8525168440:AAFRkabFrvT3le2YWo2wKPA1HnHBNVu9KS8'
@@ -57,6 +65,16 @@ export default function ContactPage() {
 		} finally {
 			setLoading(false)
 		}
+	}
+
+	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		let value = e.target.value
+		// If input is empty and user starts typing, ensure it starts with +998
+		if (value && !value.startsWith('+')) {
+			value = '+' + value
+		}
+		// Remove spaces if any while typing (optional, but keep it clean)
+		setFormData({ ...formData, phone: value })
 	}
 
 	return (
@@ -132,7 +150,7 @@ export default function ContactPage() {
 						{/* Map placeholder */}
 						<div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 h-80 md:h-96'>
 							<iframe
-								src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.7207087394447!2d69.28447931541826!3d41.31117997927034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b3a5e6e3e3d%3A0x3e6e3e3e3e3e3e3e!2sIslom%20Karimov%20ko%27chasi%202A%2C%20Toshkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s'
+								src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.1065842106!2d69.27313767623946!3d41.3076436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b800e106dc3%3A0xd7324a018cf95d9d!2sCOUNCIL%20OF%20FARMERS%20OF%20UZBEKISTAN!5e0!3m2!1sen!2s!4v1735111111111!5m2!1sen!2s'
 								width='100%'
 								height='100%'
 								style={{ border: 0, borderRadius: '12px' }}
@@ -187,7 +205,7 @@ export default function ContactPage() {
 									id='phone'
 									required
 									value={formData.phone}
-									onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+									onChange={handlePhoneChange}
 									className='w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white'
 									placeholder={t('contact_phone_placeholder')}
 								/>
