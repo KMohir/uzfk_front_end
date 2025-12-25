@@ -85,7 +85,7 @@ export default function Header() {
 
                 {/* Desktop Nav - o'rta */}
                 <nav className='hidden lg:flex items-center justify-center flex-1 mx-4'>
-                    <div className='flex items-center gap-6 xl:gap-8'>
+                    <div className='flex items-center gap-8 xl:gap-10'>
                         {navItems.map((item) => (
                             <div
                                 key={item.name}
