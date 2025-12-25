@@ -31,16 +31,7 @@ export default function MapCalendar() {
                 {/* ============================================
                     SECTION HEADER
                     ============================================ */}
-                <ScrollReveal>
-                    <div className='text-center mb-16 space-y-4'>
-                        <h2 className='text-3xl md:text-5xl font-bold text-gray-900 tracking-tight'>
-                            <span className='gradient-text capitalize'>
-                                {t('regions')} & {t('calendar')}
-                            </span>
-                        </h2>
-                        <div className='w-24 h-1.5 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full' />
-                    </div>
-                </ScrollReveal>
+
 
                 {/* ============================================
                     MAP & CALENDAR GRID
@@ -72,8 +63,8 @@ export default function MapCalendar() {
                         <div className='w-full glass-strong p-6 md:p-8 rounded-[2.5rem] shadow-2xl shadow-secondary/5 border border-white/60 relative overflow-hidden flex flex-col group transition-all duration-500 hover-lift border-glow'>
                             {/* Card Decorative Label */}
                             <div className='flex items-center gap-2 mb-6 px-4 py-2 bg-secondary/10 rounded-full w-fit border border-secondary/20 backdrop-blur-sm'>
-                                <CalendarIcon className='w-4 h-4 text-secondary' />
-                                <span className='text-xs font-bold text-secondary uppercase tracking-widest'>{t('calendar')}</span>
+                                <CalendarIcon className='w-4 h-4 text-gray-900' />
+                                <span className='text-xs font-bold text-gray-900 uppercase tracking-widest'>{t('calendar')}</span>
                             </div>
 
                             {/* Calendar component */}
