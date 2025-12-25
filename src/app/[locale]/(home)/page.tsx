@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useLocale } from 'next-intl'
 
 import HeroNews from './components/HeroNews'
+import Ads from './_components/ads'
 import StatsGrid from './components/StatsGrid'
 import MapCalendar from './components/MapCalendar'
 import VideoGallery from './components/VideoGallery'
@@ -57,6 +58,11 @@ export default function Page() {
 	return (
 		<div className="flex flex-col">
 			{/* 1. Hero Section with News */}
+			<div className='container mx-auto px-4 hidden md:block'>
+				<div className='py-2 overflow-hidden'>
+					<Ads />
+				</div>
+			</div>
 			<HeroNews mainNews={mainNews} otherNews={otherNews} />
 
 			{/* 2. Stats Counters */}

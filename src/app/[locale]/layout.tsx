@@ -5,7 +5,6 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from 'next-themes'
 import localFont from 'next/font/local'
-import Ads from './(home)/_components/ads'
 import Loader from './components/ui/loader'
 import './globals.css'
 
@@ -50,12 +49,7 @@ export default async function RootLayout({ children, params }: Props) {
 							<Header />
 
 							<main className='flex-grow pt-[80px] md:pt-[100px]'>
-								{/* Ads - keeping existing component but wrapping safely */}
-								<div className='container mx-auto px-4 hidden md:block'>
-									<div className='py-2 overflow-hidden'>
-										<Ads />
-									</div>
-								</div>
+
 								{children}
 							</main>
 							<Footer />
