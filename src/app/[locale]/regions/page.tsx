@@ -60,7 +60,8 @@ export default function RegionsPage() {
 					"Sirdaryo",
 					"Farg",
 					"Xorazm",
-					"Toshkent"
+					"Toshkent",
+					"Tashkent"
 				]
 
 				const sortedRegions = uniqueRegions.sort((a: Region, b: Region) => {
