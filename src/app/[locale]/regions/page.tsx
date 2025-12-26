@@ -41,7 +41,43 @@ export default function RegionsPage() {
 				}
 				const data = await response.json()
 				console.log('Regions data:', data) // Debug uchun
-				setRegions(data.results || [])
+
+				const sortOrder = [
+					"Qoraqalpog",
+					"Andijon",
+					"Buxoro",
+					"Jizzax",
+					"Qashqadaryo",
+					"Navoiy",
+					"Namangan",
+					"Samarqand",
+					"Surxondaryo",
+					"Sirdaryo",
+					"Farg",
+					"Xorazm",
+					"Toshkent"
+				]
+
+				const sortedRegions = (data.results || []).sort((a: Region, b: Region) => {
+					const nameA = (a.hudud_uz || '').toLowerCase()
+					const nameB = (b.hudud_uz || '').toLowerCase()
+
+					const indexA = sortOrder.findIndex(key => nameA.includes(key.toLowerCase()))
+					const indexB = sortOrder.findIndex(key => nameB.includes(key.toLowerCase()))
+
+					// Valid items come first, sorted by index
+					if (indexA !== -1 && indexB !== -1) {
+						return indexA - indexB
+					}
+					// Items in list come before items not in list
+					if (indexA !== -1) return -1
+					if (indexB !== -1) return 1
+
+					// Fallback to alphabetical for unlisted items
+					return nameA.localeCompare(nameB)
+				})
+
+				setRegions(sortedRegions)
 			} catch (error) {
 				console.error('Error fetching regions:', error)
 				setRegions([])

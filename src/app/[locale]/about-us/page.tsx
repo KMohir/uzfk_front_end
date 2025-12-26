@@ -9,7 +9,7 @@ const Page = () => {
 				<div className='bg-white dark:bg-gray-800 shadow-xl rounded-3xl overflow-hidden p-8 md:p-12'>
 					{/* Header Section */}
 					<h1 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center mb-8 leading-tight'>
-						Ўзбекистон фермер, деҳқон хўжаликлари ва томорқа ер эгалари кенгаши
+						Ўзбекистон фермерлари кенгаши
 					</h1>
 
 					<div className='space-y-8 text-gray-700 dark:text-gray-300 leading-relaxed font-normal'>
