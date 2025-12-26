@@ -47,29 +47,41 @@ export default function RegionsPage() {
 					index === self.findIndex((r) => r.id === region.id)
 				)
 
-				const sortOrder = [
-					"Qoraqalpog",
-					"Andijon",
-					"Buxoro",
-					"Jizz",
-					"Qashqadaryo",
-					"Navoiy",
-					"Namangan",
-					"Samarqand",
-					"Surxondaryo",
-					"Sirdaryo",
-					"Farg",
-					"Xorazm",
-					"Toshkent",
-					"Tashkent"
+				const sortPatterns = [
+					['qoraqalpog', 'karakalpak', 'коракалпог'],
+					['andijon', 'andijan', 'андижон'],
+					['buxoro', 'bukhara', 'бухоро'],
+					['jizz', 'djiz', 'жиззах'],
+					['qashqadaryo', 'kashkadarya', 'кашкадарё', 'qashqa'],
+					['navoiy', 'navoi', 'навои'],
+					['namangan', 'наманган'],
+					['samarqand', 'samarkand', 'самарканд'],
+					['surxondaryo', 'surkhandarya', 'сурхондарё'],
+					['sirdaryo', 'syrdarya', 'сирдарё'],
+					['farg', 'fergana', 'фаргона'],
+					['xorazm', 'khorezm', 'хоразм'],
+					['toshkent', 'tashkent', 'тошкент']
 				]
 
-				const sortedRegions = uniqueRegions.sort((a: Region, b: Region) => {
-					const nameA = (a.hudud_uz || '').toLowerCase()
-					const nameB = (b.hudud_uz || '').toLowerCase()
+				const getSortIndex = (region: Region) => {
+					// Concatenate all searchable fields to ensure we catch the keyword
+					const searchStr = [
+						region.hudud_uz,
+						region.hudud_oz,
+						region.hudud_ru,
+						region.hudud_en,
+						region.hudud,
+						region.name
+					].filter(Boolean).join(' ').toLowerCase()
 
-					const indexA = sortOrder.findIndex(key => nameA.includes(key.toLowerCase()))
-					const indexB = sortOrder.findIndex(key => nameB.includes(key.toLowerCase()))
+					return sortPatterns.findIndex(patterns =>
+						patterns.some(pattern => searchStr.includes(pattern))
+					)
+				}
+
+				const sortedRegions = uniqueRegions.sort((a: Region, b: Region) => {
+					const indexA = getSortIndex(a)
+					const indexB = getSortIndex(b)
 
 					// Valid items come first, sorted by index
 					if (indexA !== -1 && indexB !== -1) {
@@ -80,6 +92,8 @@ export default function RegionsPage() {
 					if (indexB !== -1) return 1
 
 					// Fallback to alphabetical for unlisted items
+					const nameA = (a.hudud_uz || a.hudud || '').toLowerCase()
+					const nameB = (b.hudud_uz || b.hudud || '').toLowerCase()
 					return nameA.localeCompare(nameB)
 				})
 
