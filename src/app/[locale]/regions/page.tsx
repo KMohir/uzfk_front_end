@@ -46,7 +46,7 @@ export default function RegionsPage() {
 					"Qoraqalpog",
 					"Andijon",
 					"Buxoro",
-					"Jizzax",
+					"Jizza",
 					"Qashqadaryo",
 					"Navoiy",
 					"Namangan",
