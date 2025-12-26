@@ -9,14 +9,17 @@ interface Region {
 	id: number
 	hudud: string
 	hudud_uz: string
+	hudud_oz: string
 	hudud_ru: string
 	hudud_en: string
 	name: string
 	name_uz: string
+	name_oz: string
 	name_ru: string
 	name_en: string
 	position: string
 	position_uz: string
+	position_oz: string
 	position_ru: string
 	position_en: string
 	image: string
