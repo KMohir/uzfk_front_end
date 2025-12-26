@@ -42,11 +42,16 @@ export default function RegionsPage() {
 				const data = await response.json()
 				console.log('Regions data:', data) // Debug uchun
 
+				// Deduplicate based on ID
+				const uniqueRegions = (data.results || []).filter((region: Region, index: number, self: Region[]) =>
+					index === self.findIndex((r) => r.id === region.id)
+				)
+
 				const sortOrder = [
 					"Qoraqalpog",
 					"Andijon",
 					"Buxoro",
-					"Jizza",
+					"Jizz",
 					"Qashqadaryo",
 					"Navoiy",
 					"Namangan",
@@ -58,7 +63,7 @@ export default function RegionsPage() {
 					"Toshkent"
 				]
 
-				const sortedRegions = (data.results || []).sort((a: Region, b: Region) => {
+				const sortedRegions = uniqueRegions.sort((a: Region, b: Region) => {
 					const nameA = (a.hudud_uz || '').toLowerCase()
 					const nameB = (b.hudud_uz || '').toLowerCase()
 
