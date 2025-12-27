@@ -114,14 +114,22 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 
 						{/* Title */}
 						<h1 className='text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight'>
-							{locale === 'ru' ? news.title_ru : locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
+							{(locale === 'ru'
+								? (news.title_ru || news.title_uz || news.title_oz || news.title)
+								: locale === 'oz'
+									? (news.title_oz || news.title_uz || news.title_ru || news.title)
+									: (news.title_uz || news.title_oz || news.title_ru || news.title)) || 'No Title'}
 						</h1>
 
 						{/* Main Image */}
 						<div className='relative w-full aspect-video mb-6 rounded-lg overflow-hidden'>
 							<Image
 								src={news.image}
-								alt={news.title}
+								alt={(locale === 'ru'
+									? (news.title_ru || news.title_uz || news.title_oz || news.title)
+									: locale === 'oz'
+										? (news.title_oz || news.title_uz || news.title_ru || news.title)
+										: (news.title_uz || news.title_oz || news.title_ru || news.title)) || 'News Image'}
 								fill
 								priority
 								className='object-cover'
@@ -173,14 +181,22 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 												<div className='relative w-20 h-16 flex-shrink-0 rounded overflow-hidden'>
 													<Image
 														src={item.image}
-														alt={locale === 'ru' ? item.title_ru : locale === 'oz' ? (item.title_oz || item.title_uz) : item.title_uz}
+														alt={(locale === 'ru'
+															? (item.title_ru || item.title_uz || item.title_oz || item.title)
+															: locale === 'oz'
+																? (item.title_oz || item.title_uz || item.title_ru || item.title)
+																: (item.title_uz || item.title_oz || item.title_ru || item.title)) || 'News Image'}
 														fill
 														className='object-cover group-hover:scale-105 transition-transform'
 													/>
 												</div>
 												<div className='flex-1'>
 													<p className='text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-2 group-hover:text-green-600 transition-colors'>
-														{locale === 'ru' ? item.title_ru : locale === 'oz' ? (item.title_oz || item.title_uz) : item.title_uz}
+														{(locale === 'ru'
+															? (item.title_ru || item.title_uz || item.title_oz || item.title)
+															: locale === 'oz'
+																? (item.title_oz || item.title_uz || item.title_ru || item.title)
+																: (item.title_uz || item.title_oz || item.title_ru || item.title)) || 'No Title'}
 													</p>
 													<p className='text-xs text-gray-500 mt-1'>
 														{new Date(item.created_at).toLocaleDateString()}
@@ -207,7 +223,11 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 											className='block group'
 										>
 											<p className='text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-green-600 transition-colors line-clamp-2'>
-												{locale === 'ru' ? item.title_ru : locale === 'oz' ? (item.title_oz || item.title_uz) : item.title_uz}
+												{(locale === 'ru'
+													? (item.title_ru || item.title_uz || item.title_oz || item.title)
+													: locale === 'oz'
+														? (item.title_oz || item.title_uz || item.title_ru || item.title)
+														: (item.title_uz || item.title_oz || item.title_ru || item.title)) || 'No Title'}
 											</p>
 											<p className='text-xs text-gray-500 mt-1'>
 												{new Date(item.created_at).toLocaleDateString('uz-UZ', {

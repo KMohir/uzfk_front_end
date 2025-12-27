@@ -94,31 +94,29 @@ export default function NewsPage() {
 								<div className='relative h-48'>
 									<Image
 										src={item.image}
-										alt={item.title}
+										alt={(locale === 'ru'
+											? (item.title_ru || item.title_uz || item.title_oz || item.title)
+											: locale === 'oz'
+												? (item.title_oz || item.title_uz || item.title_ru || item.title)
+												: (item.title_uz || item.title_oz || item.title_ru || item.title)) || 'News Image'}
 										fill
 										className='object-cover'
 									/>
 								</div>
 								<div className='p-6 h-[140px] border-t'>
-									<p className='text-xl dark:text-white font-semibold mb-2 text-blue-600 transition-colors duration-300 max-2xl:text-base group-hover:text-green-600'>
-										{
-											(() => {
-												const title = locale === 'ru' ? item.title_ru :
-													locale === 'oz' ? (item.title_oz || item.title_uz) :
-														item.title_uz || item.title
-												return (title || '').slice(0, 30) + '...'
-											})()
-										}
+									<p className='text-xl dark:text-white font-semibold mb-2 text-blue-600 transition-colors duration-300 max-2xl:text-base group-hover:text-green-600 line-clamp-2 min-h-[56px]'>
+										{(locale === 'ru'
+											? (item.title_ru || item.title_uz || item.title_oz || item.title)
+											: locale === 'oz'
+												? (item.title_oz || item.title_uz || item.title_ru || item.title)
+												: (item.title_uz || item.title_oz || item.title_ru || item.title)) || 'No Title'}
 									</p>
 									<p className='text-gray-600 mb-4 line-clamp-2'>
-										{
-											(() => {
-												const desc = locale === 'ru' ? item.description_ru :
-													locale === 'oz' ? (item.description_oz || item.description_uz) :
-														item.description_uz || item.description
-												return desc || ''
-											})()
-										}
+										{(locale === 'ru'
+											? (item.description_ru || item.description_uz || item.description_oz || item.description)
+											: locale === 'oz'
+												? (item.description_oz || item.description_uz || item.description_ru || item.description)
+												: (item.description_uz || item.description_oz || item.description_ru || item.description)) || ''}
 									</p>
 									<div className='flex items-center justify-between text-sm dark:text-white text-gray-500'>
 										<span>✍️ {item.author_post}</span>
