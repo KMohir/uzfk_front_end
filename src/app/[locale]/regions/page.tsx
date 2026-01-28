@@ -174,11 +174,15 @@ export default function RegionsPage() {
 								<div className='p-4'>
 									<div className='flex items-center gap-4'>
 										<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
-											<Image
-												src={region.image.startsWith('http') ? region.image : `${process.env.NEXT_PUBLIC_SERVER}${region.image}`}
+											{/* Use standard img tag to avoid next/image issues with external Cyrillic URLs and optimization */}
+											<img
+												src={
+													region.image?.startsWith('http')
+														? region.image
+														: `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${region.image}`
+												}
 												alt={getPersonName(region) || 'Region'}
-												fill
-												className='object-cover'
+												className='object-cover w-full h-full'
 											/>
 										</div>
 										<div>
