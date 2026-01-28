@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
+
 interface Worker {
 	id: number
 	f_name_uz: string
@@ -164,11 +164,14 @@ export default function Page() {
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
 									{/* Worker Image */}
 									<div className='h-auto'>
-										<Image
-											src={worker.image}
+										{/* eslint-disable-next-line @next/next/no-img-element */}
+										<img
+											src={
+												worker.image?.startsWith('http')
+													? worker.image
+													: `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${worker.image}`
+											}
 											alt={worker.f_name_uz}
-											width={200}
-											height={240}
 											className='w-full border h-60 object-cover rounded-lg'
 										/>
 									</div>
@@ -245,11 +248,14 @@ export default function Page() {
 														key={subWorker.id}
 														className='flex max-md:flex-col gap-6 border rounded-lg p-6 shadow-md bg-gray-50'
 													>
-														<Image
-															src={subWorker.image}
+														{/* eslint-disable-next-line @next/next/no-img-element */}
+														<img
+															src={
+																subWorker.image?.startsWith('http')
+																	? subWorker.image
+																	: `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${subWorker.image}`
+															}
 															alt={subWorker.f_name_uz}
-															width={200}
-															height={240}
 															className='w-[200px] h-60 rounded-lg object-cover'
 														/>
 														<div className='flex flex-col gap-4'>
