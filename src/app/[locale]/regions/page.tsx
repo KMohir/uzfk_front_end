@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
-import Image from 'next/image'
 import { RegionsMap } from '../(home)/_components/map'
 
 interface Region {
@@ -174,7 +173,7 @@ export default function RegionsPage() {
 								<div className='p-4'>
 									<div className='flex items-center gap-4'>
 										<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
-											{/* Use standard img tag to avoid next/image issues with external Cyrillic URLs and optimization */}
+											{/* eslint-disable-next-line @next/next/no-img-element */}
 											<img
 												src={
 													region.image?.startsWith('http')
