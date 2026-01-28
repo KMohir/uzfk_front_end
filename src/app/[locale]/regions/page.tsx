@@ -175,7 +175,7 @@ export default function RegionsPage() {
 									<div className='flex items-center gap-4'>
 										<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
 											<Image
-												src={region.image}
+												src={region.image.startsWith('http') ? region.image : `${process.env.NEXT_PUBLIC_SERVER}${region.image}`}
 												alt={getPersonName(region) || 'Region'}
 												fill
 												className='object-cover'

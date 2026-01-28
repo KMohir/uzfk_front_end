@@ -7,7 +7,12 @@ const withNextIntl = createNextIntlPlugin()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['uzfk.uz'], // Faqat domenni kiriting
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'uzfk.uz',
+			},
+		],
 	},
 }
 
