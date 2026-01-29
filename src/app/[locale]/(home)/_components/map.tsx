@@ -93,8 +93,30 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 		return ''
 	}
 
+	/**
+	 * Helper to get full image URL
+	 * Converts http:// to https:// for proper image loading
+	 */
+	const getImageUrl = (imagePath: string | undefined) => {
+		if (!imagePath) return ''
+
+		// If image has http:// (from API), convert to https://
+		if (imagePath.startsWith('http://')) {
+			return imagePath.replace('http://', 'https://')
+		}
+
+		// If image already has https://, return as is
+		if (imagePath.startsWith('https://')) {
+			return imagePath
+		}
+
+		// If image is relative path, prepend server URL
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+	}
+
 	const getImage = (apiData: RegionApiData | null, fallbackRegion: IRegion) => {
-		return apiData?.image || fallbackRegion.image
+		const imageUrl = apiData?.image || fallbackRegion.image
+		return getImageUrl(imageUrl)
 	}
 
 	const renderRegion = (region: IRegion) => {
