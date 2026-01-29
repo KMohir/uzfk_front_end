@@ -98,13 +98,21 @@ export default function Ads() {
 	/**
 	 * Helper to get full image URL
 	 * Prepends server URL if image path is relative
+	 * Converts http:// to https:// for Next.js Image compatibility
 	 */
 	const getImageUrl = (imagePath: string) => {
 		if (!imagePath) return ''
-		// If image already has http/https, return as is
-		if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+
+		// If image has http:// (from API), convert to https://
+		if (imagePath.startsWith('http://')) {
+			return imagePath.replace('http://', 'https://')
+		}
+
+		// If image already has https://, return as is
+		if (imagePath.startsWith('https://')) {
 			return imagePath
 		}
+
 		// If image is relative path, prepend server URL
 		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
 	}
