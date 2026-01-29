@@ -95,6 +95,20 @@ export default function Ads() {
 		setCurrentIndex(index)
 	}
 
+	/**
+	 * Helper to get full image URL
+	 * Prepends server URL if image path is relative
+	 */
+	const getImageUrl = (imagePath: string) => {
+		if (!imagePath) return ''
+		// If image already has http/https, return as is
+		if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+			return imagePath
+		}
+		// If image is relative path, prepend server URL
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+	}
+
 	if (loading) {
 		return <div className='w-full h-[600px] max-md:h-[150px] bg-gray-100 animate-pulse rounded-2xl mt-2' />
 	}
@@ -117,7 +131,7 @@ export default function Ads() {
 			{/* Slides Container */}
 			<div className='absolute inset-0 transition-opacity duration-500'>
 				<Image
-					src={banner.image}
+					src={getImageUrl(banner.image)}
 					alt={title}
 					fill
 					key={banner.id} // Re-render animation update

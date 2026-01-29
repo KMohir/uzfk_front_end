@@ -47,6 +47,20 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
     const t = useTranslations()
     const locale = useLocale()
 
+    /**
+     * Helper to get full image URL
+     * Prepends server URL if image path is relative
+     */
+    const getImageUrl = (imagePath: string) => {
+        if (!imagePath) return ''
+        // If image already has http/https, return as is
+        if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+            return imagePath
+        }
+        // If image is relative path, prepend server URL
+        return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+    }
+
     // Early return if no main news available
     if (!mainNews) return null
 
@@ -87,7 +101,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                             >
                                 {/* Hero image with zoom effect on hover */}
                                 <Image
-                                    src={mainNews.image}
+                                    src={getImageUrl(mainNews.image)}
                                     alt={(() => {
                                         const title = locale === 'ru'
                                             ? (mainNews.title_ru || mainNews.title_uz || mainNews.title_oz || mainNews.title)
@@ -154,7 +168,7 @@ export default function HeroNews({ mainNews, otherNews }: HeroNewsProps) {
                                     {/* Thumbnail with zoom effect */}
                                     <div className='relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden'>
                                         <Image
-                                            src={news.image}
+                                            src={getImageUrl(news.image)}
                                             alt={(() => {
                                                 const title = locale === 'ru'
                                                     ? (news.title_ru || news.title_uz || news.title_oz || news.title)
