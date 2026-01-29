@@ -94,6 +94,27 @@ export default function Page() {
 		)
 	}
 
+	/**
+	 * Helper to get full image URL
+	 * Converts http:// to https:// for proper image loading
+	 */
+	const getImageUrl = (imagePath: string | undefined) => {
+		if (!imagePath) return ''
+
+		// If image has http:// (from API), convert to https://
+		if (imagePath.startsWith('http://')) {
+			return imagePath.replace('http://', 'https://')
+		}
+
+		// If image already has https://, return as is
+		if (imagePath.startsWith('https://')) {
+			return imagePath
+		}
+
+		// If image is relative path, prepend server URL
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+	}
+
 
 
 	const paginatedWorkers: Worker[] = workers.slice(
@@ -166,11 +187,7 @@ export default function Page() {
 									<div className='h-auto'>
 										{/* eslint-disable-next-line @next/next/no-img-element */}
 										<img
-											src={
-												worker.image?.startsWith('http')
-													? worker.image
-													: `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${worker.image}`
-											}
+											src={getImageUrl(worker.image)}
 											alt={worker.f_name_uz}
 											className='w-full border h-60 object-cover rounded-lg'
 										/>

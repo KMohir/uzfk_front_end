@@ -126,6 +126,27 @@ export default function RegionsPage() {
 		return region.position_uz || region.position
 	}
 
+	/**
+	 * Helper to get full image URL
+	 * Converts http:// to https:// for proper image loading
+	 */
+	const getImageUrl = (imagePath: string | undefined) => {
+		if (!imagePath) return ''
+
+		// If image has http:// (from API), convert to https://
+		if (imagePath.startsWith('http://')) {
+			return imagePath.replace('http://', 'https://')
+		}
+
+		// If image already has https://, return as is
+		if (imagePath.startsWith('https://')) {
+			return imagePath
+		}
+
+		// If image is relative path, prepend server URL
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+	}
+
 	if (loading) {
 		return (
 			<div className='min-h-screen bg-white dark:bg-gray-600 py-24'>
@@ -175,11 +196,7 @@ export default function RegionsPage() {
 										<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
 											{/* eslint-disable-next-line @next/next/no-img-element */}
 											<img
-												src={
-													region.image?.startsWith('http')
-														? region.image
-														: `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${region.image}`
-												}
+												src={getImageUrl(region.image)}
 												alt={getPersonName(region) || 'Region'}
 												className='object-cover w-full h-full'
 											/>
