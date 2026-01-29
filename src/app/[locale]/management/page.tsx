@@ -267,11 +267,7 @@ export default function Page() {
 													>
 														{/* eslint-disable-next-line @next/next/no-img-element */}
 														<img
-															src={
-																subWorker.image?.startsWith('http')
-																	? subWorker.image
-																	: `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${subWorker.image}`
-															}
+															src={getImageUrl(subWorker.image)}
 															alt={subWorker.f_name_uz}
 															className='w-[200px] h-60 rounded-lg object-cover'
 														/>
