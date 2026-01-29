@@ -65,6 +65,27 @@ export default function NewsPage() {
 		}
 	}
 
+	/**
+	 * Helper to get full image URL
+	 * Converts http:// to https:// for Next.js Image compatibility
+	 */
+	const getImageUrl = (imagePath: string) => {
+		if (!imagePath) return ''
+
+		// If image has http:// (from API), convert to https://
+		if (imagePath.startsWith('http://')) {
+			return imagePath.replace('http://', 'https://')
+		}
+
+		// If image already has https://, return as is
+		if (imagePath.startsWith('https://')) {
+			return imagePath
+		}
+
+		// If image is relative path, prepend server URL
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+	}
+
 	// Dinamik paginatsiya uchun sahifalarni hisoblash
 	const getDisplayedPages = () => {
 		const pages = []
@@ -93,7 +114,7 @@ export default function NewsPage() {
 							<div className='bg-white dark:bg-gray-500 rounded-lg shadow-lg overflow-hidden group-hover:shadow-xl transition-shadow duration-300 group'>
 								<div className='relative h-48'>
 									<Image
-										src={item.image}
+										src={getImageUrl(item.image)}
 										alt={(locale === 'ru'
 											? (item.title_ru || item.title_uz || item.title_oz || item.title)
 											: locale === 'oz'
