@@ -101,18 +101,24 @@ export default function Page() {
 	const getImageUrl = (imagePath: string | undefined) => {
 		if (!imagePath) return ''
 
+		let url = ''
+
 		// If image has http:// (from API), convert to https://
 		if (imagePath.startsWith('http://')) {
-			return imagePath.replace('http://', 'https://')
+			url = imagePath.replace('http://', 'https://')
 		}
-
-		// If image already has https://, return as is
-		if (imagePath.startsWith('https://')) {
-			return imagePath
+		// If image already has https://, use as is
+		else if (imagePath.startsWith('https://')) {
+			url = imagePath
 		}
-
 		// If image is relative path, prepend server URL
-		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+		else {
+			url = `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+		}
+
+		// Add cache-busting parameter
+		const cacheBuster = `?v=${Date.now()}`
+		return url + cacheBuster
 	}
 
 

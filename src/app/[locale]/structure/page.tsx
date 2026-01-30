@@ -32,7 +32,7 @@ interface Worker {
 	address: string
 	biography: string
 	obligation: string
-	departments?: Worker[] // Optional nested workers
+	structures?: Worker[] // Optional nested workers
 	currentTab?: 'biography' | 'obligation' | 'workers' | null // Added to track each worker's currentTab
 }
 export default function Page() {
@@ -55,7 +55,7 @@ export default function Page() {
 			try {
 				setIsLoading(true)
 				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/bolimlar/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/tuzilma/list/`
 				)
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)
@@ -101,18 +101,24 @@ export default function Page() {
 	const getImageUrl = (imagePath: string | undefined) => {
 		if (!imagePath) return ''
 
+		let url = ''
+
 		// If image has http:// (from API), convert to https://
 		if (imagePath.startsWith('http://')) {
-			return imagePath.replace('http://', 'https://')
+			url = imagePath.replace('http://', 'https://')
 		}
-
-		// If image already has https://, return as is
-		if (imagePath.startsWith('https://')) {
-			return imagePath
+		// If image already has https://, use as is
+		else if (imagePath.startsWith('https://')) {
+			url = imagePath
 		}
-
 		// If image is relative path, prepend server URL
-		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+		else {
+			url = `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+		}
+
+		// Add cache-busting parameter
+		const cacheBuster = `?v=${Date.now()}`
+		return url + cacheBuster
 	}
 
 
@@ -255,9 +261,9 @@ export default function Page() {
 												dangerouslySetInnerHTML={{ __html: worker.obligation }}
 											/>
 										)}
-										{worker.currentTab === 'workers' && worker.departments && (
+										{worker.currentTab === 'workers' && worker.structures && (
 											<div className='mt-6 space-y-4'>
-												{worker.departments.map(subWorker => (
+												{worker.structures.map(subWorker => (
 													<div
 														key={subWorker.id}
 														className='flex max-md:flex-col gap-6 border rounded-lg p-6 shadow-md bg-gray-50'
