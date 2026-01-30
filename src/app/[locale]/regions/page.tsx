@@ -91,42 +91,55 @@ export default function RegionsPage() {
 					index === self.findIndex((r) => r.id === region.id)
 				)
 
+				// Sort patterns define unique keywords for each region
+				const sortPatterns = [
+					['qoraqalpog', 'karakalpak', 'коракалпог'],
+					['andijon', 'andijan', 'андижон'],
+					['buxoro', 'bukhara', 'бухоро'],
+					['jizz', 'djiz', 'жиззах'],
+					['qashqadaryo', 'kashkadarya', 'кашкадарё', 'qashqa'],
+					['navoiy', 'navoi', 'навои'],
+					['namangan', 'наманган'],
+					['samarqand', 'samarkand', 'самарканд'],
+					['surxondaryo', 'surkhandarya', 'сурхондарё'],
+					['sirdaryo', 'syrdarya', 'сирдарё'],
+					['farg', 'fergana', 'фаргона'],
+					['xorazm', 'khorezm', 'хоразм'],
+					['toshkent', 'tashkent', 'тошкент']
+				]
+
+				// Helper to find which region index a text belongs to
+				const getRegionPatternIndex = (text: string) => {
+					if (!text) return -1
+					const lower = text.toLowerCase().replace(/['"`ʼ’]/g, '').trim()
+					return sortPatterns.findIndex(patterns =>
+						patterns.some(p => lower.includes(p))
+					)
+				}
+
 				// Merge logic
 				const mergedRegions = uniqueRegions.map(region => {
-					const normalize = (str: string) => str?.toLowerCase().replace(/['"`ʼ’]/g, '').trim() || ''
+					// Identify the region index for this map region
+					const regionIndex = getRegionPatternIndex(
+						[region.hudud, region.hudud_uz, region.name].join(' ')
+					)
 
-					const regionNames = [
-						region.hudud, region.hudud_uz, region.hudud_ru, region.hudud_oz, region.hudud_en,
-						// Extract region name from title (e.g. "Buxoro viloyati fermerlari..." -> "Buxoro")
-						...(region.hudud_uz?.split(' ') || [])
-					].map(normalize).filter(Boolean)
+					if (regionIndex === -1) return region
 
-					// 1. Find Council Data (for contacts)
+					// 1. Find Council Data
 					const councilMatch = councils.find(council => {
-						const councilRegion = normalize(council.region)
-						const councilName = normalize(council.name)
-						return regionNames.some(rName =>
-							(councilRegion && councilRegion.includes(rName)) || (rName && rName.includes(councilRegion)) ||
-							(councilName && councilName.includes(rName)) || (rName && rName.includes(councilName))
-						)
+						const councilIndex = getRegionPatternIndex(council.region + ' ' + council.name)
+						return councilIndex === regionIndex
 					})
 
-					// 2. Find Tuzilma Data (for REAL IMAGES and Manager Name)
-					// Tuzilma 'position_text' or 'section.name' often contains region name
+					// 2. Find Tuzilma Data
 					const tuzilmaMatch = tuzilmaWorkers.find(worker => {
-						const posText = normalize(worker.position_text || '')
-						const sectionName = normalize(worker.section?.name || '')
-						const workerName = normalize(worker.f_name_uz || worker.f_name || '')
-						const regionPersonName = normalize(region.name_uz || region.name || '')
+						// Check position text for region name
+						const posIndex = getRegionPatternIndex(worker.position_text)
+						// Check section name for region name
+						const sectionIndex = getRegionPatternIndex(worker.section?.name)
 
-						const regionMatch = regionNames.some(rName =>
-							(posText && posText.includes(rName)) || (sectionName && sectionName.includes(rName))
-						)
-
-						// Also try to match by Person Name if Region match is ambiguous
-						const nameMatch = regionPersonName && workerName && (workerName.includes(regionPersonName) || regionPersonName.includes(workerName));
-
-						return regionMatch || nameMatch
+						return posIndex === regionIndex || sectionIndex === regionIndex
 					})
 
 					let merged = { ...region }
@@ -163,22 +176,6 @@ export default function RegionsPage() {
 					return merged
 				})
 
-
-				const sortPatterns = [
-					['qoraqalpog', 'karakalpak', 'коракалпог'],
-					['andijon', 'andijan', 'андижон'],
-					['buxoro', 'bukhara', 'бухоро'],
-					['jizz', 'djiz', 'жиззах'],
-					['qashqadaryo', 'kashkadarya', 'кашкадарё', 'qashqa'],
-					['navoiy', 'navoi', 'навои'],
-					['namangan', 'наманган'],
-					['samarqand', 'samarkand', 'самарканд'],
-					['surxondaryo', 'surkhandarya', 'сурхондарё'],
-					['sirdaryo', 'syrdarya', 'сирдарё'],
-					['farg', 'fergana', 'фаргона'],
-					['xorazm', 'khorezm', 'хоразм'],
-					['toshkent', 'tashkent', 'тошкент']
-				]
 
 				const getSortIndex = (region: Region) => {
 					const searchStr = [
