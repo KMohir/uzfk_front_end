@@ -41,18 +41,43 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 	const [hoveredApiData, setHoveredApiData] = useState<RegionApiData | null>(null)
 	const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
 
+	// Sort patterns define unique keywords for each region
+	const sortPatterns = [
+		['qoraqalpog', 'karakalpak', 'коракалпог'],
+		['andijon', 'andijan', 'андижон'],
+		['buxoro', 'bukhara', 'бухоро'],
+		['jizz', 'djiz', 'жиззах'],
+		['qashqadaryo', 'kashkadarya', 'кашкадарё', 'qashqa'],
+		['navoiy', 'navoi', 'навои'],
+		['namangan', 'наманган'],
+		['samarqand', 'samarkand', 'самарканд'],
+		['surxondaryo', 'surkhandarya', 'сурхондарё'],
+		['sirdaryo', 'syrdarya', 'сирдарё'],
+		['farg', 'fergana', 'фаргона'],
+		['xorazm', 'khorezm', 'хоразм'],
+		['toshkent', 'tashkent', 'тошкент']
+	]
+
+	// Helper to find which region index a text belongs to
+	const getRegionPatternIndex = (text: string) => {
+		if (!text) return -1
+		const lower = text.toLowerCase().replace(/['"`ʼ’]/g, '').trim()
+		return sortPatterns.findIndex(patterns =>
+			patterns.some(p => lower.includes(p))
+		)
+	}
+
 	// Helper to find API data for a map region
 	const findApiRegion = (mapRegion: IRegion) => {
 		if (!regions || regions.length === 0) return null
-		// Normalize names for comparison
-		const normalize = (s: string) => s.toLowerCase().replace(/['`"ʻʼ]/g, '').trim()
-		const mapName = normalize(mapRegion.name)
+
+		// Get index for map region name
+		const mapIndex = getRegionPatternIndex(mapRegion.name)
+		if (mapIndex === -1) return null
 
 		return regions.find(r => {
-			const apiNameUz = normalize(r.hudud_uz || '')
-			const apiNameRu = normalize(r.hudud_ru || '')
-			// Check if API region name includes the map region name (e.g. "Buxoro viloyati..." includes "Buxoro")
-			return apiNameUz.includes(mapName) || apiNameRu.includes(mapName)
+			const apiIndex = getRegionPatternIndex((r.hudud_uz || r.hudud || '') + ' ' + (r.name || ''))
+			return apiIndex === mapIndex
 		}) || null
 	}
 
