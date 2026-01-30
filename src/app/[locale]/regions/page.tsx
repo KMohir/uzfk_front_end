@@ -39,6 +39,21 @@ interface LocalCouncil {
 	address: string
 }
 
+interface TuzilmaWorker {
+	id: number
+	position_text: string
+	section: {
+		name: string
+	}
+	f_name: string
+	f_name_uz: string
+	f_name_ru: string
+	f_name_en: string
+	image: string
+	email: string
+	phone: string
+}
+
 export default function RegionsPage() {
 	const t = useTranslations()
 	const locale = useLocale()
@@ -69,7 +84,7 @@ export default function RegionsPage() {
 
 				const mapRegions: Region[] = mapData.results || []
 				const councils: LocalCouncil[] = councilData.results || []
-				const tuzilmaWorkers: any[] = tuzilmaData.results || []
+				const tuzilmaWorkers: TuzilmaWorker[] = tuzilmaData.results || []
 
 				// Deduplicate map regions
 				const uniqueRegions = mapRegions.filter((region, index, self) =>
@@ -91,7 +106,8 @@ export default function RegionsPage() {
 						const councilRegion = normalize(council.region)
 						const councilName = normalize(council.name)
 						return regionNames.some(rName =>
-							(councilRegion && councilRegion.includes(rName)) || (rName && rName.includes(councilRegion))
+							(councilRegion && councilRegion.includes(rName)) || (rName && rName.includes(councilRegion)) ||
+							(councilName && councilName.includes(rName)) || (rName && rName.includes(councilName))
 						)
 					})
 
