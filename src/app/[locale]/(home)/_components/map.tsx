@@ -1,7 +1,6 @@
 'use client'
 
 import { FC, useState, SVGProps, CSSProperties } from 'react'
-import Image from 'next/image'
 import { IRegion, regionsPathArray } from './map-array'
 import { useLocale } from 'next-intl'
 
@@ -195,12 +194,12 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 								</span>
 							</p>
 							<div className='flex items-center'>
-								<div className="relative w-14 h-14 flex-shrink-0">
-									<Image
+								<div className="relative w-14 h-14 flex-shrink-0 rounded overflow-hidden border border-gray-200">
+									{/* eslint-disable-next-line @next/next/no-img-element */}
+									<img
 										src={getImage(hoveredApiData, hoveredRegion)}
 										alt='Hudud rasmi'
-										fill
-										className='object-cover rounded border border-gray-200'
+										className='w-full h-full object-cover'
 									/>
 								</div>
 								<p className='ml-2'>
