@@ -48,23 +48,28 @@ export default function RegionsPage() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// Fetch both APIs in parallel
-				const [mapResponse, councilResponse] = await Promise.all([
+				// Fetch APIs in parallel: Map, Local Council, and Tuzilma (for images)
+				// Tuzilma has the real photos and is currently working on prod
+				const [mapResponse, councilResponse, tuzilmaResponse] = await Promise.all([
 					fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/interactive-map/list/`),
-					fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/local-council/list/`)
+					fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/local-council/list/`),
+					fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/tuzilma/list/`)
 				])
 
 				if (!mapResponse.ok) throw new Error('Failed to fetch map data')
-				// We don't throw for council response as it's supplementary, but good to check
 
 				const mapData = await mapResponse.json()
+				// Handle 404 or errors gracefully for auxiliary APIs
 				const councilData = councilResponse.ok ? await councilResponse.json() : { results: [] }
+				const tuzilmaData = tuzilmaResponse.ok ? await tuzilmaResponse.json() : { results: [] }
 
 				console.log('Map Data:', mapData)
 				console.log('Council Data:', councilData)
+				console.log('Tuzilma Data:', tuzilmaData)
 
 				const mapRegions: Region[] = mapData.results || []
 				const councils: LocalCouncil[] = councilData.results || []
+				const tuzilmaWorkers: any[] = tuzilmaData.results || []
 
 				// Deduplicate map regions
 				const uniqueRegions = mapRegions.filter((region, index, self) =>
@@ -73,38 +78,73 @@ export default function RegionsPage() {
 
 				// Merge logic
 				const mergedRegions = uniqueRegions.map(region => {
-					// Try to find matching council
-					// Matching strategy: check if council.region or council.name contains the region name (hudud)
-					// or vice versa. Normalizing strings helps.
-
 					const normalize = (str: string) => str?.toLowerCase().replace(/['"`ʼ’]/g, '').trim() || ''
 
 					const regionNames = [
-						region.hudud, region.hudud_uz, region.hudud_ru, region.hudud_oz, region.hudud_en
+						region.hudud, region.hudud_uz, region.hudud_ru, region.hudud_oz, region.hudud_en,
+						// Extract region name from title (e.g. "Buxoro viloyati fermerlari..." -> "Buxoro")
+						...(region.hudud_uz?.split(' ') || [])
 					].map(normalize).filter(Boolean)
 
-					const match = councils.find(council => {
+					// 1. Find Council Data (for contacts)
+					const councilMatch = councils.find(council => {
 						const councilRegion = normalize(council.region)
 						const councilName = normalize(council.name)
-
 						return regionNames.some(rName =>
-							councilRegion.includes(rName) || rName.includes(councilRegion) ||
-							councilName.includes(rName) || rName.includes(councilName)
+							(councilRegion && councilRegion.includes(rName)) || (rName && rName.includes(councilRegion))
 						)
 					})
 
-					if (match) {
-						return {
-							...region,
-							phone: match.phone,
-							email: match.email,
-							address: match.address,
-							council_title: match.title,
-							// If map doesn't have a name/position but council does, we could fallback,
-							// but map usually has the leader's name.
+					// 2. Find Tuzilma Data (for REAL IMAGES and Manager Name)
+					// Tuzilma 'position_text' or 'section.name' often contains region name
+					const tuzilmaMatch = tuzilmaWorkers.find(worker => {
+						const posText = normalize(worker.position_text || '')
+						const sectionName = normalize(worker.section?.name || '')
+						const workerName = normalize(worker.f_name_uz || worker.f_name || '')
+						const regionPersonName = normalize(region.name_uz || region.name || '')
+
+						const regionMatch = regionNames.some(rName =>
+							(posText && posText.includes(rName)) || (sectionName && sectionName.includes(rName))
+						)
+
+						// Also try to match by Person Name if Region match is ambiguous
+						const nameMatch = regionPersonName && workerName && (workerName.includes(regionPersonName) || regionPersonName.includes(workerName));
+
+						return regionMatch || nameMatch
+					})
+
+					let merged = { ...region }
+
+					// Apply Council Data
+					if (councilMatch) {
+						merged = {
+							...merged,
+							phone: councilMatch.phone || merged.phone,
+							email: councilMatch.email || merged.email,
+							address: councilMatch.address || merged.address,
+							council_title: councilMatch.title
 						}
 					}
-					return region
+
+					// Apply Tuzilma Data (Priority for Image and Name)
+					if (tuzilmaMatch) {
+						merged = {
+							...merged,
+							// Use Tuzilma image if available
+							image: tuzilmaMatch.image || merged.image,
+							// Ensure we use the best name available. Tuzilma names are from HR DB.
+							name: tuzilmaMatch.f_name || merged.name,
+							name_uz: tuzilmaMatch.f_name_uz || merged.name_uz,
+							name_ru: tuzilmaMatch.f_name_ru || merged.name_ru,
+							name_en: tuzilmaMatch.f_name_en || merged.name_en,
+							// Tuzilma might have contacts too?
+							email: tuzilmaMatch.email || merged.email,
+							// Tuzilma phone is often null but check it
+							phone: tuzilmaMatch.phone || merged.phone
+						}
+					}
+
+					return merged
 				})
 
 
