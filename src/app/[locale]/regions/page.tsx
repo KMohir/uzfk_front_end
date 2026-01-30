@@ -22,6 +22,21 @@ interface Region {
 	position_ru: string
 	position_en: string
 	image: string
+	// Added fields from LocalCouncil
+	phone?: string
+	email?: string
+	address?: string
+	council_title?: string
+}
+
+interface LocalCouncil {
+	id: number
+	name: string
+	region: string
+	title: string
+	phone: string
+	email: string
+	address: string
 }
 
 export default function RegionsPage() {
@@ -29,25 +44,69 @@ export default function RegionsPage() {
 	const locale = useLocale()
 	const [regions, setRegions] = useState<Region[]>([])
 	const [loading, setLoading] = useState(true)
-	const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
 
 	useEffect(() => {
-		const fetchRegions = async () => {
+		const fetchData = async () => {
 			try {
-				// Barcha tillar uchun ru API'sidan ma'lumot olamiz
-				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/ru/api/interactive-map/list/`
-				)
-				if (!response.ok) {
-					throw new Error('Failed to fetch regions')
-				}
-				const data = await response.json()
-				console.log('Regions data:', data) // Debug uchun
+				// Fetch both APIs in parallel
+				const [mapResponse, councilResponse] = await Promise.all([
+					fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/interactive-map/list/`),
+					fetch(`${process.env.NEXT_PUBLIC_SERVER}/ru/api/local-council/list/`)
+				])
 
-				// Deduplicate based on ID
-				const uniqueRegions = (data.results || []).filter((region: Region, index: number, self: Region[]) =>
+				if (!mapResponse.ok) throw new Error('Failed to fetch map data')
+				// We don't throw for council response as it's supplementary, but good to check
+
+				const mapData = await mapResponse.json()
+				const councilData = councilResponse.ok ? await councilResponse.json() : { results: [] }
+
+				console.log('Map Data:', mapData)
+				console.log('Council Data:', councilData)
+
+				const mapRegions: Region[] = mapData.results || []
+				const councils: LocalCouncil[] = councilData.results || []
+
+				// Deduplicate map regions
+				const uniqueRegions = mapRegions.filter((region, index, self) =>
 					index === self.findIndex((r) => r.id === region.id)
 				)
+
+				// Merge logic
+				const mergedRegions = uniqueRegions.map(region => {
+					// Try to find matching council
+					// Matching strategy: check if council.region or council.name contains the region name (hudud)
+					// or vice versa. Normalizing strings helps.
+
+					const normalize = (str: string) => str?.toLowerCase().replace(/['"`ʼ’]/g, '').trim() || ''
+
+					const regionNames = [
+						region.hudud, region.hudud_uz, region.hudud_ru, region.hudud_oz, region.hudud_en
+					].map(normalize).filter(Boolean)
+
+					const match = councils.find(council => {
+						const councilRegion = normalize(council.region)
+						const councilName = normalize(council.name)
+
+						return regionNames.some(rName =>
+							councilRegion.includes(rName) || rName.includes(councilRegion) ||
+							councilName.includes(rName) || rName.includes(councilName)
+						)
+					})
+
+					if (match) {
+						return {
+							...region,
+							phone: match.phone,
+							email: match.email,
+							address: match.address,
+							council_title: match.title,
+							// If map doesn't have a name/position but council does, we could fallback,
+							// but map usually has the leader's name.
+						}
+					}
+					return region
+				})
+
 
 				const sortPatterns = [
 					['qoraqalpog', 'karakalpak', 'коракалпог'],
@@ -66,7 +125,6 @@ export default function RegionsPage() {
 				]
 
 				const getSortIndex = (region: Region) => {
-					// Concatenate all searchable fields to ensure we catch the keyword
 					const searchStr = [
 						region.hudud_uz,
 						region.hudud_oz,
@@ -81,19 +139,14 @@ export default function RegionsPage() {
 					)
 				}
 
-				const sortedRegions = uniqueRegions.sort((a: Region, b: Region) => {
+				const sortedRegions = mergedRegions.sort((a, b) => {
 					const indexA = getSortIndex(a)
 					const indexB = getSortIndex(b)
 
-					// Valid items come first, sorted by index
-					if (indexA !== -1 && indexB !== -1) {
-						return indexA - indexB
-					}
-					// Items in list come before items not in list
+					if (indexA !== -1 && indexB !== -1) return indexA - indexB
 					if (indexA !== -1) return -1
 					if (indexB !== -1) return 1
 
-					// Fallback to alphabetical for unlisted items
 					const nameA = (a.hudud_uz || a.hudud || '').toLowerCase()
 					const nameB = (b.hudud_uz || b.hudud || '').toLowerCase()
 					return nameA.localeCompare(nameB)
@@ -108,7 +161,7 @@ export default function RegionsPage() {
 			}
 		}
 
-		fetchRegions()
+		fetchData()
 	}, [locale])
 
 	const getRegionName = (region: Region) => {
@@ -148,8 +201,7 @@ export default function RegionsPage() {
 			url = `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
 		}
 
-		// Add cache-busting parameter to force browser to reload images
-		// This ensures we always get the latest image from backend
+		// Add cache-busting parameter
 		const cacheBuster = `?v=${Date.now()}`
 		return url + cacheBuster
 	}
@@ -188,38 +240,57 @@ export default function RegionsPage() {
 						<p className='text-xl text-gray-500'>Ma&apos;lumotlar topilmadi</p>
 					</div>
 				) : (
-					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6'>
 						{regions.map((region) => (
 							<div
 								key={region.id}
-								className={`bg-white dark:bg-gray-500 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all cursor-pointer border-2 ${selectedRegion?.id === region.id
-									? 'border-green-500'
-									: 'border-transparent'
-									}`}
-								onClick={() => setSelectedRegion(region)}
+								className='bg-white dark:bg-gray-500 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all border border-gray-100 flex flex-col md:flex-row'
 							>
-								<div className='p-4'>
-									<div className='flex items-center gap-4'>
-										<div className='relative w-16 h-16 rounded-full overflow-hidden border-2 border-green-500 flex-shrink-0'>
-											{/* eslint-disable-next-line @next/next/no-img-element */}
-											<img
-												src={getImageUrl(region.image)}
-												alt={getPersonName(region) || 'Region'}
-												className='object-cover w-full h-full'
-											/>
-										</div>
-										<div>
-											<h3 className='text-lg font-bold text-green-700 dark:text-white'>
-												{getRegionName(region)}
-											</h3>
-											<p className='text-sm text-gray-600 dark:text-gray-300'>
-												{getPersonName(region)}
-											</p>
-										</div>
+								{/* Image Section */}
+								<div className='md:w-1/3 h-64 md:h-auto relative'>
+									{/* eslint-disable-next-line @next/next/no-img-element */}
+									<img
+										src={getImageUrl(region.image)}
+										alt={getPersonName(region) || 'Region'}
+										className='object-cover w-full h-full'
+									/>
+								</div>
+
+								{/* Content Section */}
+								<div className='p-6 md:w-2/3 flex flex-col justify-center'>
+									<h3 className='text-xl font-bold text-green-700 dark:text-white mb-2'>
+										{getRegionName(region)}
+									</h3>
+
+									<div className='mb-4'>
+										<h4 className='text-lg font-semibold text-gray-800 dark:text-gray-100'>
+											{getPersonName(region)}
+										</h4>
+										<p className='text-sm text-gray-500 dark:text-gray-300'>
+											{getPosition(region)}
+										</p>
 									</div>
-									<p className='mt-3 text-xs text-gray-500 dark:text-gray-400'>
-										{getPosition(region)}
-									</p>
+
+									<div className='space-y-2 mt-2 border-t pt-4 border-gray-100 dark:border-gray-400'>
+										{region.phone && (
+											<p className='text-sm text-blue-600 dark:text-blue-300'>
+												<span className='font-bold text-gray-700 dark:text-gray-200 block md:inline md:mr-2'>{t('tel')}:</span>
+												{region.phone}
+											</p>
+										)}
+										{region.email && (
+											<p className='text-sm text-blue-600 dark:text-blue-300'>
+												<span className='font-bold text-gray-700 dark:text-gray-200 block md:inline md:mr-2'>{t('mail')}:</span>
+												{region.email}
+											</p>
+										)}
+										{region.address && (
+											<p className='text-sm text-gray-600 dark:text-gray-300'>
+												<span className='font-bold text-gray-700 dark:text-gray-200 block md:inline md:mr-2'>{t('address')}:</span>
+												{region.address}
+											</p>
+										)}
+									</div>
 								</div>
 							</div>
 						))}
