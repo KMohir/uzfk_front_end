@@ -293,57 +293,37 @@ export default function RegionsPage() {
 						<p className='text-xl text-gray-500'>Ma&apos;lumotlar topilmadi</p>
 					</div>
 				) : (
-					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6'>
+					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 						{regions.map((region) => (
 							<div
 								key={region.id}
-								className='bg-white dark:bg-gray-500 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all border border-gray-100 flex flex-col md:flex-row'
+								className='bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 dark:border-gray-700 p-4 flex items-center gap-4'
 							>
 								{/* Image Section */}
-								<div className='md:w-1/3 h-64 md:h-auto relative'>
-									{/* eslint-disable-next-line @next/next/no-img-element */}
-									<img
-										src={getImageUrl(region.image)}
-										alt={getPersonName(region) || 'Region'}
-										className='object-cover w-full h-full'
-									/>
+								<div className='flex-shrink-0'>
+									<div className='w-16 h-16 rounded-full overflow-hidden border border-gray-100 shadow-sm'>
+										{/* eslint-disable-next-line @next/next/no-img-element */}
+										<img
+											src={getImageUrl(region.image)}
+											alt={getPersonName(region) || 'Region'}
+											className='w-full h-full object-cover'
+										/>
+									</div>
 								</div>
 
 								{/* Content Section */}
-								<div className='p-6 md:w-2/3 flex flex-col justify-center'>
-									<h3 className='text-xl font-bold text-green-700 dark:text-white mb-2'>
+								<div className='flex-grow min-w-0'>
+									<h3 className='text-xs font-bold text-green-600 dark:text-green-400 uppercase tracking-wide mb-1 truncate'>
 										{getRegionName(region)}
 									</h3>
 
-									<div className='mb-4'>
-										<h4 className='text-lg font-semibold text-gray-800 dark:text-gray-100'>
-											{getPersonName(region)}
-										</h4>
-										<p className='text-sm text-gray-500 dark:text-gray-300'>
-											{getPosition(region)}
-										</p>
-									</div>
+									<h4 className='text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2 mb-1'>
+										{getPersonName(region)}
+									</h4>
 
-									<div className='space-y-2 mt-2 border-t pt-4 border-gray-100 dark:border-gray-400'>
-										{region.phone && (
-											<p className='text-sm text-blue-600 dark:text-blue-300'>
-												<span className='font-bold text-gray-700 dark:text-gray-200 block md:inline md:mr-2'>{t('tel')}:</span>
-												{region.phone}
-											</p>
-										)}
-										{region.email && (
-											<p className='text-sm text-blue-600 dark:text-blue-300'>
-												<span className='font-bold text-gray-700 dark:text-gray-200 block md:inline md:mr-2'>{t('mail')}:</span>
-												{region.email}
-											</p>
-										)}
-										{region.address && (
-											<p className='text-sm text-gray-600 dark:text-gray-300'>
-												<span className='font-bold text-gray-700 dark:text-gray-200 block md:inline md:mr-2'>{t('address')}:</span>
-												{region.address}
-											</p>
-										)}
-									</div>
+									<p className='text-[10px] text-gray-500 dark:text-gray-400 line-clamp-2'>
+										{getPosition(region)}
+									</p>
 								</div>
 							</div>
 						))}
