@@ -13,6 +13,7 @@ interface RegionApiData {
 	name_uz: string
 	name_ru: string
 	image: string
+	address?: string
 	// Add other fields if necessary
 }
 
@@ -227,12 +228,19 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 										className='w-full h-full object-cover'
 									/>
 								</div>
-								<p className='ml-2'>
-									<span className='font-medium text-black'></span>{' '}
-									<span className='text-black font-bold text-[12px] md:text-sm block leading-tight'>
-										{getLocalizedContent(hoveredApiData, hoveredRegion, 'person')}
-									</span>
-								</p>
+								<div className='ml-2'>
+									<p>
+										<span className='font-medium text-black'></span>{' '}
+										<span className='text-black font-bold text-[12px] md:text-sm block leading-tight'>
+											{getLocalizedContent(hoveredApiData, hoveredRegion, 'person')}
+										</span>
+									</p>
+									{hoveredApiData?.address && (
+										<p className='mt-1 text-[10px] text-gray-500 leading-tight'>
+											{hoveredApiData.address}
+										</p>
+									)}
+								</div>
 							</div>
 						</div>
 					</div>

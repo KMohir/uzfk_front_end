@@ -142,6 +142,22 @@ export default function RegionsPage() {
 						return posIndex === regionIndex || sectionIndex === regionIndex
 					})
 
+					const hardcodedAddresses = [
+						"Қорақалпоғистон Республикаси  Нукус шаҳри, Чимбой гўзори кўчаси  № 5/2-уй", // 0
+						"Андижон вилояти   Андижон шахри Тинчлик ко'часи 8-уй", // 1
+						"Бухоро вилояти  Бухоро шахри Баҳовиддин Нақшбанд кўчаси 297/1 уй", // 2
+						"Жиззах вилояти  Жиззах шахар, О'ратепалик мфй, Г'алаба ко'ча 1-уй", // 3
+						"Қашқадарё вилояти   Қарши шаҳри И.Каримов 81 уй", // 4
+						"Навоий вилояти  Навоий шаҳар Низомий ко'часи 24 уй", // 5
+						"Наманган вилояти  Наманган шахар Марғилон кўчаси 10-уй.", // 6
+						"Самарқанд вилояти  Самарқанд шахар куксарай майдони 2-уй Е-корпус", // 7
+						"Сурхондарё вилояти  Термиз шахар  Шукрона кучаси 19 уй", // 8
+						"Сирдарё вилояти  Боёвут тумани Анорзор МФЙ", // 9
+						"Фарғона вилояти  Фарғона шаҳри Ал-Фарғоний кўчаси 64-уй", // 10
+						"Хоразм вилояти  Урганч шаҳри Хонқа кўчаси 19 уй", // 11
+						"Тошкент вилояти  Нурафшон шаҳар Қумариқ МФЙ Қумариқ кочаси 15 уй" // 12
+					]
+
 					let merged = { ...region }
 
 					// Apply Council Data
@@ -171,6 +187,11 @@ export default function RegionsPage() {
 							// Tuzilma phone is often null but check it
 							phone: tuzilmaMatch.phone || merged.phone
 						}
+					}
+
+					// Apply Hardcoded Address
+					if (regionIndex !== -1 && regionIndex < hardcodedAddresses.length) {
+						merged.address = hardcodedAddresses[regionIndex]
 					}
 
 					return merged
