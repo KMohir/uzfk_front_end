@@ -236,7 +236,7 @@ export const RegionsMap: FC<RegionsMapProps> = ({
 										</span>
 									</p>
 									{hoveredApiData?.address && (
-										<p className='mt-1 text-xs text-gray-600 leading-snug line-clamp-2 font-medium'>
+										<p className='mt-1 text-[10px] text-gray-500 leading-tight'>
 											{hoveredApiData.address}
 										</p>
 									)}
