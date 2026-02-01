@@ -7,34 +7,54 @@ import { usePathname } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
 
-interface Worker {
+interface DepartmentWorker {
 	id: number
+	f_name: string
 	f_name_uz: string
 	f_name_ru: string
-	f_name_oz: string
+	f_name_en: string
+	image: string | null
+	phone: string
+	email: string
+	position: {
+		id: number
+		name: string
+		name_uz: string
+		name_ru: string
+		name_en: string
+	}
+}
+
+interface Worker {
+	id: number
+	f_name: string
+	f_name_uz: string
+	f_name_ru: string
+	f_name_en: string
 	image: string
 	phone: string
 	email: string
 	section: {
 		id: number
+		name: string
 		name_uz: string
-		name_oz: string
 		name_ru: string
 		name_en: string
 	}
 	position: {
 		id: number
+		name: string
 		name_uz: string
-		name_oz: string
 		name_ru: string
 		name_en: string
 	}
-	address: string
 	biography: string
 	obligation: string
-	structures?: Worker[] // Optional nested workers
-	currentTab?: 'biography' | 'obligation' | 'workers' | null // Added to track each worker's currentTab
+	departments?: DepartmentWorker[]
+	currentTab?: 'biography' | 'obligation' | 'workers' | null
+    address?: string
 }
+
 export default function Page() {
 	const t = useTranslations()
 	const pathname = usePathname()
@@ -55,7 +75,7 @@ export default function Page() {
 			try {
 				setIsLoading(true)
 				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/tuzilma/list/`
+					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/bolimlar/list/`
 				)
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`)
@@ -98,7 +118,7 @@ export default function Page() {
 	 * Helper to get full image URL
 	 * Converts http:// to https:// for proper image loading
 	 */
-	const getImageUrl = (imagePath: string | undefined) => {
+	const getImageUrl = (imagePath: string | null | undefined) => {
 		if (!imagePath) return ''
 
 		let url = ''
@@ -120,8 +140,6 @@ export default function Page() {
 		const cacheBuster = `?v=${Date.now()}`
 		return url + cacheBuster
 	}
-
-
 
 	const paginatedWorkers = workers.slice(
 		(currentPage - 1) * pageSize,
@@ -169,13 +187,13 @@ export default function Page() {
 							language === 'ru'
 								? worker.f_name_ru
 								: language === 'oz'
-									? (worker.f_name_oz || worker.f_name_ru || worker.f_name_uz)
+									? (worker.f_name_en || worker.f_name_ru || worker.f_name_uz)
 									: worker.f_name_uz
 						const section =
 							language === 'ru'
 								? worker.section.name_ru
 								: language === 'oz'
-									? (worker.section.name_oz || worker.section.name_ru || worker.section.name_uz)
+									? (worker.section.name_en || worker.section.name_ru || worker.section.name_uz)
 									: worker.section.name_uz
 
 
@@ -201,14 +219,7 @@ export default function Page() {
 										<h3 className='text-base flex flex-wrap md:text-3xl font-semibold text-gray-900 mb-4'>
 											{fname}
 										</h3>
-										{/* <p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
-											<b className='text-black max-md:text-sm'>
-												{t('lavozim')}:
-											</b>{' '}
-											{position}
-										</p> */}
 										<p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
-											{/* <b className='text-black max-md:text-sm'>{t('bolm')}:</b>{' '} */}
 											{section}
 										</p>
 										<p className='text-blue-600 dark:text-white font-medium text-lg mb-2'>
@@ -219,12 +230,14 @@ export default function Page() {
 											<b className='text-black max-md:text-sm'>{t('mail')}:</b>{' '}
 											{worker.email}
 										</p>
-										<p className='text-blue-600 dark:text-white font-medium text-lg'>
-											<b className='text-black max-md:text-sm'>
-												{t('address')}:
-											</b>{' '}
-											{worker.address}
-										</p>
+                                        {worker.address && (
+                                            <p className='text-blue-600 dark:text-white font-medium text-lg'>
+                                                <b className='text-black max-md:text-sm'>
+                                                    {t('address')}:
+                                                </b>{' '}
+                                                {worker.address}
+                                            </p>
+                                        )}
 									</div>
 								</div>
 
@@ -261,9 +274,9 @@ export default function Page() {
 												dangerouslySetInnerHTML={{ __html: worker.obligation }}
 											/>
 										)}
-										{worker.currentTab === 'workers' && worker.structures && (
+										{worker.currentTab === 'workers' && worker.departments && (
 											<div className='mt-6 space-y-4'>
-												{worker.structures.map(subWorker => (
+												{worker.departments.map(subWorker => (
 													<div
 														key={subWorker.id}
 														className='flex max-md:flex-col gap-6 border rounded-lg p-6 shadow-md bg-gray-50'
@@ -276,10 +289,10 @@ export default function Page() {
 														/>
 														<div className='flex flex-col gap-4'>
 															<h4 className='text-xl font-semibold text-gray-900'>
-																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_oz || subWorker.f_name_ru || subWorker.f_name_uz) : subWorker.f_name_uz}
+																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_en || subWorker.f_name_ru || subWorker.f_name_uz) : subWorker.f_name_uz}
 															</h4>
 															<p className='text-base text-blue-600'>
-																<b>{t('lavozim')}:</b> {language === 'ru' ? subWorker.position.name_ru : language === 'oz' ? (subWorker.position.name_oz || subWorker.position.name_ru || subWorker.position.name_uz) : subWorker.position.name_uz}
+																<b>{t('lavozim')}:</b> {language === 'ru' ? subWorker.position.name_ru : language === 'oz' ? (subWorker.position.name_en || subWorker.position.name_ru || subWorker.position.name_uz) : subWorker.position.name_uz}
 															</p>
 															<p className='text-base text-blue-600'>
 																<b>{t('tel')}:</b> {subWorker.phone}
