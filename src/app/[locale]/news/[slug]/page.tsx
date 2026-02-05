@@ -75,6 +75,23 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 		getRecommendedNews()
 	])
 
+	const getImageUrl = (imagePath: string) => {
+		if (!imagePath) return ''
+
+		// If image has http:// (from API), convert to https://
+		if (imagePath.startsWith('http://')) {
+			return imagePath.replace('http://', 'https://')
+		}
+
+		// If image already has https://, return as is
+		if (imagePath.startsWith('https://')) {
+			return imagePath
+		}
+
+		// If image is relative path, prepend server URL
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath}`
+	}
+
 	if (!news) {
 		return (
 			<div className='flex justify-center items-center min-h-screen'>
@@ -124,7 +141,7 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 						{/* Main Image */}
 						<div className='relative w-full aspect-video mb-6 rounded-lg overflow-hidden'>
 							<Image
-								src={news.image}
+								src={getImageUrl(news.image)}
 								alt={(locale === 'ru'
 									? (news.title_ru || news.title_uz || news.title_oz || news.title)
 									: locale === 'oz'
@@ -180,7 +197,7 @@ export default async function NewsDetail({ params }: NewsDetailProps) {
 											<div className='flex gap-3'>
 												<div className='relative w-20 h-16 flex-shrink-0 rounded overflow-hidden'>
 													<Image
-														src={item.image}
+														src={getImageUrl(item.image)}
 														alt={(locale === 'ru'
 															? (item.title_ru || item.title_uz || item.title_oz || item.title)
 															: locale === 'oz'
