@@ -34,7 +34,8 @@ export default function AnnouncementsPage() {
 				return res.json()
 			})
 			.then(data => {
-				setAnnouncements(data.results)
+				const list = Array.isArray(data?.results) ? data.results : Array.isArray(data) ? data : []
+				setAnnouncements(list)
 				setIsLoading(false)
 			})
 			.catch(err => {
@@ -45,6 +46,13 @@ export default function AnnouncementsPage() {
 				setIsLoading(false)
 			})
 	}, [locale])
+
+	const getImageUrl = (imagePath: string | null | undefined) => {
+		if (!imagePath) return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240"><rect fill="#e5e7eb" width="400" height="240"/></svg>')
+		if (imagePath.startsWith('http://')) return imagePath.replace('http://', 'https://')
+		if (imagePath.startsWith('https://')) return imagePath
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+	}
 
 	if (isLoading) {
 		return (
@@ -86,7 +94,7 @@ export default function AnnouncementsPage() {
 							<div className='bg-white dark:bg-gray-500 rounded-lg shadow-2xl overflow-hidden group-hover:shadow-2xl transition-shadow duration-300 group'>
 								<div className='relative h-48'>
 									<Image
-										src={announcement.image}
+										src={getImageUrl(announcement.image)}
 										alt={announcement.title}
 										fill
 										className='object-cover'

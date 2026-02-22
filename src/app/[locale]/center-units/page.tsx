@@ -76,6 +76,13 @@ export default function Page() {
 		fetchData()
 	}, [locale])
 
+	const getImageUrl = (imagePath: string | null | undefined) => {
+		if (!imagePath) return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240"><rect fill="#e5e7eb" width="200" height="240"/></svg>')
+		if (imagePath.startsWith('http://')) return imagePath.replace('http://', 'https://')
+		if (imagePath.startsWith('https://')) return imagePath
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+	}
+
 	const handleTabChange = (
 		workerId: number,
 		tab: 'biography' | 'obligation' | 'workers'
@@ -93,9 +100,6 @@ export default function Page() {
 		(currentPage - 1) * pageSize,
 		currentPage * pageSize
 	)
-
-	console.log(paginatedWorkers);
-
 
 	if (isLoading) {
 		return (
@@ -142,8 +146,8 @@ export default function Page() {
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
 									<div className='h-auto'>
 										<Image
-											src={worker.image}
-											alt={worker.f_name_uz}
+											src={getImageUrl(worker.image)}
+											alt={worker.f_name_uz || worker.f_name_ru || ''}
 											width={200}
 											height={240}
 											className='w-full border h-60 object-cover rounded-lg'

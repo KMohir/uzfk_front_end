@@ -61,6 +61,13 @@ export default function NewsDetail() {
 		}
 	}, [params.slug, params.locale])
 
+	const getImageUrl = (imagePath: string | null | undefined) => {
+		if (!imagePath) return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect fill="#e5e7eb" width="800" height="400"/></svg>')
+		if (imagePath.startsWith('http://')) return imagePath.replace('http://', 'https://')
+		if (imagePath.startsWith('https://')) return imagePath
+		return `${process.env.NEXT_PUBLIC_SERVER || process.env.NEXT_PUBLIC_API_URL || 'https://uzfk.uz'}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+	}
+
 	if (isLoading) {
 		return (
 			<div className='max-w-7xl mx-auto h-full flex items-center justify-center py-24'>
@@ -97,7 +104,7 @@ export default function NewsDetail() {
 			<article className='bg-white rounded-lg shadow-lg overflow-hidden'>
 				<div className='relative w-full h-[400px]'>
 					<Image
-						src={news.image}
+						src={getImageUrl(news.image)}
 						alt={params.locale === 'ru' ? news.title_ru : params.locale === 'oz' ? (news.title_oz || news.title_uz) : news.title_uz}
 						fill
 						className='object-cover'

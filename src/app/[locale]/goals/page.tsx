@@ -11,25 +11,26 @@ interface Worker {
 	id: number
 	f_name_uz: string
 	f_name_ru: string
-	f_name_oz: string
-	image: string
+	f_name_oz?: string
+	f_name_en?: string
+	image: string | null
 	phone: string
 	email: string
 	section: {
 		id: number
 		name_uz: string
-		name_oz: string
+		name_oz?: string
 		name_ru: string
 		name_en: string
 	}
 	position: {
 		id: number
 		name_uz: string
-		name_oz: string
+		name_oz?: string
 		name_ru: string
 		name_en: string
 	}
-	address: string
+	address?: string
 	biography: string
 	obligation: string
 	targets?: Worker[]
@@ -61,9 +62,10 @@ export default function Page() {
 					throw new Error(`HTTP error! status: ${res.status}`)
 				}
 				const data = await res.json()
-				const updatedWorkers = data.results.map((worker: Worker) => ({
+				const list = Array.isArray(data.results) ? data.results : Array.isArray(data) ? data : []
+				const updatedWorkers = list.map((worker: Worker) => ({
 					...worker,
-					currentTab: null, // Hech qanday tab tanlanmagan bo‘lishi uchun
+					currentTab: null,
 				}))
 				setWorkers(updatedWorkers)
 			} catch (err: unknown) {
@@ -80,6 +82,13 @@ export default function Page() {
 
 		fetchData()
 	}, [language, apiLocale])
+
+	const getImageUrl = (imagePath: string | null | undefined) => {
+		if (!imagePath) return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240"><rect fill="#e5e7eb" width="200" height="240"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#9ca3af" font-size="14" font-family="sans-serif">No photo</text></svg>')
+		if (imagePath.startsWith('http://')) return imagePath.replace('http://', 'https://')
+		if (imagePath.startsWith('https://')) return imagePath
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+	}
 
 	const handleTabChange = (
 		workerId: number,
@@ -140,16 +149,16 @@ export default function Page() {
 					{paginatedWorkers.map(worker => {
 						const fname =
 							language === 'ru'
-								? worker.f_name_ru
+								? (worker.f_name_ru || worker.f_name_uz)
 								: language === 'oz'
-									? (worker.f_name_oz || worker.f_name_ru || worker.f_name_uz)
-									: worker.f_name_uz
+									? (worker.f_name_oz || worker.f_name_en || worker.f_name_ru || worker.f_name_uz)
+									: (worker.f_name_uz || worker.f_name_ru)
 						const section =
 							language === 'ru'
-								? worker.section.name_ru
+								? (worker.section?.name_ru || worker.section?.name_uz)
 								: language === 'oz'
-									? (worker.section.name_oz || worker.section.name_ru || worker.section.name_uz)
-									: worker.section.name_uz
+									? (worker.section?.name_oz || worker.section?.name_en || worker.section?.name_ru || worker.section?.name_uz)
+									: (worker.section?.name_uz || worker.section?.name_ru)
 
 
 
@@ -161,11 +170,12 @@ export default function Page() {
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
 									<div className='h-auto'>
 										<Image
-											src={worker.image}
+											src={getImageUrl(worker.image)}
 											alt={fname}
 											width={200}
 											height={240}
 											className='w-[200px] h-60 object-cover rounded-lg'
+											unoptimized={!!process.env.NEXT_PUBLIC_SERVER?.includes('uzfk.uz')}
 										/>
 									</div>
 									<div className='flex flex-col gap-1'>
@@ -238,18 +248,19 @@ export default function Page() {
 														className='flex max-md:flex-col gap-6 border rounded-lg p-6 shadow-md bg-gray-50'
 													>
 														<Image
-															src={subWorker.image}
-															alt={subWorker.f_name_uz}
+															src={getImageUrl(subWorker.image)}
+															alt={subWorker.f_name_uz || subWorker.f_name_ru || ''}
 															width={200}
 															height={240}
 															className='w-[200px] h-60 rounded-lg object-cover'
+															unoptimized={!!process.env.NEXT_PUBLIC_SERVER?.includes('uzfk.uz')}
 														/>
 														<div className='flex flex-col gap-4'>
 															<h4 className='text-xl font-semibold text-gray-900'>
-																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_oz || subWorker.f_name_ru || subWorker.f_name_uz) : subWorker.f_name_uz}
+																{language === 'ru' ? (subWorker.f_name_ru || subWorker.f_name_uz) : language === 'oz' ? (subWorker.f_name_oz || subWorker.f_name_en || subWorker.f_name_ru || subWorker.f_name_uz) : (subWorker.f_name_uz || subWorker.f_name_ru)}
 															</h4>
 															<p className='text-base text-blue-600'>
-																<b>{t('lavozim')}:</b> {language === 'ru' ? subWorker.position.name_ru : language === 'oz' ? (subWorker.position.name_oz || subWorker.position.name_ru || subWorker.position.name_uz) : subWorker.position.name_uz}
+																<b>{t('lavozim')}:</b> {language === 'ru' ? (subWorker.position?.name_ru || subWorker.position?.name_uz) : language === 'oz' ? (subWorker.position?.name_oz || subWorker.position?.name_en || subWorker.position?.name_ru || subWorker.position?.name_uz) : (subWorker.position?.name_uz || subWorker.position?.name_ru)}
 															</p>
 															<p className='text-base text-blue-600'>
 																<b>{t('tel')}:</b> {subWorker.phone}

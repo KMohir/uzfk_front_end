@@ -29,7 +29,8 @@ export default function Announcements() {
 					`${process.env.NEXT_PUBLIC_SERVER}/${apiLocale}/api/elon/most_read/list/`
 				)
 				const data = await response.json()
-				setAnnouncements(data.results)
+				const list = Array.isArray(data?.results) ? data.results : Array.isArray(data) ? data : []
+				setAnnouncements(list)
 			} catch (err) {
 				console.error('Error fetching announcements:', err)
 			} finally {
@@ -39,6 +40,13 @@ export default function Announcements() {
 
 		fetchAnnouncements()
 	}, [locale])
+
+	const getImageUrl = (imagePath: string | null | undefined) => {
+		if (!imagePath) return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240"><rect fill="#e5e7eb" width="400" height="240"/></svg>')
+		if (imagePath.startsWith('http://')) return imagePath.replace('http://', 'https://')
+		if (imagePath.startsWith('https://')) return imagePath
+		return `${process.env.NEXT_PUBLIC_SERVER || 'https://uzfk.uz'}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+	}
 
 	if (loading) {
 		return (
@@ -58,7 +66,7 @@ export default function Announcements() {
 				>
 					<div className='relative h-28 md:h-48'>
 						<Image
-							src={announcement.image}
+							src={getImageUrl(announcement.image)}
 							alt={announcement.title}
 							fill
 							className='object-cover'
