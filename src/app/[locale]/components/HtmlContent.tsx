@@ -28,6 +28,10 @@ function rewriteRelativeUrls(html: string, baseUrl: string): string {
 	return out
 }
 
+/** Стили для ссылок внутри контента — явно задаём синий цвет и подчёркивание. */
+const contentWrapperClass =
+	'text-gray-800 text-justify dark:text-white leading-relaxed px-10 prose prose-img:max-w-full prose-img:rounded-lg dark:prose-invert max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-blue-800 dark:[&_a]:text-blue-400 dark:[&_a]:hover:text-blue-300 [&_a]:cursor-pointer'
+
 export default function HtmlContent({ content, imageBaseUrl = DEFAULT_SERVER }: HtmlContentProps) {
 	if (!content) {
 		return null
@@ -35,9 +39,5 @@ export default function HtmlContent({ content, imageBaseUrl = DEFAULT_SERVER }: 
 
 	const html = rewriteRelativeUrls(content, imageBaseUrl)
 
-	return (
-		<div className='text-gray-800 text-justify dark:text-white leading-relaxed px-10 prose prose-img:max-w-full prose-img:rounded-lg prose-a:text-blue-600 prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-blue-800 dark:prose-invert dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300 max-w-none'>
-			{parse(html)}
-		</div>
-	)
+	return <div className={contentWrapperClass}>{parse(html)}</div>
 }
