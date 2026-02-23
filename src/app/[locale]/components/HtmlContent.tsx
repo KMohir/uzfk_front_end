@@ -36,7 +36,7 @@ export default function HtmlContent({ content, imageBaseUrl = DEFAULT_SERVER }: 
 	const html = rewriteRelativeUrls(content, imageBaseUrl)
 
 	return (
-		<div className='text-gray-800 text-justify dark:text-white leading-relaxed px-10 prose prose-img:max-w-full prose-img:rounded-lg dark:prose-invert max-w-none'>
+		<div className='text-gray-800 text-justify dark:text-white leading-relaxed px-10 prose prose-img:max-w-full prose-img:rounded-lg prose-a:text-blue-600 prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-blue-800 dark:prose-invert dark:prose-a:text-blue-400 dark:hover:prose-a:text-blue-300 max-w-none'>
 			{parse(html)}
 		</div>
 	)
