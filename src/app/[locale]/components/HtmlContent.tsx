@@ -10,14 +10,23 @@ interface HtmlContentProps {
 	imageBaseUrl?: string
 }
 
-/** Подставляет полный URL для img src, начинающихся с / (напр. /media/...) */
+/** Подставляет полный URL для всех относительных img src (как в админке). */
 function rewriteImageUrls(html: string, baseUrl: string): string {
 	if (!html || !baseUrl) return html
-	const normalized = baseUrl.replace(/\/$/, '')
-	return html.replace(
-		/<img([^>]*)\ssrc="(\/[^"]*)"/gi,
-		(_, rest, src) => `<img${rest} src="${normalized}${src}"`
+	const base = baseUrl.replace(/\/$/, '')
+	// <img ... src="/path" или src='/path' (порядок атрибутов любой, двойные/одинарные кавычки)
+	let out = html.replace(
+		/<img([^>]*)\s+src="(\/[^"]*)"/gi,
+		(_, rest, src) => `<img${rest} src="${base}${src}"`
 	)
+	out = out.replace(
+		/<img([^>]*)\s+src='(\/[^']*)'/gi,
+		(_, rest, src) => `<img${rest} src="${base}${src}"`
+	)
+	// src сразу после <img без пробела
+	out = out.replace(/<img\s+src="(\/[^"]*)"/gi, (_, src) => `<img src="${base}${src}"`)
+	out = out.replace(/<img\s+src='(\/[^']*)'/gi, (_, src) => `<img src="${base}${src}"`)
+	return out
 }
 
 export default function HtmlContent({ content, imageBaseUrl = DEFAULT_SERVER }: HtmlContentProps) {
