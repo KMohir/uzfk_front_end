@@ -144,13 +144,13 @@ export default function Page() {
 								className='border rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-500 transition-all transform hover:shadow-xl p-6'
 							>
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
-									<div className='h-auto'>
+									<div className='flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-600'>
 										<Image
 											src={getImageUrl(worker.image)}
 											alt={worker.f_name_uz || worker.f_name_ru || ''}
-											width={200}
-											height={240}
-											className='w-full border h-60 object-cover rounded-lg'
+											width={280}
+											height={373}
+											className='w-full h-full object-cover object-top rounded-lg'
 										/>
 									</div>
 									{/* Worker Info */}

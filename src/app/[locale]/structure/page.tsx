@@ -204,13 +204,13 @@ export default function Page() {
 							>
 								{/* Worker Image and Info */}
 								<div className='flex flex-col md:flex-row gap-6 items-start'>
-									{/* Worker Image */}
-									<div className='h-auto'>
+									{/* Worker Image — фиксированные пропорции */}
+									<div className='flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-600'>
 										{/* eslint-disable-next-line @next/next/no-img-element */}
 										<img
 											src={getImageUrl(worker.image)}
 											alt={fname}
-											className='w-[200px] h-60 object-cover rounded-lg'
+											className='w-full h-full object-cover object-top'
 										/>
 									</div>
 
@@ -281,12 +281,14 @@ export default function Page() {
 														key={subWorker.id}
 														className='flex max-md:flex-col gap-6 border rounded-lg p-6 shadow-md bg-gray-50'
 													>
-														{/* eslint-disable-next-line @next/next/no-img-element */}
-														<img
-															src={getImageUrl(subWorker.image)}
-															alt={subWorker.f_name_uz}
-															className='w-[200px] h-60 rounded-lg object-cover'
-														/>
+														<div className='flex-shrink-0 w-[200px] aspect-[3/4] overflow-hidden rounded-lg bg-gray-200'>
+															{/* eslint-disable-next-line @next/next/no-img-element */}
+															<img
+																src={getImageUrl(subWorker.image)}
+																alt={subWorker.f_name_uz}
+																className='w-full h-full object-cover object-top'
+															/>
+														</div>
 														<div className='flex flex-col gap-4'>
 															<h4 className='text-xl font-semibold text-gray-900'>
 																{language === 'ru' ? subWorker.f_name_ru : language === 'oz' ? (subWorker.f_name_en || subWorker.f_name_ru || subWorker.f_name_uz) : subWorker.f_name_uz}

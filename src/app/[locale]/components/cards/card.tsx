@@ -13,21 +13,15 @@ interface ICard {
 function Card(item: ICard) {
   return (
     <div className="p-4 w-full">
-      <div
-        className="flex flex-col md:flex-row border rounded-lg bg-white dark:bg-gray-800 shadow-md w-full max-w-[1200px] mx-auto"
-        style={{ height: '200px' }} // Kartaning balandligi bir xil
-      >
-        {/* Rasm bloki */}
-        <div
-          className="flex-shrink-0"
-          style={{ width: '250px', height: '100%' }} // Rasm kengligi va balandligi bir xil
-        >
+      <div className="flex flex-col md:flex-row border rounded-lg bg-white dark:bg-gray-800 shadow-md w-full max-w-[1200px] mx-auto">
+        {/* Rasm bloki — фиксированные пропорции, object-cover без растягивания */}
+        <div className="flex-shrink-0 w-full md:w-[250px] h-[200px] md:h-[280px] overflow-hidden rounded-t-lg md:rounded-l-lg md:rounded-t-none bg-gray-100 dark:bg-gray-700">
           <Image
             src={item.image || '/placeholder.png'}
             alt={item.title}
             width={250}
-            height={200}
-            className="object-cover w-full h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+            height={280}
+            className="object-cover object-top w-full h-full"
           />
         </div>
 
